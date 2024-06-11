@@ -9,4 +9,4 @@ func _ready():
 
 func shoot():
 	#instantiate new bullet at gun with gun rotation
-	new_bullet(800, 10, global_position, rotation, 400)
+	new_bullet(800, 10, global_position, rotation, 500)

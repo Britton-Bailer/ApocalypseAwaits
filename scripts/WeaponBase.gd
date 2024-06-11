@@ -3,17 +3,22 @@ extends Node2D
 class_name Weapon
 
 var BULLET = preload("res://prefabs/bullet.tscn")
+@onready var ammo_indicator = %AmmoIndicator
+@onready var ammo_text = %AmmoText
 
 var timeBetweenShots = 10
 var lastShotTimer = timeBetweenShots
 var magSize = 20
-var mag = 25
+var mag = 20
 var reloadTime = 150
 var reloadTimer = 0
 var reloading = false
 
 ## rotate gun to mouse
 func _process(delta):
+	if Input.is_action_pressed("reload"):
+		reload()
+	
 	look_at(get_global_mouse_position())
 	
 	#increase timer every frame
@@ -33,20 +38,25 @@ func _process(delta):
 
 	if(reloading):
 		reloadTimer += 1
+		ammo_indicator.set_angle(360 * (float(reloadTimer)/float(reloadTime)))
+		ammo_text.text = "[center]%s[/center]" % (str(round(magSize * (float(reloadTimer)/float(reloadTime)))) + "/" + str(magSize))
+	else:
+		ammo_indicator.set_angle((mag + 1) * (360/magSize))
+		ammo_text.text = str(mag) + "/" + str(magSize)
 	
 	if(reloadTimer > reloadTime):
 		mag = magSize
 		reloadTimer = 0
 		reloading = false
-
+	
 func reload():
 	reloading = true
 
 func shoot():
 	pass
 	
-## create new bullet with stats
-func new_bullet(spd, dmg, pos, rot, mxDst):
+## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
+func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float):
 	var bullet = BULLET.instantiate()
 	bullet.set_vars(spd, dmg, mxDst)
 	bullet.position = pos
