@@ -3,6 +3,7 @@ extends Node2D
 class_name Weapon
 
 var BULLET = preload("res://prefabs/bullet.tscn")
+
 @onready var ammo_indicator = %AmmoIndicator
 @onready var ammo_text = %AmmoText
 
@@ -58,7 +59,7 @@ func shoot():
 ## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
 func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float):
 	var bullet = BULLET.instantiate()
-	bullet.set_vars(spd, dmg, mxDst)
+	bullet.set_vars(spd, dmg, mxDst, true)
 	bullet.position = pos
 	bullet.rotation = rot
 	

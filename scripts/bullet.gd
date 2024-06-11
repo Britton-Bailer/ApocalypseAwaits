@@ -26,7 +26,10 @@ func _on_body_entered(body):
 	#delete bullet
 	queue_free()
 
-func set_vars(spd, dmg, mxDst):
+func set_vars(spd, dmg, mxDst, friendly):
 	bulletSpeed = spd
 	damage = dmg
 	maxDist = mxDst
+	
+	#if friendly, dont collide with player
+	set_collision_mask_value(8, !friendly)
