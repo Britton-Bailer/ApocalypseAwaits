@@ -8,6 +8,7 @@ var sightRange = 600
 var lastSeenTarget
 var broadcastRange = 500
 var health = 100
+var touchDamage = 10
 var currentState = enums.zombieState.CHASING
 
 var targetingInterval = 10
@@ -15,7 +16,6 @@ var targetingTimer = 0
 
 @onready var navAgent = $NavigationAgent2D
 @onready var lineOfSightRay = $RayCastToPlayer
-
 
 var zombiesContainer # parent that holds all zombies
 var directions = []
@@ -44,6 +44,9 @@ func _ready():
 
 ## runs every frame
 func _physics_process(delta):
+	if(can_attack()):
+		attack()
+	
 	do_targeting()
 	
 	#do navigation and movement
@@ -139,9 +142,20 @@ func run_directions_calculations():
 			else:
 				dirWeights[dirWeights.size()-1] -= 1
 
+func can_attack():
+	pass
+
+func attack():
+	pass
+
 func _draw():
 	for i in range(directions.size()):
 		if(dirWeights[i] > 0):
 			draw_line(Vector2.ZERO, (directions[i] * dirWeights[i] * senseDistance), Color.BLACK, 2)
 		else:
 			draw_line(Vector2.ZERO, (directions[i] * -clampf(dirWeights[i], -1, 0) * senseDistance), Color.RED, 2)
+
+
+func _on_damage_area_body_entered(body):
+	if(body.has_method("take_damage")):
+		body.take_damage(touchDamage)

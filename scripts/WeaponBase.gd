@@ -39,11 +39,6 @@ func _process(delta):
 
 	if(reloading):
 		reloadTimer += 1
-		ammo_indicator.set_angle(360 * (float(reloadTimer)/float(reloadTime)))
-		ammo_text.text = "[center]%s[/center]" % (str(round(magSize * (float(reloadTimer)/float(reloadTime)))) + "/" + str(magSize))
-	else:
-		ammo_indicator.set_angle((mag + 1) * (360/magSize))
-		ammo_text.text = str(mag) + "/" + str(magSize)
 	
 	if(reloadTimer > reloadTime):
 		mag = magSize

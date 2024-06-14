@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=9 format=3 uid="uid://c5qj4134r7hb2"]
 
-[ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="1_qjnb2"]
+[ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_3kbbd"]
 [ext_resource type="Script" path="res://scripts/AmmoIndicator.gd" id="3_skj3q"]
 [ext_resource type="Script" path="res://scripts/Weapons/AssultRifle.gd" id="4_0xn4x"]
+[ext_resource type="Script" path="res://scripts/AmmoText.gd" id="4_ja6kb"]
+[ext_resource type="Script" path="res://scripts/HealthIndicator.gd" id="6_g467v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
 friction = 0.0
@@ -30,6 +32,7 @@ texture = ExtResource("2_3kbbd")
 zoom = Vector2(1.3, 1.3)
 
 [node name="Weapon" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_0xn4x")
 
 [node name="Sprite2D" type="Sprite2D" parent="Weapon"]
@@ -40,8 +43,23 @@ texture = ExtResource("2_3kbbd")
 [node name="GameUI" type="CanvasLayer" parent="."]
 layer = 3
 
+[node name="AmmoText" type="RichTextLabel" parent="GameUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 515.475
+offset_top = 265.775
+offset_right = 577.475
+offset_bottom = 305.775
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Test"
+script = ExtResource("4_ja6kb")
+
 [node name="AmmoIndicator" type="Control" parent="GameUI"]
-unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -56,19 +74,16 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("3_skj3q")
 
-[node name="AmmoText" type="RichTextLabel" parent="GameUI/AmmoIndicator"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
+[node name="HealthIndicator" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.045
-offset_top = -13.525
-offset_right = 39.955
-offset_bottom = 26.475
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
 grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "Test"
+grow_vertical = 0
+script = ExtResource("6_g467v")

@@ -1,9 +1,14 @@
 extends RigidBody2D
 
 const SPEED = 150.0
+var maxHealth = 100
+var health = maxHealth
 
 func _physics_process(delta):
+	movement()
 
+
+func movement():
 	var left = Input.is_action_pressed("left")
 	if left:
 		linear_velocity.x = -SPEED
@@ -20,3 +25,8 @@ func _physics_process(delta):
 	if down:
 		linear_velocity.y = SPEED
 
+func take_damage(dmg):
+	health -= dmg
+	
+	if(health <= 0):
+		pass #game_over()

@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2tj0srsyc5c6"]
+[gd_scene load_steps=5 format=3 uid="uid://c2tj0srsyc5c6"]
 
-[ext_resource type="Script" path="res://scripts/ZombieNavigation.gd" id="1_c75hw"]
+[ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_173hm"]
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_lqgfe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kutgk"]
-radius = 9.0
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 129
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_c75hw")
+script = ExtResource("1_173hm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
@@ -30,3 +32,12 @@ collision_mask = 3
 
 [node name="NavigationRaycasts" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_o7745")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
