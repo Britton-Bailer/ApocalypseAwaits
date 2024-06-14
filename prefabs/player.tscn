@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_3kbbd"]
-[ext_resource type="Script" path="res://scripts/Weapons/SMG.gd" id="3_l6r1t"]
+[ext_resource type="Script" path="res://scripts/Weapons/Shotgun.gd" id="3_4ebqj"]
 [ext_resource type="Script" path="res://scripts/AmmoIndicator.gd" id="3_skj3q"]
 [ext_resource type="Script" path="res://scripts/AmmoText.gd" id="4_ja6kb"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/assault_rifle.png" id="4_svdlk"]
@@ -35,7 +35,7 @@ zoom = Vector2(1.3, 1.3)
 [node name="Weapon" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 1
-script = ExtResource("3_l6r1t")
+script = ExtResource("3_4ebqj")
 
 [node name="WeaponDirection" type="Node2D" parent="Weapon"]
 unique_name_in_owner = true

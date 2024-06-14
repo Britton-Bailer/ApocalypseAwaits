@@ -22,6 +22,10 @@ Zombies="*res://scripts/ZombiesManager.gd"
 player="*res://prefabs/player.tscn"
 particles="*res://particles.gd"
 
+[display]
+
+mouse_cursor/custom_image="res://sprites/cursor.png"
+
 [dotnet]
 
 project/assembly_name="ApocalypseAwaits"
