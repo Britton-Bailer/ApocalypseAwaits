@@ -4,7 +4,7 @@ const SPEED = 150.0
 var maxHealth = 100
 var health = maxHealth
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	movement()
 
 

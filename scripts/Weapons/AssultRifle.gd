@@ -2,14 +2,16 @@
 extends Weapon
 
 ## Override variables for this new weapon
-func _ready():
+func set_stats():
+	WEAPON_SPRITE = preload("res://sprites/assault_rifle.png")
+	
 	timeBetweenShots = 10
 	lastShotTimer = timeBetweenShots
 	magSize = 25
 	mag = magSize
-	reloadTime = 150
-
-## Override shoot function to work for new AR
-func shoot():
-	#instantiate new bullet at gun with gun rotation
-	new_bullet(800, 10, global_position, rotation, 500)
+	reloadTime = 100
+	
+	bullet.range = 600
+	bullet.damage = 20
+	bullet.speed = 800
+	bullet.spread = 10

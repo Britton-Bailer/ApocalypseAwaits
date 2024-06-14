@@ -13,8 +13,8 @@ func _draw():
 	draw_rect(Rect2((-width/2) + 20, 0, width, height), Color.BLACK, false, 1)
 	
 	#red health bar inside (current health)
-	draw_rect(Rect2((-width/2) + 20, 0, (width / player.maxHealth) * player.health, height), Color.RED, true, 1)
+	draw_rect(Rect2((-width/2) + 20, 0, (width / player.maxHealth) * player.health, height), Color.RED, true)
 
-func _process(delta):
+func _process(_delta):
 	queue_redraw()
 	

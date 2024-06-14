@@ -6,7 +6,7 @@ var endAngle = 360
 func _draw():
 	draw_arc(Vector2.ZERO, 20, deg_to_rad(-90), deg_to_rad(-90 + endAngle), 20, Color.BLACK, 4)
 
-func _process(delta):
+func _process(_delta):
 	if(weapon.reloading):
 		set_angle(360 * (float(weapon.reloadTimer)/float(weapon.reloadTime)))
 	else:

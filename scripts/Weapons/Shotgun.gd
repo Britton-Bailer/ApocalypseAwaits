@@ -4,16 +4,22 @@ extends Weapon
 #new variables that do not exist on WeaponBase.gd
 var spread = 20
 var numBullets = 7
-var bulletSprite = preload("res://prefabs/bullet2.tscn")
 
 ## Override variables on WeaponBase
-func _ready():
+func set_stats():
+	BULLET_PREFAB = preload("res://prefabs/bullet2.tscn")
+	WEAPON_SPRITE = preload("res://sprites/shotgun.png")
 	timeBetweenShots = 50
 	lastShotTimer = timeBetweenShots
 	magSize = 2
 	mag = magSize
 	reloadTime = 100
-	BULLET = bulletSprite
+	
+	bullet.range = 800
+	bullet.damage = 20
+	bullet.speed = 200
+	bullet.spread = 10
+	
 
 ## Override shoot function to shoow spread of bullets
 func shoot():

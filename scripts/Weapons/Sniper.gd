@@ -2,14 +2,14 @@
 extends Weapon
 
 ## Override variables on WeaponBase
-func _ready():
+func set_stats():
 	timeBetweenShots = 80
 	lastShotTimer = timeBetweenShots
 	magSize = 7
 	mag = magSize
-	reloadTime = 200
-
-## Override shoot function to fit this new weapon
-func shoot():
-	#instantiate new bullet at gun with gun rotation
-	new_bullet(1200, 120, global_position, rotation, 1200)
+	reloadTime = 100
+	
+	bullet.range = 1000
+	bullet.damage = 120
+	bullet.speed = 1200
+	bullet.spread = 0

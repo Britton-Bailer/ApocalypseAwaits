@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var target: Node2D
+@export var target: Node2D = player
 
 var speed = randf_range(150, 200)
 var acceleration = 3
@@ -26,11 +26,10 @@ var senseDistance = 50
 
 ## runs one time before anything else
 func _ready():
-	target = player
 	zombiesContainer = get_parent()
 	lastSeenTarget = position
 	
-	for i in range(0, 360, (360/numDirections)):
+	for i in range(0, 360, (360.0/numDirections)):
 		var dir = Vector2(cos(deg_to_rad(i)), sin(deg_to_rad(i))).normalized()
 		var newRaycast = RayCast2D.new()
 		navigation_raycasts.add_child(newRaycast)
@@ -85,8 +84,6 @@ func do_targeting():
 
 func navigation(delta):
 	var direction = directions[0]
-	
-	var desiredDirection = navAgent.get_next_path_position() - global_position
 	
 	#move along directions[i] that is longes
 	var maxDirWeight = 0
