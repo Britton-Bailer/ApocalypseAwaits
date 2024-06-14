@@ -50,7 +50,7 @@ func _physics_process(delta):
 	run_directions_calculations()
 	navigation(delta)
 	move_and_slide()
-	#queue_redraw()
+	queue_redraw()
 
 func do_targeting():
 	if(targetingTimer > targetingInterval):
