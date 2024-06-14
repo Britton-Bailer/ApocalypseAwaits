@@ -20,6 +20,7 @@ config/icon="res://sprites/icon.svg"
 BulletsManager="*res://prefabs/bullets_manager.tscn"
 Zombies="*res://scripts/ZombiesManager.gd"
 player="*res://prefabs/player.tscn"
+particles="*res://particles.gd"
 
 [dotnet]
 

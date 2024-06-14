@@ -73,13 +73,13 @@ func shoot():
 	
 ## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
 func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float, spread: float = 10):
-	var bullet = BULLET_PREFAB.instantiate()
-	bullet.set_vars(spd, dmg, mxDst, true)
-	bullet.position = pos
-	bullet.rotation = rot + deg_to_rad(randf_range(-spread, spread))
+	var newBullet = BULLET_PREFAB.instantiate()
+	newBullet.set_vars(spd, dmg, mxDst, true)
+	newBullet.position = pos
+	newBullet.rotation = rot + deg_to_rad(randf_range(-spread, spread))
 	
 	#put it in bullets "folder" (autoloaded)
-	BulletsManager.add_child(bullet)
+	BulletsManager.add_child(newBullet)
 
 ## overwrite this when creating a new weapon
 func set_stats():
