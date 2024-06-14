@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_lqgfe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kutgk"]
-radius = 9.0
 
 [node name="Zombie" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
-collision_mask = 129
+collision_mask = 131
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_c75hw")
@@ -24,6 +24,7 @@ shape = SubResource("CircleShape2D_kutgk")
 target_desired_distance = 0.1
 navigation_layers = 3
 path_metadata_flags = 0
+debug_enabled = true
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 collision_mask = 3
