@@ -69,7 +69,7 @@ func reload():
 
 func shoot():
 	#instantiate new bullet at gun with gun rotation
-	new_bullet(bullet.speed, bullet.damage, global_position, rotation, bullet.range)
+	new_bullet(bullet.speed, bullet.damage, global_position, rotation, bullet.range, bullet.spread)
 	
 ## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
 func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float, spread: float = 10):

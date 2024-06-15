@@ -8,6 +8,7 @@ var health = 200
 
 var newPos: Vector2
 @onready var nav_agent = %NavAgent
+@onready var zombies = %Zombies
 
 func _process(_delta):
 	if(timer >= spawnInterval):
@@ -18,7 +19,7 @@ func _process(_delta):
 			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
 			nav_agent.target_position = newPos
 		
-		Zombies.spawn_zombie(newPos, enums.zombie.base)
+		zombies.spawn_zombie(newPos, enums.zombie.base)
 
 	timer += 1
 

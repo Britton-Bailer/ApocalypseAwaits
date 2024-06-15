@@ -16,6 +16,7 @@ var index = 0
 func _physics_process(_delta):
 	movement()
 	cycle_weapons()
+	handle_pausing()
 
 func movement():
 	var left = Input.is_action_pressed("left")
@@ -50,3 +51,9 @@ func cycle_weapons():
 			index = 0
 		else:
 			index += 1 #index = index + 1
+
+func handle_pausing():
+	var pause = Input.is_action_just_pressed("pause")
+	if(pause):
+		get_tree().paused = true #pause
+		%PauseScreen.visible = true #show pause screen

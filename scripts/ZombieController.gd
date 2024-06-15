@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export var target: Node2D = player
+@export var target: Node2D
 
-var speed = randf_range(150, 200)
-var acceleration = 3
+var speed = randf_range(100, 150)
+var acceleration = 8
 var sightRange = 600
 var lastSeenTarget
 var broadcastRange = 500
