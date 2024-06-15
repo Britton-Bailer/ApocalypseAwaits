@@ -17,6 +17,10 @@ func _process(delta):
 	dist += sqrt(pow(xChange, 2) + pow(yChange, 2))
 
 	if(dist > maxDist):
+		var parts = hitParticles.instantiate()
+		parts.position = position
+		parts.emitting = true
+		particles.add_child(parts)
 		queue_free()
 
 ## bullet hit something
@@ -40,3 +44,4 @@ func set_vars(spd, dmg, mxDst, friendly):
 	
 	#if friendly, dont collide with player
 	set_collision_mask_value(8, !friendly)
+	set_collision_mask_value(2, friendly)

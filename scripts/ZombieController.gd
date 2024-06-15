@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var target: Node2D
+class_name ZombieController
+
+@export var target: RigidBody2D
 
 var speed = randf_range(100, 150)
 var acceleration = 8
@@ -26,6 +28,7 @@ var senseDistance = 50
 
 ## runs one time before anything else
 func _ready():
+	set_stats()
 	zombiesContainer = get_parent()
 	lastSeenTarget = position
 	
@@ -44,13 +47,16 @@ func _ready():
 ## runs every frame
 func _physics_process(delta):
 	if(can_attack()):
-		attack()
+		currentState = enums.zombieState.ATTACK
+		attack(delta)
 	
 	do_targeting()
 	
 	#do navigation and movement
 	run_directions_calculations()
-	navigation(delta)
+	
+	if(currentState != enums.zombieState.ATTACK):
+		navigation(delta)
 	move_and_slide()
 	queue_redraw()
 
@@ -62,7 +68,8 @@ func do_targeting():
 		lineOfSightRay.target_position = (target.global_position - global_position)
 		
 		if (can_see_target()):
-			currentState = enums.zombieState.CHASING
+			if(currentState == enums.zombieState.ROAMING):
+				currentState = enums.zombieState.CHASING
 			
 			#update last seen position
 			lastSeenTarget = target.global_position
@@ -71,7 +78,8 @@ func do_targeting():
 			broadcast_position(target.global_position)
 			
 		elif (needs_new_point()):
-			currentState = enums.zombieState.ROAMING
+			if(currentState == enums.zombieState.CHASING):
+				currentState = enums.zombieState.ROAMING
 			
 			#roam randomly
 			var searchDirection = Vector2(randf_range(-200, 200), randf_range(-200, 200))
@@ -142,8 +150,15 @@ func run_directions_calculations():
 func can_attack():
 	pass
 
-func attack():
+func attack(delta):
 	pass
+
+func set_stats():
+	speed = randf_range(100, 150)
+	acceleration = 8
+	sightRange = 600
+	broadcastRange = 500
+	health = 100
 
 func _draw():
 	for i in range(directions.size()):

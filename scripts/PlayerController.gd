@@ -39,11 +39,11 @@ func take_damage(dmg):
 	health -= dmg
 	
 	if(health <= 0):
-		pass #game_over()
+		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func cycle_weapons():
-	var weapon1 = Input.is_action_just_released("changeWeapon")
-	if(weapon1):
+	var changeWeapon = Input.is_action_just_released("changeWeapon")
+	if(changeWeapon):
 		weapon.set_script(weapons[index])
 		weapon._ready()
 		

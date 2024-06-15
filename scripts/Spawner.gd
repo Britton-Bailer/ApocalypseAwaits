@@ -19,7 +19,7 @@ func _process(_delta):
 			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
 			nav_agent.target_position = newPos
 		
-		zombies.spawn_zombie(newPos, enums.zombie.base)
+		zombies.spawn_zombie(newPos, randi_range(0, 1))
 
 	timer += 1
 
