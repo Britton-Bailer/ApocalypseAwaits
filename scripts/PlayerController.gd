@@ -4,8 +4,27 @@ const SPEED = 150.0
 var maxHealth = 100
 var health = maxHealth
 
+@onready var weapon = %Weapon
+var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
+var smgScript = preload("res://scripts/Weapons/SMG.gd")
+var sniperScript = preload("res://scripts/Weapons/Sniper.gd")
+var shotgunScript = preload("res://scripts/Weapons/Shotgun.gd")
+
+var weapons = [assultRifleScript, smgScript, sniperScript, shotgunScript]
+var index = 0
+
 func _physics_process(_delta):
 	movement()
+	
+	var weapon1 = Input.is_action_just_released("changeWeapon")
+	if(weapon1):
+		weapon.set_script(weapons[index])
+		weapon._ready()
+		
+		if(index + 1 > weapons.size()-1):
+			index = 0
+		else:
+			index += 1 #index = index + 1
 
 
 func movement():
