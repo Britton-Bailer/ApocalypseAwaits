@@ -15,17 +15,7 @@ var index = 0
 
 func _physics_process(_delta):
 	movement()
-	
-	var weapon1 = Input.is_action_just_released("changeWeapon")
-	if(weapon1):
-		weapon.set_script(weapons[index])
-		weapon._ready()
-		
-		if(index + 1 > weapons.size()-1):
-			index = 0
-		else:
-			index += 1 #index = index + 1
-
+	cycle_weapons()
 
 func movement():
 	var left = Input.is_action_pressed("left")
@@ -49,3 +39,14 @@ func take_damage(dmg):
 	
 	if(health <= 0):
 		pass #game_over()
+
+func cycle_weapons():
+	var weapon1 = Input.is_action_just_released("changeWeapon")
+	if(weapon1):
+		weapon.set_script(weapons[index])
+		weapon._ready()
+		
+		if(index + 1 > weapons.size()-1):
+			index = 0
+		else:
+			index += 1 #index = index + 1
