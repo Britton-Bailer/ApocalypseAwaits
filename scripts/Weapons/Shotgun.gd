@@ -21,7 +21,7 @@ func set_stats():
 	bullet.spread = 10
 	
 
-## Override shoot function to shoow spread of bullets
+## Override shoot function to show spread of bullets
 func shoot():
 	#instantiate new bullet at gun with gun rotation
 	for deg in range(-spread, spread+1, 2*spread/(numBullets-1)):

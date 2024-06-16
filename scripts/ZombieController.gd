@@ -118,10 +118,14 @@ func take_damage(amt):
 	#decrement health
 	health -= amt
 	
+
+	
 	#if health is at or below 0, delete zombie
 	if(health <= 0):
 		queue_free()
-
+	
+	
+	
 func run_directions_calculations():
 	var desiredDirection = navAgent.get_next_path_position() - global_position
 	for i in range(directions.size()):

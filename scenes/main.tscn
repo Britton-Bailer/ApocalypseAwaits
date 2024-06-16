@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dnrhu6484w3pm"]
 
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="1_2pvfv"]
-[ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/Tilemap.png" id="1_qsi4y"]
+[ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/TileMap.png" id="1_qsi4y"]
 [ext_resource type="Texture2D" uid="uid://dli0u8ggmfdbj" path="res://sprites/Tilesets/Grass.png" id="4_207b1"]
 [ext_resource type="Texture2D" uid="uid://dphj77sghqxup" path="res://sprites/Tilesets/Hills.png" id="5_y0jfk"]
 [ext_resource type="Texture2D" uid="uid://qss7qd3swo0g" path="res://sprites/Tilesets/Fences.png" id="6_g3l1b"]

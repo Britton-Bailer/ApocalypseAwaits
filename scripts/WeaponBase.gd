@@ -17,6 +17,7 @@ var reloading = false
 var magSize = 20
 var reloadTime = 150
 
+
 var bullet = {
 	damage = 10,
 	range = 200,

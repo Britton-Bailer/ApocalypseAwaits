@@ -9,8 +9,10 @@ var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")
 var sniperScript = preload("res://scripts/Weapons/Sniper.gd")
 var shotgunScript = preload("res://scripts/Weapons/Shotgun.gd")
+var theSprayerScript = preload("res://scripts/Weapons/TheSprayer.gd")
+var burstRifle = preload("res://scripts/Weapons/BurstRifle.gd")
 
-var weapons = [assultRifleScript, smgScript, sniperScript, shotgunScript]
+var weapons = [assultRifleScript, smgScript, sniperScript, shotgunScript, theSprayerScript, burstRifle]
 var index = 0
 
 func _physics_process(_delta):
