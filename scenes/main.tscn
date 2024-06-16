@@ -1547,19 +1547,15 @@ layer_2/tile_data = PackedInt32Array()
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("13_yievi")]
-process_mode = 4
 position = Vector2(-742, -155)
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("13_yievi")]
-process_mode = 4
 position = Vector2(179, 412)
 
 [node name="Spawner4" parent="Spawners" instance=ExtResource("13_yievi")]
-process_mode = 4
 position = Vector2(10, -659)
 
 [node name="Spawner5" parent="Spawners" instance=ExtResource("13_yievi")]
-process_mode = 4
 position = Vector2(786, -589)
 
 [node name="player" parent="." instance=ExtResource("9_x4nrp")]
