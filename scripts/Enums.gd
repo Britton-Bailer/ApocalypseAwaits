@@ -3,10 +3,12 @@ extends Node
 class_name enums
 
 enum zombie {
-	base
+	base,
+	throw
 }
 
 enum zombieState {
 	ROAMING,
-	CHASING
+	CHASING,
+	ATTACK,
 }

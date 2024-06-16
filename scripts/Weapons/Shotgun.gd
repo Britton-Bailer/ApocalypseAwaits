@@ -7,7 +7,6 @@ var numBullets = 7
 
 ## Override variables on WeaponBase
 func set_stats():
-	BULLET_PREFAB = preload("res://prefabs/bullet2.tscn")
 	WEAPON_SPRITE = preload("res://sprites/shotgun.png")
 	timeBetweenShots = 50
 	lastShotTimer = timeBetweenShots

@@ -1,17 +1,13 @@
 extends Node2D
 
-@onready var player
-
 #order should match order of enums
-const zombieTypes = [preload("res://prefabs/zombie.tscn")]
-
-func _ready():
-	player = get_node("/root/player")
+const zombieTypes = [preload("res://prefabs/zombie.tscn"), preload("res://prefabs/throwZombie.tscn")]
 
 func spawn_zombie(pos: Vector2, type: enums.zombie):
 	var newZomb = zombieTypes[type].instantiate()
 	newZomb.position = pos
+	newZomb.target = %player
 	self.add_child(newZomb)
 	
-	newZomb.target = player
+	newZomb._ready()
 	

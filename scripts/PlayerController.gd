@@ -3,6 +3,7 @@ extends RigidBody2D
 const SPEED = 150.0
 var maxHealth = 100
 var health = maxHealth
+var healthRegen = 2
 
 @onready var weapon = %Weapon
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
@@ -15,9 +16,16 @@ var burstRifle = preload("res://scripts/Weapons/BurstRifle.gd")
 var weapons = [assultRifleScript, smgScript, sniperScript, shotgunScript, theSprayerScript, burstRifle]
 var index = 0
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	movement()
 	cycle_weapons()
+	handle_pausing()
+	
+	if(health > maxHealth):
+		health = maxHealth
+	else:
+		health += healthRegen * delta
+	
 
 func movement():
 	var left = Input.is_action_pressed("left")
@@ -40,11 +48,11 @@ func take_damage(dmg):
 	health -= dmg
 	
 	if(health <= 0):
-		pass #game_over()
+		pass#get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func cycle_weapons():
-	var weapon1 = Input.is_action_just_released("changeWeapon")
-	if(weapon1):
+	var changeWeapon = Input.is_action_just_released("changeWeapon")
+	if(changeWeapon):
 		weapon.set_script(weapons[index])
 		weapon._ready()
 		
@@ -52,3 +60,9 @@ func cycle_weapons():
 			index = 0
 		else:
 			index += 1 #index = index + 1
+
+func handle_pausing():
+	var pause = Input.is_action_just_pressed("pause")
+	if(pause):
+		get_tree().paused = true #pause
+		%PauseScreen.visible = true #show pause screen

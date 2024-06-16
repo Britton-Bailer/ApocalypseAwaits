@@ -11,20 +11,22 @@ config_version=5
 [application]
 
 config/name="ApocalypseAwaits"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://sprites/icon.svg"
 
 [autoload]
 
 BulletsManager="*res://prefabs/bullets_manager.tscn"
-Zombies="*res://scripts/ZombiesManager.gd"
-player="*res://prefabs/player.tscn"
 particles="*res://particles.gd"
 
 [display]
 
+window/size/mode=2
+window/stretch/scale=1.3
 mouse_cursor/custom_image="res://sprites/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(10, 10)
+mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
 [dotnet]
 
@@ -70,6 +72,11 @@ reload={
 changeWeapon={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":49,"key_label":0,"unicode":49,"echo":false,"script":null)
+]
+}
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 
