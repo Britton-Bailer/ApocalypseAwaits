@@ -63,7 +63,7 @@ func _process(_delta):
 		mag = magSize
 		reloadTimer = 0
 		reloading = false
-	
+
 func reload():
 	reloading = true
 
