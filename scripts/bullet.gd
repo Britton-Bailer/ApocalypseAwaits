@@ -1,6 +1,6 @@
 extends Area2D
 
-var hitParticles = preload("res://prefabs/bullet_hit_particles.tscn")
+var defaultHitParticles = preload("res://prefabs/particles/bullet_hit_particles.tscn")
 
 var bulletSpeed = 800
 var damage = 50
@@ -17,7 +17,7 @@ func _process(delta):
 	dist += sqrt(pow(xChange, 2) + pow(yChange, 2))
 
 	if(dist > maxDist):
-		var parts = hitParticles.instantiate()
+		var parts = defaultHitParticles.instantiate()
 		parts.position = position
 		parts.emitting = true
 		particles.add_child(parts)
@@ -29,10 +29,12 @@ func _on_body_entered(body):
 	if(body.has_method("take_damage")):
 		body.take_damage(damage)
 	
-	var parts = hitParticles.instantiate()
-	parts.position = position
+	var parts = defaultHitParticles.instantiate()
+	if(body.has_method("hit_particles")):
+		parts = body.hit_particles().instantiate()
+	
 	parts.emitting = true
-	particles.add_child(parts)
+	body.add_child(parts)
 	
 	#delete bullet
 	queue_free()

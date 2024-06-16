@@ -3,7 +3,7 @@ extends Weapon
 
 ## Override variables for this new weapon
 func set_stats():
-	WEAPON_SPRITE = preload("res://sprites/smg.png")
+	WEAPON_SPRITE = preload("res://sprites/Weapons/smg.png")
 	timeBetweenShots = 5
 	magSize = 30
 	mag = magSize

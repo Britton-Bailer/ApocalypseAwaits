@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvsy8564s2bph"
-path="res://.godot/imported/assault_rifle.png-19e4295c110a4cf7c71e9ddc8e016eba.ctex"
+uid="uid://bqnpb8jgwdu2f"
+path="res://.godot/imported/dirt_particle.png-22762696bce4158c4ad5ad73dafe37f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/assault_rifle.png"
-dest_files=["res://.godot/imported/assault_rifle.png-19e4295c110a4cf7c71e9ddc8e016eba.ctex"]
+source_file="res://sprites/Particles/dirt_particle.png"
+dest_files=["res://.godot/imported/dirt_particle.png-22762696bce4158c4ad5ad73dafe37f1.ctex"]
 
 [params]
 

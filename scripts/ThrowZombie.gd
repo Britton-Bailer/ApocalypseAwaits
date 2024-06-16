@@ -5,17 +5,9 @@ var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")
 var preferredRange = randi_range(120, 200)
 
 var reloadTime = 100
-var reloadTimer = reloadTime
+var reloadTimer = 0
 var spread = 15
 var damage = 15
-
-#slower on average, slower acceleration, sight range reduced, normal broadcast, lower health
-func set_stats():
-	speed = randf_range(70, 120)
-	acceleration = 5
-	sightRange = 400
-	broadcastRange = 500
-	health = 60
 
 func run_directions_calculations():
 	var desiredDirection = navAgent.get_next_path_position() - global_position

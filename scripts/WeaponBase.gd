@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Weapon
 
-var WEAPON_SPRITE = preload("res://sprites/assault_rifle.png")
+var WEAPON_SPRITE = preload("res://sprites/Weapons/assault_rifle.png")
 var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 
 @onready var weapon_direction: Node2D = %WeaponDirection
@@ -29,7 +29,8 @@ func _ready():
 	weapon_sprite.texture = WEAPON_SPRITE
 
 ## rotate gun to mouse
-func _process(_delta):
+func _process(delta):
+	process(delta)
 	#keep gun upright no matter which side it is on
 	if (get_global_mouse_position().x < global_position.x):
 		weapon_direction.scale.y = -1
@@ -64,22 +65,16 @@ func _process(_delta):
 		reloadTimer = 0
 		reloading = false
 
+## overwrite this to add functionality that runs every frame
+func process(delta):
+	pass
+
 func reload():
 	reloading = true
 
 func shoot():
 	#instantiate new bullet at gun with gun rotation
-	new_bullet(bullet.speed, bullet.damage, global_position, rotation, bullet.range, bullet.spread)
-	
-## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
-func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float, spread: float = 10):
-	var newBullet = BULLET_PREFAB.instantiate()
-	newBullet.set_vars(spd, dmg, mxDst, true)
-	newBullet.position = pos
-	newBullet.rotation = rot + deg_to_rad(randf_range(-spread, spread))
-	
-	#put it in bullets "folder" (autoloaded)
-	BulletsManager.add_child(newBullet)
+	BulletsManager.new_bullet(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, BULLET_PREFAB)
 
 ## overwrite this when creating a new weapon
 func set_stats():

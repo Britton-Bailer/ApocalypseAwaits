@@ -83,10 +83,11 @@ pause={
 [layer_names]
 
 2d_physics/layer_1="obstacle"
-2d_navigation/layer_1="obstacle"
+2d_navigation/layer_1="small"
 2d_physics/layer_2="zombie"
-2d_navigation/layer_2="terrain"
+2d_navigation/layer_2="medium"
 2d_physics/layer_3="terrain"
+2d_navigation/layer_3="large"
 2d_physics/layer_4="over-terrain"
 2d_physics/layer_8="player"
 

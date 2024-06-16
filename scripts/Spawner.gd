@@ -1,8 +1,8 @@
 extends Node2D
 
 var timer = 0
-var spawnInterval = 200
-var spawnRange = 200
+@export var spawnInterval = 400
+@export var spawnRange = 200
 
 var health = 200
 
@@ -19,7 +19,7 @@ func _process(_delta):
 			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
 			nav_agent.target_position = newPos
 		
-		zombies.spawn_zombie(newPos, randi_range(0, 1))
+		zombies.spawn_zombie(newPos, randi_range(0, enums.zombie.size()-1))
 
 	timer += 1
 

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_3kbbd"]
 [ext_resource type="Script" path="res://scripts/Weapons/Shotgun.gd" id="3_4ebqj"]
 [ext_resource type="Script" path="res://scripts/AmmoIndicator.gd" id="3_skj3q"]
+[ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="4_igmwc"]
 [ext_resource type="Script" path="res://scripts/AmmoText.gd" id="4_ja6kb"]
-[ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/assault_rifle.png" id="4_svdlk"]
 [ext_resource type="Script" path="res://scripts/HealthIndicator.gd" id="6_g467v"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
 
@@ -46,7 +46,7 @@ unique_name_in_owner = true
 z_index = 1
 position = Vector2(11, 2)
 scale = Vector2(0.655, 0.655)
-texture = ExtResource("4_svdlk")
+texture = ExtResource("4_igmwc")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 layer = 3
@@ -138,5 +138,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
+[node name="Main Menu" type="Button" parent="PauseScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_resume_pressed"]

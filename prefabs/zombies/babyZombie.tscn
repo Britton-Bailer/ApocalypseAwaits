@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc64nxdsphsap"]
+
+[ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_yhium"]
+[ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_r4mrn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kutgk"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
+radius = 11.0
+
+[node name="Zombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 129
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_yhium")
+speedRange = Vector2(160, 180)
+acceleration = 9
+broadcastRange = 200
+health = 70
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_r4mrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kutgk")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 0.1
+path_metadata_flags = 0
+avoidance_layers = 0
+
+[node name="RayCastToPlayer" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="NavigationRaycasts" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_o7745")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

@@ -4,7 +4,8 @@ class_name enums
 
 enum zombie {
 	base,
-	throw
+	throw,
+	baby
 }
 
 enum zombieState {

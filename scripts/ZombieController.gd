@@ -2,15 +2,17 @@ extends CharacterBody2D
 
 class_name ZombieController
 
-@export var target: RigidBody2D
+var target: RigidBody2D
+var speed
 
-var speed = randf_range(80, 130)
-var acceleration = 8
-var sightRange = 600
+@export var speedRange: Vector2
+@export var acceleration = 8
+@export var sightRange = 450
+@export var broadcastRange = 300
+@export var health = 100
+@export var touchDamage = 10
+
 var lastSeenTarget
-var broadcastRange = 500
-var health = 100
-var touchDamage = 10
 var currentState = enums.zombieState.CHASING
 
 var targetingInterval = 10
@@ -28,7 +30,7 @@ var senseDistance = 50
 
 ## runs one time before anything else
 func _ready():
-	set_stats()
+	speed = randf_range(speedRange.x, speedRange.y)
 	zombiesContainer = get_parent()
 	lastSeenTarget = position
 	
@@ -58,7 +60,7 @@ func _physics_process(delta):
 	if(currentState != enums.zombieState.ATTACK):
 		navigation(delta)
 	move_and_slide()
-	queue_redraw()
+	#queue_redraw()
 
 func do_targeting():
 	if(targetingTimer > targetingInterval):
@@ -100,7 +102,6 @@ func navigation(delta):
 			maxDirWeight = i
 	
 	direction = directions[maxDirWeight].normalized()
-	
 	velocity = velocity.lerp(direction * speed, acceleration * delta)
 
 ## when other zombie broadcasts, this is used to update last seen position
@@ -153,13 +154,6 @@ func can_attack():
 func attack(delta):
 	pass
 
-func set_stats():
-	speed = randf_range(100, 150)
-	acceleration = 8
-	sightRange = 600
-	broadcastRange = 500
-	health = 100
-
 func _draw():
 	for i in range(directions.size()):
 		if(dirWeights[i] > 0):
@@ -171,3 +165,6 @@ func _draw():
 func _on_damage_area_body_entered(body):
 	if(body.has_method("take_damage")):
 		body.take_damage(touchDamage)
+
+func hit_particles():
+	return preload("res://prefabs/particles/blood_particles.tscn")
