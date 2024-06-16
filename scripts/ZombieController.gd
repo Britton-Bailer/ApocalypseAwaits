@@ -4,7 +4,7 @@ class_name ZombieController
 
 @export var target: RigidBody2D
 
-var speed = randf_range(100, 150)
+var speed = randf_range(80, 130)
 var acceleration = 8
 var sightRange = 600
 var lastSeenTarget

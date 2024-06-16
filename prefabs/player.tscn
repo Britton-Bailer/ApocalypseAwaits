@@ -52,17 +52,15 @@ texture = ExtResource("4_svdlk")
 layer = 3
 
 [node name="AmmoText" type="RichTextLabel" parent="GameUI"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 515.475
-offset_top = 265.775
-offset_right = 577.475
-offset_bottom = 305.775
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -53.0
+grow_horizontal = 0
+grow_vertical = 0
 bbcode_enabled = true
 text = "Test"
 script = ExtResource("4_ja6kb")
@@ -140,5 +138,5 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
-[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]

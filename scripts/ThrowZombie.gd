@@ -11,7 +11,7 @@ var damage = 15
 
 #slower on average, slower acceleration, sight range reduced, normal broadcast, lower health
 func set_stats():
-	speed = randf_range(80, 130)
+	speed = randf_range(70, 120)
 	acceleration = 5
 	sightRange = 400
 	broadcastRange = 500
