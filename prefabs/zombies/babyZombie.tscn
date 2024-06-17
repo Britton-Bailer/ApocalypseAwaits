@@ -11,7 +11,7 @@ radius = 11.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 129
+collision_mask = 145
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_yhium")
@@ -40,7 +40,7 @@ unique_name_in_owner = true
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 128
+collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")

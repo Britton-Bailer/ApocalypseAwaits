@@ -1,7 +1,7 @@
 extends Node2D
 
 #order should match order of enums
-const zombieTypes = [preload("res://prefabs/zombies/zombie.tscn"), preload("res://prefabs/zombies/throwZombie.tscn"), preload("res://prefabs/zombies/babyZombie.tscn")]
+const zombieTypes = [preload("res://prefabs/zombies/zombie.tscn"), preload("res://prefabs/zombies/throwZombie.tscn"), preload("res://prefabs/zombies/babyZombie.tscn"), preload("res://prefabs/zombies/suckerZombie.tscn")]
 const zombieSpawnParticles = preload("res://prefabs/particles/zombie_spawn_particles.tscn")
 
 func spawn_zombie(pos: Vector2, type: enums.zombie):

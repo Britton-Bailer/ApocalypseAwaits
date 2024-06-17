@@ -17,6 +17,7 @@ radius = 8.06226
 
 [node name="player" type="RigidBody2D"]
 collision_layer = 128
+collision_mask = 17
 physics_material_override = SubResource("PhysicsMaterial_rrjvg")
 gravity_scale = 0.0
 lock_rotation = true
@@ -142,7 +143,7 @@ text = "Resume"
 layout_mode = 2
 text = "Main Menu"
 
-[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]
-[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]

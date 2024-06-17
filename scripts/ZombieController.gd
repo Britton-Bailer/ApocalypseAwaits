@@ -10,7 +10,9 @@ var speed
 @export var sightRange = 450
 @export var broadcastRange = 300
 @export var health = 100
-@export var touchDamage = 10
+@export var touchDamage: float = 10
+@export var touchDamageInterval = 100
+var touchDamageTimer = 0
 
 var lastSeenTarget
 var currentState = enums.zombieState.CHASING
@@ -60,7 +62,16 @@ func _physics_process(delta):
 	if(currentState != enums.zombieState.ATTACK):
 		navigation(delta)
 	move_and_slide()
+	do_touch_damage()
 	#queue_redraw()
+
+func do_touch_damage():
+	touchDamageTimer += 1
+	if(touchDamageTimer >= touchDamageInterval):
+		touchDamageTimer = 0
+		for body in $DamageArea.get_overlapping_bodies():
+			if(body.has_method("take_damage")):
+				body.take_damage(touchDamage)
 
 func do_targeting():
 	if(targetingTimer > targetingInterval):
@@ -160,7 +171,6 @@ func _draw():
 			draw_line(Vector2.ZERO, (directions[i] * dirWeights[i] * senseDistance), Color.BLACK, 2)
 		else:
 			draw_line(Vector2.ZERO, (directions[i] * -clampf(dirWeights[i], -1, 0) * senseDistance), Color.RED, 2)
-
 
 func _on_damage_area_body_entered(body):
 	if(body.has_method("take_damage")):

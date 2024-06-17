@@ -12,7 +12,7 @@ var playerSize = 3
 @export var tilemaps: Array[TileMap]
 var cell_colors = [Color.BLACK, Color.TRANSPARENT, Color.BLUE]
 
-var playerDrawOffset = Vector2(29-blockSize*0.5/2.0, -31-blockSize*0.8/2.0)
+var playerDrawOffset = Vector2(blockSize*0.5/2.0, blockSize*0.8/2.0)
 
 func get_cells(tilemap : TileMap, id):
 	return tilemap.get_used_cells_by_id(id)
