@@ -20,12 +20,7 @@ func _physics_process(delta):
 	movement()
 	cycle_weapons()
 	handle_pausing()
-	
-	if(health > maxHealth):
-		health = maxHealth
-	else:
-		health += healthRegen * delta
-	
+	health_regen(delta)
 
 func movement():
 	var left = Input.is_action_pressed("left")
@@ -48,7 +43,7 @@ func take_damage(dmg):
 	health -= dmg
 	
 	if(health <= 0):
-		pass#get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")
@@ -66,3 +61,9 @@ func handle_pausing():
 	if(pause):
 		get_tree().paused = true #pause
 		%PauseScreen.visible = true #show pause screen
+
+func health_regen(delta):
+	if(health > maxHealth):
+		health = maxHealth
+	else:
+		health += healthRegen * delta

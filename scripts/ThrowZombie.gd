@@ -31,7 +31,7 @@ func run_directions_calculations():
 				dirWeights[dirWeights.size()-1] -= 1
 
 func can_attack():
-	return position.distance_to(target.position) <= preferredRange+5 && can_see_target()
+	return position.distance_to(target.position) <= preferredRange+5
 
 func attack(delta):
 	velocity = velocity.lerp(Vector2.ZERO, acceleration * delta)

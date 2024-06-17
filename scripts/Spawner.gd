@@ -4,22 +4,25 @@ var timer = 0
 @export var spawnInterval = 400
 @export var spawnRange = 200
 
-var health = 200
+var health = 400
 
-var newPos: Vector2
-@onready var nav_agent = %NavAgent
+@onready var nav_agent_small = %NavAgentSmall
+@onready var nav_agent_medium = %NavAgentMedium
+@onready var nav_agent_large = %NavAgentLarge
 @onready var zombies = %Zombies
 
 func _process(_delta):
 	if(timer >= spawnInterval):
 		timer = 0
-		newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-		nav_agent.target_position = newPos
-		while(!nav_agent.is_target_reachable()):
-			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-			nav_agent.target_position = newPos
+		var newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
+		var zombieType = [enums.zombie.base, enums.zombie.throw, enums.zombie.baby, enums.zombie.suckerWitch].pick_random()
 		
-		zombies.spawn_zombie(newPos, randi_range(0, enums.zombie.size()-1))
+		nav_agent_large.target_position = newPos
+		while(!nav_agent_large.is_target_reachable()):
+			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
+			nav_agent_large.target_position = newPos
+		
+		zombies.spawn_zombie(newPos, zombieType)
 
 	timer += 1
 

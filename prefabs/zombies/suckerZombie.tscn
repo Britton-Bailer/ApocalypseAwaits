@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_uukgp"]
 [ext_resource type="Texture2D" uid="uid://c7lwhyiyhuwr7" path="res://sprites/suckerpng.png" id="2_4g0qr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kutgk"]
-radius = 6.08276
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p43cu"]
+size = Vector2(10, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
-radius = 11.0
+radius = 17.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -15,24 +15,26 @@ collision_mask = 145
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_uukgp")
-speedRange = Vector2(200, 250)
+roamingSpeedRange = Vector2(30, 50)
+chasingSpeedRange = Vector2(200, 240)
 acceleration = 20
-broadcastRange = 200
+sightRange = 200
+broadcastRange = 0
 health = 30
 touchDamage = 0.3
-touchDamageInterval = 1
+touchDamageInterval = 0
+reactToBroadcast = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_4g0qr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kutgk")
+shape = SubResource("RectangleShape2D_p43cu")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 0.1
 path_metadata_flags = 0
-avoidance_layers = 0
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 collision_mask = 3

@@ -143,7 +143,7 @@ text = "Resume"
 layout_mode = 2
 text = "Main Menu"
 
-[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]

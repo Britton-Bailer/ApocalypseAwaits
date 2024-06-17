@@ -7,6 +7,7 @@ enum zombie {
 	throw,
 	baby,
 	sucker,
+	suckerWitch,
 }
 
 enum zombieState {

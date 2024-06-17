@@ -1,36 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc64nxdsphsap"]
+[gd_scene load_steps=5 format=3 uid="uid://c3mvfa5he1q33"]
 
-[ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_yhium"]
-[ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_r4mrn"]
+[ext_resource type="Script" path="res://scripts/suckerWitch.gd" id="1_o5aoh"]
+[ext_resource type="Texture2D" uid="uid://6tipk8val8rl" path="res://sprites/SuckerWitch.png" id="2_an6px"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0tmk"]
-size = Vector2(10, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxb7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
-radius = 11.0
+radius = 14.0357
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 145
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_yhium")
-roamingSpeedRange = Vector2(60, 80)
-chasingSpeedRange = Vector2(130, 160)
-acceleration = 9
-broadcastRange = 150
-health = 70
+script = ExtResource("1_o5aoh")
+roamingSpeedRange = Vector2(50, 70)
+chasingSpeedRange = Vector2(50, 70)
+acceleration = 3
+sightRange = 200
+broadcastRange = 200
+touchDamage = 0.0
+reactToBroadcast = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_r4mrn")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_an6px")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_l0tmk")
+shape = SubResource("RectangleShape2D_lxb7c")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 0.1
+navigation_layers = 4
 path_metadata_flags = 0
+avoidance_layers = 0
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 collision_mask = 3

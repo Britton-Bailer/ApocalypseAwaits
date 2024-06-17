@@ -4,20 +4,24 @@ class_name ZombieController
 
 var target: RigidBody2D
 var speed
+var roamingSpeed
+var chasingSpeed
 
-@export var speedRange: Vector2
+@export var roamingSpeedRange: Vector2
+@export var chasingSpeedRange: Vector2
 @export var acceleration = 8
 @export var sightRange = 450
 @export var broadcastRange = 300
 @export var health = 100
 @export var touchDamage: float = 10
 @export var touchDamageInterval = 100
+@export var reactToBroadcast = true
 var touchDamageTimer = 0
 
 var lastSeenTarget
 var currentState = enums.zombieState.CHASING
 
-var targetingInterval = 10
+var targetingInterval = 50
 var targetingTimer = 0
 
 @onready var navAgent = $NavigationAgent2D
@@ -27,12 +31,14 @@ var zombiesContainer # parent that holds all zombies
 var directions = []
 var dirWeights = []
 var numDirections = 12
-var senseDistance = 50
+var senseDistance = 30
 @onready var navigation_raycasts = %NavigationRaycasts
 
 ## runs one time before anything else
 func _ready():
-	speed = randf_range(speedRange.x, speedRange.y)
+	roamingSpeed = randf_range(roamingSpeedRange.x, roamingSpeedRange.y)
+	chasingSpeed = randf_range(chasingSpeedRange.x, chasingSpeedRange.y)
+	speed = roamingSpeed
 	zombiesContainer = get_parent()
 	lastSeenTarget = position
 	
@@ -42,6 +48,7 @@ func _ready():
 		navigation_raycasts.add_child(newRaycast)
 		newRaycast.set_collision_mask_value(1, true)
 		newRaycast.set_collision_mask_value(2, true)
+		newRaycast.set_collision_mask_value(8, true)
 		newRaycast.target_position = dir * senseDistance
 		
 		#start with all being normalized (length = 1)
@@ -50,11 +57,19 @@ func _ready():
 
 ## runs every frame
 func _physics_process(delta):
+	if (can_see_target()):
+		targetingInterval = 7
+	else:
+		targetingInterval = 70
+	if(targetingTimer > targetingInterval || navAgent.waypoint_reached):
+		targetingTimer = 0
+		do_targeting()
+	targetingTimer += 1
+	
+	process(delta)
 	if(can_attack()):
 		currentState = enums.zombieState.ATTACK
 		attack(delta)
-	
-	do_targeting()
 	
 	#do navigation and movement
 	run_directions_calculations()
@@ -65,6 +80,10 @@ func _physics_process(delta):
 	do_touch_damage()
 	#queue_redraw()
 
+## overwrite this to add more functionality to 
+func process(delta):
+	pass
+
 func do_touch_damage():
 	touchDamageTimer += 1
 	if(touchDamageTimer >= touchDamageInterval):
@@ -74,50 +93,52 @@ func do_touch_damage():
 				body.take_damage(touchDamage)
 
 func do_targeting():
-	if(targetingTimer > targetingInterval):
-		targetingTimer = 0
+	#update ray direction to point at player
+	lineOfSightRay.target_position = (target.global_position - global_position)
 	
-		#update ray direction to point at player
-		lineOfSightRay.target_position = (target.global_position - global_position)
+	if (can_see_target()):
+		speed = chasingSpeed
+		if(currentState == enums.zombieState.ROAMING):
+			currentState = enums.zombieState.CHASING
 		
-		if (can_see_target()):
-			if(currentState == enums.zombieState.ROAMING):
-				currentState = enums.zombieState.CHASING
-			
-			#update last seen position
-			lastSeenTarget = target.global_position
-			
-			#tell other zombies about it
-			broadcast_position(target.global_position)
-			
-		elif (needs_new_point()):
-			if(currentState == enums.zombieState.CHASING):
-				currentState = enums.zombieState.ROAMING
-			
-			#roam randomly
-			var searchDirection = Vector2(randf_range(-200, 200), randf_range(-200, 200))
-			lastSeenTarget = position + searchDirection
+		#update last seen position
+		lastSeenTarget = target.global_position
 		
-		#tell zombie to go towards last seen location
-		navAgent.target_position = lastSeenTarget
+		#tell other zombies about it
+		broadcast_position(target.global_position)
+		
+	elif (needs_new_point()):
+		targetingTimer = targetingInterval
+		if(currentState == enums.zombieState.CHASING):
+			speed = roamingSpeed
+			currentState = enums.zombieState.ROAMING
+		
+		#roam randomly
+		var searchDirection = Vector2(randf_range(-200, 200), randf_range(-200, 200))
+		lastSeenTarget = position + searchDirection
 	
-	targetingTimer += 1
-
+	#tell zombie to go towards last seen location
+	navAgent.target_position = lastSeenTarget
+	
 func navigation(delta):
-	var direction = directions[0]
+	var direction = navAgent.get_next_path_position() - global_position
 	
-	#move along directions[i] that is longes
-	var maxDirWeight = 0
-	for i in range(directions.size()):
-		if(dirWeights[i] > dirWeights[maxDirWeight]):
-			maxDirWeight = i
-	
-	direction = directions[maxDirWeight].normalized()
-	velocity = velocity.lerp(direction * speed, acceleration * delta)
+	if(position.distance_to(target.position) < 300):
+		#move along directions[i] that is longes
+		var maxDirWeight = 0
+		for i in range(directions.size()):
+			if(dirWeights[i] > dirWeights[maxDirWeight]):
+				maxDirWeight = i
+		
+		direction = directions[maxDirWeight]
+		
+	velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
 
 ## when other zombie broadcasts, this is used to update last seen position
 func set_target(newPosition):
-	if(!can_see_target()):
+	if(reactToBroadcast):
+		currentState = enums.zombieState.CHASING
+		speed = chasingSpeed
 		lastSeenTarget = newPosition
 	
 func broadcast_position(newPosition):

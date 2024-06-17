@@ -12,6 +12,6 @@ func set_stats():
 	reloadTime = 100
 	
 	bullet.range = 600
-	bullet.damage = 20
+	bullet.damage = 60
 	bullet.speed = 800
 	bullet.spread = 10

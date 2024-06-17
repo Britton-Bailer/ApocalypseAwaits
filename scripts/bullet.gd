@@ -30,8 +30,11 @@ func _on_body_entered(body):
 		body.take_damage(damage)
 	
 	var parts = defaultHitParticles.instantiate()
+	parts.position = position
 	if(body.has_method("hit_particles")):
 		parts = body.hit_particles().instantiate()
+		parts.position = Vector2.ZERO
+	
 	
 	parts.emitting = true
 	body.add_child(parts)
