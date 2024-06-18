@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc64nxdsphsap"]
+[gd_scene load_steps=6 format=3 uid="uid://dc64nxdsphsap"]
 
 [ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_yhium"]
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_r4mrn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0tmk"]
-size = Vector2(9, 9)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyn48"]
+size = Vector2(13, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gmt2"]
+size = Vector2(8, 8)
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -20,17 +23,12 @@ acceleration = 9
 broadcastRange = 150
 health = 70
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_r4mrn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_l0tmk")
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xyn48")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 3.0
 path_metadata_flags = 0
-debug_enabled = true
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 
@@ -40,5 +38,18 @@ collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
+
+[node name="NavigationCollisionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 145
+
+[node name="NavigationCollisionShape" type="CollisionShape2D" parent="NavigationCollisionArea"]
+shape = SubResource("RectangleShape2D_5gmt2")
+
+[node name="SpriteDirection" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_r4mrn")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

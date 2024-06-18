@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgijsj2hvu5sp"]
+[gd_scene load_steps=6 format=3 uid="uid://bgijsj2hvu5sp"]
 
 [ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_uukgp"]
 [ext_resource type="Texture2D" uid="uid://c7lwhyiyhuwr7" path="res://sprites/suckerpng.png" id="2_4g0qr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p43cu"]
-size = Vector2(10, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrouf"]
+size = Vector2(13, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 17.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x8jh"]
+size = Vector2(8, 8)
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -24,12 +27,8 @@ touchDamage = 0.3
 touchDamageInterval = 0
 reactToBroadcast = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_4g0qr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_p43cu")
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wrouf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 3.0
@@ -44,5 +43,18 @@ collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
+
+[node name="NavigationCollisionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 145
+
+[node name="NavigationCollisionShape" type="CollisionShape2D" parent="NavigationCollisionArea"]
+shape = SubResource("RectangleShape2D_2x8jh")
+
+[node name="SpriteDirection" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_4g0qr")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

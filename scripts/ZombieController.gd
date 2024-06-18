@@ -15,6 +15,8 @@ class_name ZombieController
 @export var reactToBroadcast = true
 @export var separationForceFactor = 650  ## Adjust the strength of separation force
 
+var canUpdateTargeting = true
+
 ## Private variables ##
 var speed
 var roamingSpeed
@@ -28,6 +30,7 @@ var currentState = enums.zombieState.CHASING  ## Default state is CHASING
 @onready var lineOfSightRay = $RayCastToPlayer
 @onready var damageArea = $DamageArea
 @onready var zombiesContainer = get_parent()
+@onready var spriteDirection = $SpriteDirection
 
 ## Initialization ##
 func _ready():
@@ -36,9 +39,16 @@ func _ready():
 	chasingSpeed = randf_range(chasingSpeedRange.x, chasingSpeedRange.y)
 	speed = roamingSpeed
 	lastSeenTarget = position
+	
+	ready()
 
 ## Main update loop ##
 func _process(delta):
+	if (velocity.x < 0):
+		spriteDirection.scale.x = -1
+	else:
+		spriteDirection.scale.x = 1
+	
 	if can_see_target() or needs_new_point():
 		update_targeting()
 
@@ -65,20 +75,21 @@ func do_touch_damage():
 func update_targeting():
 	lineOfSightRay.target_position = target.global_position - global_position
 
-	if can_see_target():
-		speed = chasingSpeed
-		if currentState == enums.zombieState.ROAMING:
-			currentState = enums.zombieState.CHASING
-		lastSeenTarget = target.global_position
-		# broadcast_position(lastSeenTarget)
-	elif needs_new_point():
-		if currentState == enums.zombieState.CHASING:
-			speed = roamingSpeed
-			currentState = enums.zombieState.ROAMING
-		lastSeenTarget = position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
-
+	if(canUpdateTargeting):
+		if can_see_target():
+			speed = chasingSpeed
+			if currentState != enums.zombieState.CHASING:
+				currentState = enums.zombieState.CHASING
+			lastSeenTarget = target.global_position
+			# broadcast_position(lastSeenTarget)
+		elif needs_new_point():
+			if currentState != enums.zombieState.ROAMING:
+				speed = roamingSpeed
+				currentState = enums.zombieState.ROAMING
+			lastSeenTarget = position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
+	
 	navAgent.target_position = lastSeenTarget
-
+	
 	# Add separation behavior
 	var separationForce = calculateSeparationForce()
 	navAgent.target_position += separationForce
@@ -147,6 +158,10 @@ func calculateSeparationForce():
 		separationForce *= separationForceFactor
 
 	return separationForce
+
+## Placeholder for additional ready logic ##
+func ready():
+	pass
 
 ## Placeholder for additional processing logic ##
 func process(delta):
