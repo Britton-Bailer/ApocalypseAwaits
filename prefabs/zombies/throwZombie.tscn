@@ -10,16 +10,17 @@ size = Vector2(18, 18)
 radius = 14.0357
 
 [node name="Zombie" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 collision_layer = 2
 collision_mask = 145
 motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_0toa4")
 roamingSpeedRange = Vector2(40, 50)
 chasingSpeedRange = Vector2(70, 110)
 acceleration = 6
 sightRange = 400
 broadcastRange = 200
+touchDamage = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
@@ -29,10 +30,11 @@ texture = ExtResource("2_ivwce")
 shape = SubResource("RectangleShape2D_2wy11")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 0.1
+target_desired_distance = 3.0
 navigation_layers = 2
 path_metadata_flags = 0
 avoidance_layers = 0
+debug_enabled = true
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 collision_mask = 3
@@ -46,5 +48,3 @@ collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
-
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

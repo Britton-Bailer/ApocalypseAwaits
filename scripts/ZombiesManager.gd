@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var max_zombies = 70
+@export var max_zombies = 100
 
 #order should match order of enums
 const zombieTypes = [preload("res://prefabs/zombies/zombie.tscn"), 
@@ -31,3 +31,5 @@ func spawn_zombie(pos: Vector2, type: enums.zombie):
 	self.add_child(newZomb)
 	
 	newZomb._ready()
+	
+	print(get_child_count())

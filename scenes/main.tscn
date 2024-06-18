@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dnrhu6484w3pm"]
+[gd_scene load_steps=28 format=3 uid="uid://dnrhu6484w3pm"]
 
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="1_2pvfv"]
 [ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/Tilemap.png" id="1_qsi4y"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/ZombiesManager.gd" id="10_h6b65"]
 [ext_resource type="Script" path="res://scripts/Minimap.gd" id="11_hxlfl"]
 [ext_resource type="PackedScene" uid="uid://ew47py47v7h2" path="res://prefabs/spawner.tscn" id="13_yievi"]
+[ext_resource type="PackedScene" uid="uid://dc64nxdsphsap" path="res://prefabs/zombies/babyZombie.tscn" id="14_kpi0i"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dnlwe"]
 vertices = PackedVector2Array(-1315, 1263, -1325, 1263, -1325, 1149, -1315, 1149, 802, 1007, 795, 1007, 795, 509, 802, 509, -1315, 911, -1327, 911, -1329, 653, -1315, 653, -1331, -1, -1331, 207, -1335, -435, -1331, -355, -1315, -355, -1315, -1, -1331, -435, -389, -291, 747, -273, 637, -273, -885, -275, -499, -291, -499, 1053, -853, 1327, -915, 1327, -1093, 1325, -1093, 1167, -963, 909, -773, 909, -499, 991, -213, 1277, 205, 1421, 237, 1455, 237, 1468, -47, 1471, -853, 1469, -499, 1277, -1093, 1471, -915, 1469, -693, 269, 802, 335, 797, 335, -1077, 285, -803, 269, -165, 173, 509, 157, 619, 157, 802, 1277, 802, 1439, 493, 1439, 315, 1421, 797, 1277, 621, 559, 621, 621, 571, 815, 205, 815, -229, 733, -229, 511, 13, 509, 75, 509, 317, 525, 765, 479, 765, 559, 443, 525, 443, 399, 203, -355, -51, -355, 781, -497, 781, -195, 747, -243, 797, -19, 802, -19, 797, -195, 619, -33, -451, 173, -693, 175, 715, -451, 715, -593, 797, -609, -963, 527, -1189, 749, -1189, 607, 765, 621, 765, 1037, 571, 941, 637, -593, 637, -451, 475, -531, 475, -657, 603, -691, 349, -531, 203, -497, 77, -691, 349, -657, -51, -497, -293, -531, -293, -625, 75, 1117, 205, 1183, -213, 1167, -51, 1117, -389, -433, -419, -531, -499, -433, -949, -579, -949, -689, -563, -691, -419, -625, -885, -513, -405, 1053, -405, 991, -51, 1023, 317, 399, 75, 399, -453, 29, -453, -17, 557, -33, 557, 95, 509, 95, -165, 79, -1077, 95, -803, 175, -1075, -513, -995, -579, 797, 1117, 315, 1183, 781, 1117, 205, 941, 75, 1023, -499, 1167, -323, 733, -773, 527, -323, 511, -451, 79, -579, 29, -1093, 1455, -1203, 1325, -1301, 1455, -1317, -609, -1333, -609, -1333, -714, -1011, -713, -1011, -707, -563, -707, -995, -689, -293, -691, -293, -707, -197, -707, -197, -708, -147, -708, -147, -707, 603, -702, 802, -702, 802, -609, 797, -497, 797, 383, 781, 383, 781, 479, 13, 399, 781, 1037, 493, 1455, -1301, 1293, -1285, 1293, -1203, 1167, -1285, 1119, -1301, 1119, -1301, 941, -1285, 941, -1285, 623, -1301, 623, -1301, 431, -1235, 607, -1317, 431, -1317, 237, -1301, 237, -1283, 285, -1301, 29, -1285, 29, -1283, 95, -1285, -385, -1301, -385, -1301, -465, -1317, -465, 637, -243, 40, -707, 77, -706, -579, -17, -1075, -275, -1235, 749)
@@ -1530,6 +1531,7 @@ unique_name_in_owner = true
 navigation_layers = 4
 
 [node name="AmbientSpawner" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("8_vwdum")
 spawnInterval = 100
 spawnRange = 1000
@@ -1579,10 +1581,34 @@ position = Vector2(-742, -155)
 position = Vector2(179, 412)
 
 [node name="Spawner4" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(10, -659)
+position = Vector2(-318, -473)
 
 [node name="Spawner5" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(786, -589)
+position = Vector2(-731, 438)
+
+[node name="Spawner6" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-1014, 303)
+
+[node name="Spawner7" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-93, 870)
+
+[node name="Spawner8" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-590, -15)
+
+[node name="Spawner9" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-1003, 896)
+
+[node name="Spawner10" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-630, 597)
+
+[node name="Spawner11" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(291, 1164)
+
+[node name="Spawner12" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-206, 279)
+
+[node name="Spawner13" parent="Spawners" instance=ExtResource("13_yievi")]
+position = Vector2(-619, 1190)
 
 [node name="player" parent="." instance=ExtResource("9_x4nrp")]
 unique_name_in_owner = true
@@ -1608,6 +1634,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Zombies" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("10_h6b65")
+
+[node name="Zombie" parent="Zombies" node_paths=PackedStringArray("target") instance=ExtResource("14_kpi0i")]
+target = NodePath("../../player")
 
 [node name="Barriers" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -13,7 +13,6 @@ radius = 11.0
 collision_layer = 2
 collision_mask = 145
 motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_yhium")
 roamingSpeedRange = Vector2(60, 80)
 chasingSpeedRange = Vector2(130, 160)
@@ -29,11 +28,11 @@ texture = ExtResource("2_r4mrn")
 shape = SubResource("RectangleShape2D_l0tmk")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 0.1
+target_desired_distance = 3.0
 path_metadata_flags = 0
+debug_enabled = true
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
-collision_mask = 3
 
 [node name="NavigationRaycasts" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -12,7 +12,6 @@ radius = 14.0357
 collision_layer = 2
 collision_mask = 145
 motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_o5aoh")
 roamingSpeedRange = Vector2(50, 70)
 chasingSpeedRange = Vector2(50, 70)
@@ -47,5 +46,3 @@ collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
-
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

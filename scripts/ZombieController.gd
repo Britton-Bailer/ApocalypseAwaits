@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name ZombieController
 
-var target: RigidBody2D
+@export var target: RigidBody2D
 var speed
 var roamingSpeed
 var chasingSpeed
@@ -20,9 +20,6 @@ var touchDamageTimer = 0
 
 var lastSeenTarget
 var currentState = enums.zombieState.CHASING
-
-var targetingInterval = 50
-var targetingTimer = 0
 
 @onready var navAgent = $NavigationAgent2D
 @onready var lineOfSightRay = $RayCastToPlayer
@@ -56,15 +53,12 @@ func _ready():
 		dirWeights.push_back(0)
 
 ## runs every frame
-func _physics_process(delta):
-	if (can_see_target()):
-		targetingInterval = 7
-	else:
-		targetingInterval = 70
-	if(targetingTimer > targetingInterval || navAgent.waypoint_reached):
-		targetingTimer = 0
-		do_targeting()
-	targetingTimer += 1
+func _process(delta):
+	if(target.global_position.distance_to(position) > 100 && target.global_position.distance_to(lastSeenTarget) > 50):
+		update_targeting()
+	elif (target.global_position.distance_to(position) < 100 && target.global_position.distance_to(lastSeenTarget) > 10):
+		update_targeting()
+	
 	
 	process(delta)
 	if(can_attack()):
@@ -73,10 +67,9 @@ func _physics_process(delta):
 	
 	#do navigation and movement
 	run_directions_calculations()
-	
+	move_and_slide()
 	if(currentState != enums.zombieState.ATTACK):
 		navigation(delta)
-	move_and_slide()
 	do_touch_damage()
 	#queue_redraw()
 
@@ -92,7 +85,7 @@ func do_touch_damage():
 			if(body.has_method("take_damage")):
 				body.take_damage(touchDamage)
 
-func do_targeting():
+func update_targeting():
 	#update ray direction to point at player
 	lineOfSightRay.target_position = (target.global_position - global_position)
 	
@@ -105,10 +98,9 @@ func do_targeting():
 		lastSeenTarget = target.global_position
 		
 		#tell other zombies about it
-		broadcast_position(target.global_position)
+		#broadcast_position(lastSeenTarget)
 		
 	elif (needs_new_point()):
-		targetingTimer = targetingInterval
 		if(currentState == enums.zombieState.CHASING):
 			speed = roamingSpeed
 			currentState = enums.zombieState.ROAMING
@@ -123,7 +115,7 @@ func do_targeting():
 func navigation(delta):
 	var direction = navAgent.get_next_path_position() - global_position
 	
-	if(position.distance_to(target.position) < 300):
+	if(position.distance_to(target.global_position) < 300):
 		#move along directions[i] that is longes
 		var maxDirWeight = 0
 		for i in range(directions.size()):
@@ -131,7 +123,7 @@ func navigation(delta):
 				maxDirWeight = i
 		
 		direction = directions[maxDirWeight]
-		
+	
 	velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
 
 ## when other zombie broadcasts, this is used to update last seen position
@@ -148,7 +140,7 @@ func broadcast_position(newPosition):
 			zombie.set_target(newPosition)
 
 func can_see_target():
-	return transform.origin.distance_to(target.transform.origin) < sightRange && !lineOfSightRay.is_colliding()
+	return transform.origin.distance_to(target.global_position) < sightRange && !lineOfSightRay.is_colliding()
 
 ## zombie either cannot reach point or has already reached it
 func needs_new_point():

@@ -7,7 +7,7 @@
 
 [node name="BarrierBody" type="StaticBody2D"]
 collision_layer = 16
-collision_mask = 130
+collision_mask = 138
 script = ExtResource("1_xpws5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

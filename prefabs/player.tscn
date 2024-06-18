@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=12 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_3kbbd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="4_igmwc"]
 [ext_resource type="Script" path="res://scripts/AmmoText.gd" id="4_ja6kb"]
 [ext_resource type="Script" path="res://scripts/HealthIndicator.gd" id="6_g467v"]
+[ext_resource type="Script" path="res://scripts/FPSindicator.gd" id="7_48vg2"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
@@ -81,6 +82,12 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("3_skj3q")
 
+[node name="FPS indicator" type="RichTextLabel" parent="GameUI"]
+offset_right = 77.0
+offset_bottom = 40.0
+text = "test"
+script = ExtResource("7_48vg2")
+
 [node name="HealthIndicator" type="Control" parent="."]
 z_index = 1
 layout_mode = 3
@@ -144,6 +151,4 @@ layout_mode = 2
 text = "Main Menu"
 
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
-[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_button_pressed"]
-[connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]
