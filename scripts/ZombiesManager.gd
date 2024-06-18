@@ -32,4 +32,4 @@ func spawn_zombie(pos: Vector2, type: enums.zombie):
 	
 	newZomb._ready()
 	
-	print(get_child_count())
+	print("Num zombies: " + str(get_child_count()))
