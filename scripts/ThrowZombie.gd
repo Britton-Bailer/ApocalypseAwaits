@@ -4,10 +4,14 @@ extends ZombieController
 var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")  ## Prefab for enemy bullet
 var preferredRange = randi_range(120, 200)  ## Preferred range to maintain from the player
 
-var reloadTime = 200  ## Time between each bullet reload
+var reloadRange = Vector2(150, 250)
+var reloadTime  ## Time between each bullet reload
 var reloadTimer = 0  ## Timer to track reload time
 var spread = 15  ## Spread of bullet shot angle
 var damage = 15  ## Damage inflicted by bullets
+
+func ready():
+	reloadTime = randi_range(reloadRange.x, reloadRange.y)
 
 ## Check if the zombie can attack (within preferred range) ##
 func can_attack():
@@ -50,3 +54,6 @@ func shoot_bullet():
 	newBullet.rotation = bulletRotation
 	
 	BulletsManager.add_child(newBullet)
+	
+	#choose random time before next shot
+	reloadTime = randi_range(reloadRange.x, reloadRange.y)

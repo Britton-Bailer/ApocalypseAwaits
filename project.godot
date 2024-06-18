@@ -96,6 +96,7 @@ place_barrier={
 2d_navigation/layer_3="large"
 2d_physics/layer_4="bullet"
 2d_physics/layer_5="barrier"
+2d_physics/layer_6="navChecker"
 2d_physics/layer_8="player"
 
 [rendering]

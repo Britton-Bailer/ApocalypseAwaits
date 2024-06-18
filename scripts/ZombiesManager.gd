@@ -8,7 +8,7 @@ const zombieTypes = [preload("res://prefabs/zombies/zombie.tscn"),
 	preload("res://prefabs/zombies/babyZombie.tscn"), 
 	preload("res://prefabs/zombies/suckerZombie.tscn"),
 	preload("res://prefabs/zombies/suckerWitch.tscn"),
-	
+	preload("res://prefabs/zombies/charger.tscn"),
 	
 	
 	]

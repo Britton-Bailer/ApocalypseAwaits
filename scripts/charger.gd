@@ -1,7 +1,7 @@
 extends ZombieController
 
 ## Charger-specific variables ##
-var chargeDistance = 150  ## Distance threshold to trigger charge attack
+var preferredRange = randi_range(100, 130)  ## Preferred range to maintain from the player
 var chargeSpeedMultiplier = 3  ## Speed multiplier during charge
 var chargeDamageMultiplier = 6
 var isCharging = false  ## Flag to track if zombie is currently charging
@@ -9,17 +9,19 @@ var originalSpeed  ## Variable to store the original speed for restoration after
 var originalTouchDamage
 
 var chargingCooldownTimer = 0
-var chargeCooldownTime = 700  ## Cooldown time after charge (in milliseconds)
-var canCharge = true
+var cooldownRange = Vector2(700, 1000)
+var chargeCooldownTime  ## Cooldown time after charge (in milliseconds)
+var canCharge = false
 var chargeDir = Vector2.ZERO
 
 ## Override _ready function to initialize originalSpeed ##
 func ready():
+	chargeCooldownTime = randi_range(cooldownRange.x, cooldownRange.y)
 	originalSpeed = roamingSpeed
 
 ## Override can_attack function to trigger charge attack ##
 func can_attack():
-	return position.distance_to(target.position) <= chargeDistance && canCharge
+	return position.distance_to(target.position) <= preferredRange+20 && canCharge
 
 ## Override attack function to handle charge attack ##
 func attack(delta):
@@ -50,6 +52,9 @@ func process(delta):
 		isCharging = false
 		speed = originalSpeed  # Restore original speed after charge
 		touchDamage = originalTouchDamage
+		chargeCooldownTime = randi_range(cooldownRange.x, cooldownRange.y) # choose random time before next charge
+	else:
+		move_to_maintain_range(delta)
 
 	if(chargingCooldownTimer <= chargeCooldownTime):
 		chargingCooldownTimer += 1
@@ -59,4 +64,15 @@ func process(delta):
 func set_charge_direction():
 	chargeDir = ((target.position + target.linear_velocity * global_position.distance_to(target.global_position)/300) - global_position).normalized()
 
-#await get_tree().create_timer(chargeCooldownTime / 1000.0).timeout
+## Move towards or away from the player to maintain preferred range ##
+func move_to_maintain_range(delta):
+	var distance_to_target = position.distance_to(target.position)
+
+	if distance_to_target > preferredRange:
+		currentState = enums.zombieState.CHASING
+		speed = chasingSpeed
+		update_targeting()
+	else:
+		currentState = enums.zombieState.ROAMING
+		var direction_to_move = global_position - target.global_position
+		navAgent.target_position = global_position + direction_to_move.normalized() * speed * delta

@@ -81,12 +81,12 @@ func update_targeting():
 			if currentState != enums.zombieState.CHASING:
 				currentState = enums.zombieState.CHASING
 			lastSeenTarget = target.global_position
-			# broadcast_position(lastSeenTarget)
+			#broadcast_position(lastSeenTarget)
 		elif needs_new_point():
 			if currentState != enums.zombieState.ROAMING:
 				speed = roamingSpeed
 				currentState = enums.zombieState.ROAMING
-			lastSeenTarget = position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
+			lastSeenTarget = global_position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
 	
 	navAgent.target_position = lastSeenTarget
 	
@@ -119,7 +119,7 @@ func can_see_target():
 
 ## Check if the zombie needs to find a new navigation point ##
 func needs_new_point():
-	return not navAgent.is_target_reachable() or transform.origin.distance_to(lastSeenTarget) < 10
+	return global_position.distance_to(lastSeenTarget) < 10 || navAgent.get_next_path_position().distance_to(navAgent.get_parent().position) < 1
 
 ## Handle damage taken by the zombie ##
 func take_damage(amt):

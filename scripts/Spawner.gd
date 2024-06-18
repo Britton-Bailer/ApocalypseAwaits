@@ -15,7 +15,7 @@ func _process(_delta):
 	if(timer >= spawnInterval):
 		timer = 0
 		var newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-		var zombieType = [enums.zombie.base, enums.zombie.throw, enums.zombie.baby, enums.zombie.suckerWitch].pick_random()
+		var zombieType = [enums.zombie.base, enums.zombie.throw, enums.zombie.baby, enums.zombie.suckerWitch, enums.zombie.charger].pick_random()
 		
 		nav_agent_large.target_position = newPos
 		while(!nav_agent_large.is_target_reachable()):

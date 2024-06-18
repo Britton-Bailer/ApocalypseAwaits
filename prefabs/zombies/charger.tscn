@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg4txesnbkn4u"]
+[gd_scene load_steps=5 format=3 uid="uid://bg4txesnbkn4u"]
 
-[ext_resource type="Script" path="res://scripts/charger.gd" id="1_vsn0r"]
+[ext_resource type="Script" path="res://scripts/Charger.gd" id="1_m167g"]
 [ext_resource type="Texture2D" uid="uid://c2gdq87mg57rm" path="res://sprites/Charger.png" id="2_vpxtm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxqa"]
@@ -9,14 +9,11 @@ size = Vector2(15, 15)
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oihe3"]
-size = Vector2(10, 10)
-
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 24
 motion_mode = 1
-script = ExtResource("1_vsn0r")
+script = ExtResource("1_m167g")
 roamingSpeedRange = Vector2(40, 55)
 chasingSpeedRange = Vector2(90, 130)
 touchDamage = 5.0
@@ -39,13 +36,6 @@ collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
-
-[node name="NavigationCollisionArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 145
-
-[node name="NavigationCollisionShape" type="CollisionShape2D" parent="NavigationCollisionArea"]
-shape = SubResource("RectangleShape2D_oihe3")
 
 [node name="SpriteDirection" type="Node2D" parent="."]
 

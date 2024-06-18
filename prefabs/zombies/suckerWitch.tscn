@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3mvfa5he1q33"]
+[gd_scene load_steps=5 format=3 uid="uid://c3mvfa5he1q33"]
 
 [ext_resource type="Script" path="res://scripts/suckerWitch.gd" id="1_o5aoh"]
 [ext_resource type="Texture2D" uid="uid://6tipk8val8rl" path="res://sprites/SuckerWitch.png" id="2_an6px"]
@@ -9,12 +9,9 @@ size = Vector2(18, 18)
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aix3r"]
-size = Vector2(13, 13)
-
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 145
+collision_mask = 152
 motion_mode = 1
 script = ExtResource("1_o5aoh")
 roamingSpeedRange = Vector2(50, 70)
@@ -29,7 +26,7 @@ reactToBroadcast = false
 shape = SubResource("RectangleShape2D_04e0a")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 0.1
+target_desired_distance = 3.0
 navigation_layers = 4
 path_metadata_flags = 0
 avoidance_layers = 0
@@ -43,13 +40,6 @@ collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
-
-[node name="NavigationCollisionArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 145
-
-[node name="NavigationCollisionShape" type="CollisionShape2D" parent="NavigationCollisionArea"]
-shape = SubResource("RectangleShape2D_aix3r")
 
 [node name="SpriteDirection" type="Node2D" parent="."]
 

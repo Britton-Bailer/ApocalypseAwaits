@@ -10,7 +10,7 @@ var playerSize = 3
 @onready var player = %player
 
 @export var tilemaps: Array[TileMap]
-var cell_colors = [Color.BLACK, Color.TRANSPARENT, Color.BLUE]
+var cell_colors = [Color.TRANSPARENT, Color.TRANSPARENT, Color.BLACK]
 
 var playerDrawOffset = Vector2(blockSize*0.5/2.0, blockSize*0.8/2.0)
 

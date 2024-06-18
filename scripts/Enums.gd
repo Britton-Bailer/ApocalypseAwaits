@@ -8,6 +8,7 @@ enum zombie {
 	baby,
 	sucker,
 	suckerWitch,
+	charger,
 }
 
 enum zombieState {
