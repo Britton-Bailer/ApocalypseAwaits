@@ -9,26 +9,6 @@ var reloadTimer = 0
 var spread = 15
 var damage = 15
 
-func run_directions_calculations():
-	var desiredDirection = navAgent.get_next_path_position() - global_position
-	for i in range(directions.size()):
-		if(position.distance_to(target.position) > preferredRange+5 || !can_see_target()):
-			dirWeights[i] = desiredDirection.normalized().dot(directions[i])
-			currentState = enums.zombieState.CHASING
-		elif (position.distance_to(target.position) < preferredRange-5 && can_see_target()):
-			dirWeights[i] = 0 - (desiredDirection.normalized().dot(directions[i]))
-			currentState = enums.zombieState.CHASING
-		if(navigation_raycasts.get_child(i).is_colliding()):
-			dirWeights[i] -= 5
-			if(i+1 < directions.size()):
-				dirWeights[i+1] -= 1
-			else:
-				dirWeights[0] -= 1
-				
-			if(i > 0):
-				dirWeights[i-1] -= 1
-			else:
-				dirWeights[dirWeights.size()-1] -= 1
 
 func can_attack():
 	return position.distance_to(target.position) <= preferredRange+5

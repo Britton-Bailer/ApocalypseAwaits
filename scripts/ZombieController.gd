@@ -25,11 +25,6 @@ var currentState = enums.zombieState.CHASING
 @onready var lineOfSightRay = $RayCastToPlayer
 
 var zombiesContainer # parent that holds all zombies
-var directions = []
-var dirWeights = []
-var numDirections = 12
-var senseDistance = 30
-@onready var navigation_raycasts = %NavigationRaycasts
 
 ## runs one time before anything else
 func _ready():
@@ -38,19 +33,6 @@ func _ready():
 	speed = roamingSpeed
 	zombiesContainer = get_parent()
 	lastSeenTarget = position
-	
-	for i in range(0, 360, (360.0/numDirections)):
-		var dir = Vector2(cos(deg_to_rad(i)), sin(deg_to_rad(i))).normalized()
-		var newRaycast = RayCast2D.new()
-		navigation_raycasts.add_child(newRaycast)
-		newRaycast.set_collision_mask_value(1, true)
-		newRaycast.set_collision_mask_value(2, true)
-		newRaycast.set_collision_mask_value(8, true)
-		newRaycast.target_position = dir * senseDistance
-		
-		#start with all being normalized (length = 1)
-		directions.push_back(dir)
-		dirWeights.push_back(0)
 
 ## runs every frame
 func _process(delta):
@@ -66,7 +48,6 @@ func _process(delta):
 		attack(delta)
 	
 	#do navigation and movement
-	run_directions_calculations()
 	move_and_slide()
 	if(currentState != enums.zombieState.ATTACK):
 		navigation(delta)
@@ -114,16 +95,6 @@ func update_targeting():
 	
 func navigation(delta):
 	var direction = navAgent.get_next_path_position() - global_position
-	
-	if(position.distance_to(target.global_position) < 300):
-		#move along directions[i] that is longes
-		var maxDirWeight = 0
-		for i in range(directions.size()):
-			if(dirWeights[i] > dirWeights[maxDirWeight]):
-				maxDirWeight = i
-		
-		direction = directions[maxDirWeight]
-	
 	velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
 
 ## when other zombie broadcasts, this is used to update last seen position
@@ -155,35 +126,11 @@ func take_damage(amt):
 	if(health <= 0):
 		queue_free()
 
-func run_directions_calculations():
-	var desiredDirection = navAgent.get_next_path_position() - global_position
-	for i in range(directions.size()):
-		dirWeights[i] = desiredDirection.normalized().dot(directions[i])
-		
-		if(navigation_raycasts.get_child(i).is_colliding()):
-			dirWeights[i] -= 5
-			if(i+1 < directions.size()):
-				dirWeights[i+1] -= 1
-			else:
-				dirWeights[0] -= 1
-				
-			if(i > 0):
-				dirWeights[i-1] -= 1
-			else:
-				dirWeights[dirWeights.size()-1] -= 1
-
 func can_attack():
 	pass
 
 func attack(delta):
 	pass
-
-func _draw():
-	for i in range(directions.size()):
-		if(dirWeights[i] > 0):
-			draw_line(Vector2.ZERO, (directions[i] * dirWeights[i] * senseDistance), Color.BLACK, 2)
-		else:
-			draw_line(Vector2.ZERO, (directions[i] * -clampf(dirWeights[i], -1, 0) * senseDistance), Color.RED, 2)
 
 func _on_damage_area_body_entered(body):
 	if(body.has_method("take_damage")):
