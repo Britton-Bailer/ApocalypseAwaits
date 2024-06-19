@@ -9,7 +9,7 @@ var originalSpeed  ## Variable to store the original speed for restoration after
 var originalTouchDamage
 
 var chargingCooldownTimer = 0
-var cooldownRange = Vector2(700, 1000)
+var cooldownRange = Vector2(400, 700)
 var chargeCooldownTime  ## Cooldown time after charge (in milliseconds)
 var canCharge = false
 var chargeDir = Vector2.ZERO
@@ -68,11 +68,13 @@ func set_charge_direction():
 func move_to_maintain_range(delta):
 	var distance_to_target = position.distance_to(target.position)
 
-	if distance_to_target > preferredRange:
+	if distance_to_target > preferredRange + 10:
 		currentState = enums.zombieState.CHASING
 		speed = chasingSpeed
 		update_targeting()
-	else:
+	elif distance_to_target < preferredRange - 10:
 		currentState = enums.zombieState.ROAMING
 		var direction_to_move = global_position - target.global_position
 		navAgent.target_position = global_position + direction_to_move.normalized() * speed * delta
+	else:
+		velocity = Vector2.ZERO

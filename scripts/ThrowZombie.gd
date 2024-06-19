@@ -15,7 +15,7 @@ func ready():
 
 ## Check if the zombie can attack (within preferred range) ##
 func can_attack():
-	return position.distance_to(target.position) <= preferredRange
+	return position.distance_to(target.position) <= preferredRange + 10
 
 ## Attack logic, including shooting bullets and maintaining distance ##
 func attack(delta):
@@ -36,14 +36,16 @@ func attack(delta):
 func move_to_maintain_range(delta):
 	var distance_to_target = position.distance_to(target.position)
 
-	if distance_to_target > preferredRange:
+	if distance_to_target > preferredRange + 10:
 		currentState = enums.zombieState.CHASING
 		speed = chasingSpeed
 		update_targeting()
-	else:
+	elif distance_to_target < preferredRange - 10:
 		currentState = enums.zombieState.ROAMING
 		var direction_to_move = global_position - target.global_position
 		navAgent.target_position = global_position + direction_to_move.normalized() * speed * delta
+	else:
+		velocity = Vector2.ZERO
 
 ## Spawn a bullet and shoot it towards the player ##
 func shoot_bullet():
