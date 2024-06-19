@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://lqvu5w0be8q4"]
+
+[ext_resource type="Texture2D" uid="uid://bqnpb8jgwdu2f" path="res://sprites/Particles/dirt_particle.png" id="1_0uoma"]
+[ext_resource type="Script" path="res://scripts/bulletHitParticles.gd" id="2_ax5yl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mdoh0"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 52.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -79.78
+linear_accel_max = -70.79
+scale_max = 2.5
+
+[node name="BulletHitParticles" type="GPUParticles2D"]
+z_index = 3
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_mdoh0")
+texture = ExtResource("1_0uoma")
+lifetime = 2.0
+one_shot = true
+preprocess = 0.3
+script = ExtResource("2_ax5yl")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

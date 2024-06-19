@@ -1,60 +1,59 @@
 extends ZombieController
 
-var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")
+## Variables specific to throwZombie ##
+var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")  ## Prefab for enemy bullet
+var preferredRange = randi_range(120, 200)  ## Preferred range to maintain from the player
 
-var preferredRange = randi_range(120, 200)
+var reloadRange = Vector2(150, 250)
+var reloadTime  ## Time between each bullet reload
+var reloadTimer = 0  ## Timer to track reload time
+var spread = 15  ## Spread of bullet shot angle
+var damage = 15  ## Damage inflicted by bullets
 
-var reloadTime = 100
-var reloadTimer = reloadTime
-var spread = 15
-var damage = 15
+func ready():
+	reloadTime = randi_range(reloadRange.x, reloadRange.y)
 
-#slower on average, slower acceleration, sight range reduced, normal broadcast, lower health
-func set_stats():
-	speed = randf_range(70, 120)
-	acceleration = 5
-	sightRange = 400
-	broadcastRange = 500
-	health = 60
-
-func run_directions_calculations():
-	var desiredDirection = navAgent.get_next_path_position() - global_position
-	for i in range(directions.size()):
-		if(position.distance_to(target.position) > preferredRange+5 || !can_see_target()):
-			dirWeights[i] = desiredDirection.normalized().dot(directions[i])
-			currentState = enums.zombieState.CHASING
-		elif (position.distance_to(target.position) < preferredRange-5 && can_see_target()):
-			dirWeights[i] = 0 - (desiredDirection.normalized().dot(directions[i]))
-			currentState = enums.zombieState.CHASING
-		if(navigation_raycasts.get_child(i).is_colliding()):
-			dirWeights[i] -= 5
-			if(i+1 < directions.size()):
-				dirWeights[i+1] -= 1
-			else:
-				dirWeights[0] -= 1
-				
-			if(i > 0):
-				dirWeights[i-1] -= 1
-			else:
-				dirWeights[dirWeights.size()-1] -= 1
-
+## Check if the zombie can attack (within preferred range) ##
 func can_attack():
-	return position.distance_to(target.position) <= preferredRange+5 && can_see_target()
+	return position.distance_to(target.position) <= preferredRange
 
+## Attack logic, including shooting bullets and maintaining distance ##
 func attack(delta):
-	velocity = velocity.lerp(Vector2.ZERO, acceleration * delta)
-	reloadTimer += 1
-	
-	if(reloadTimer >= reloadTime):
-		new_bullet(200, damage, position, get_angle_to(target.position + (target.linear_velocity * randf_range(0.25, 1))), 300, spread)
-		reloadTimer = 0
+	if can_attack():
+		## Slow down the zombie's movement when attacking
+		velocity = velocity.lerp(Vector2.ZERO, acceleration * delta)
+		
+		reloadTimer += 1
+		if reloadTimer >= reloadTime:
+			shoot_bullet()
+			reloadTimer = 0
+			
+	move_to_maintain_range(delta)
 
-## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
-func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float, spread: float = 10):
+	navigation(delta)
+
+## Move towards or away from the player to maintain preferred range ##
+func move_to_maintain_range(delta):
+	var distance_to_target = position.distance_to(target.position)
+
+	if distance_to_target > preferredRange:
+		currentState = enums.zombieState.CHASING
+		speed = chasingSpeed
+		update_targeting()
+	else:
+		currentState = enums.zombieState.ROAMING
+		var direction_to_move = global_position - target.global_position
+		navAgent.target_position = global_position + direction_to_move.normalized() * speed * delta
+
+## Spawn a bullet and shoot it towards the player ##
+func shoot_bullet():
+	var bulletRotation = get_angle_to(target.position + (target.linear_velocity * randf_range(0.25, 1)))
 	var newBullet = THROWABLE_PREFAB.instantiate()
-	newBullet.set_vars(spd, dmg, mxDst, false)
-	newBullet.position = pos
-	newBullet.rotation = rot + deg_to_rad(randf_range(-spread, spread))
+	newBullet.set_vars(200, damage, 300, false)
+	newBullet.position = position
+	newBullet.rotation = bulletRotation
 	
-	#put it in bullets "folder" (autoloaded)
 	BulletsManager.add_child(newBullet)
+	
+	#choose random time before next shot
+	reloadTime = randi_range(reloadRange.x, reloadRange.y)

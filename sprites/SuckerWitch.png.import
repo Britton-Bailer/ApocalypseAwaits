@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvsy8564s2bph"
-path="res://.godot/imported/assault_rifle.png-19e4295c110a4cf7c71e9ddc8e016eba.ctex"
+uid="uid://6tipk8val8rl"
+path="res://.godot/imported/SuckerWitch.png-ce9d63011d5a8274e55a15bfa851a868.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/assault_rifle.png"
-dest_files=["res://.godot/imported/assault_rifle.png-19e4295c110a4cf7c71e9ddc8e016eba.ctex"]
+source_file="res://sprites/SuckerWitch.png"
+dest_files=["res://.godot/imported/SuckerWitch.png-ce9d63011d5a8274e55a15bfa851a868.ctex"]
 
 [params]
 

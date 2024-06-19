@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg4txesnbkn4u"]
+
+[ext_resource type="Script" path="res://scripts/Charger.gd" id="1_m167g"]
+[ext_resource type="Texture2D" uid="uid://c2gdq87mg57rm" path="res://sprites/Charger.png" id="2_vpxtm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxqa"]
+size = Vector2(15, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
+radius = 14.0357
+
+[node name="Zombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 24
+motion_mode = 1
+script = ExtResource("1_m167g")
+roamingSpeedRange = Vector2(40, 55)
+chasingSpeedRange = Vector2(90, 130)
+touchDamage = 5.0
+touchDamageInterval = 200
+
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2hxqa")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 3.0
+navigation_layers = 2
+path_metadata_flags = 0
+
+[node name="RayCastToPlayer" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 144
+
+[node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_o7745")
+
+[node name="SpriteDirection" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_vpxtm")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

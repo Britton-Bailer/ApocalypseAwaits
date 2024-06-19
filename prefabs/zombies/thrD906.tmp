@@ -1,45 +1,47 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqjyj6y1g43pd"]
 
-[ext_resource type="Script" path="res://scripts/ThrowZombie.gd" id="1_wvprb"]
-[ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_cebs2"]
+[ext_resource type="Script" path="res://scripts/ThrowZombie.gd" id="1_0toa4"]
+[ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_ivwce"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kutgk"]
-radius = 9.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wy11"]
+size = Vector2(18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
 
 [node name="Zombie" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 collision_layer = 2
-collision_mask = 129
+collision_mask = 145
 motion_mode = 1
-wall_min_slide_angle = 0.0
-script = ExtResource("1_wvprb")
+script = ExtResource("1_0toa4")
+roamingSpeedRange = Vector2(40, 50)
+chasingSpeedRange = Vector2(70, 110)
+acceleration = 6
+sightRange = 400
+broadcastRange = 200
+touchDamage = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_cebs2")
+texture = ExtResource("2_ivwce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kutgk")
+shape = SubResource("RectangleShape2D_2wy11")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 0.1
-navigation_layers = 3
+target_desired_distance = 3.0
+navigation_layers = 2
 path_metadata_flags = 0
 avoidance_layers = 0
+debug_enabled = true
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 collision_mask = 3
 
-[node name="NavigationRaycasts" type="Node2D" parent="."]
-unique_name_in_owner = true
-
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 128
+collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
-
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
