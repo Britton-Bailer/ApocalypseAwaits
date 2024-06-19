@@ -5,9 +5,6 @@ extends ZombieController
 
 var spawnTimer = 0
 
-func process(delta):
-	draw_line(global_position, global_position + Vector2(100, 100), Color.PURPLE, 2)
-
 ## doesnt care about target, wander aimlessly
 func can_see_target():
 	return false
