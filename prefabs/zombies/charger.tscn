@@ -14,6 +14,7 @@ collision_layer = 2
 collision_mask = 24
 motion_mode = 1
 script = ExtResource("1_m167g")
+type = 5
 roamingSpeedRange = Vector2(40, 55)
 chasingSpeedRange = Vector2(90, 130)
 touchDamage = 5.0

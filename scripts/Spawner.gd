@@ -33,4 +33,5 @@ func take_damage(amt):
 	
 	#if health is at or below 0, delete zombie
 	if(health <= 0):
+		RoundManager.spawner_destroyed()
 		queue_free()

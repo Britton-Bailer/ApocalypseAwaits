@@ -19,6 +19,7 @@ config/icon="res://sprites/icon.svg"
 
 BulletsManager="*res://prefabs/bullets_manager.tscn"
 particles="*res://particles.gd"
+RoundManager="*res://prefabs/RoundManager.tscn"
 
 [display]
 
@@ -97,7 +98,9 @@ place_barrier={
 2d_physics/layer_4="bullet"
 2d_physics/layer_5="barrier"
 2d_physics/layer_6="navChecker"
+2d_physics/layer_7="extractZone"
 2d_physics/layer_8="player"
+2d_physics/layer_9="coin"
 
 [rendering]
 

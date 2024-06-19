@@ -1,14 +1,16 @@
 extends Node2D
 
 @export var max_zombies = 100
+@onready var coins = %Coins
+var coin = preload("res://prefabs/coin.tscn")
 
 #order should match order of enums
 const zombieTypes = [preload("res://prefabs/zombies/zombie.tscn"), 
-	preload("res://prefabs/zombies/throwZombie.tscn"), 
-	preload("res://prefabs/zombies/babyZombie.tscn"), 
-	preload("res://prefabs/zombies/suckerZombie.tscn"),
-	preload("res://prefabs/zombies/suckerWitch.tscn"),
-	preload("res://prefabs/zombies/charger.tscn"),
+		preload("res://prefabs/zombies/throwZombie.tscn"), 
+		preload("res://prefabs/zombies/babyZombie.tscn"), 
+		preload("res://prefabs/zombies/suckerZombie.tscn"),
+		preload("res://prefabs/zombies/suckerWitch.tscn"),
+		preload("res://prefabs/zombies/charger.tscn"),
 	
 	
 	]
@@ -33,3 +35,9 @@ func spawn_zombie(pos: Vector2, type: enums.zombie):
 	newZomb._ready()
 	
 	print("Num zombies: " + str(get_child_count()))
+
+func add_coin(pos, worth):
+	var newCoin = coin.instantiate()
+	newCoin.position = pos
+	newCoin.worth = worth
+	coins.add_child(newCoin)

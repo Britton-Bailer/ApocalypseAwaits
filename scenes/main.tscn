@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dnrhu6484w3pm"]
+[gd_scene load_steps=31 format=3 uid="uid://dnrhu6484w3pm"]
 
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="1_2pvfv"]
 [ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/Tilemap.png" id="1_qsi4y"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://scripts/Minimap.gd" id="11_hxlfl"]
 [ext_resource type="PackedScene" uid="uid://ew47py47v7h2" path="res://prefabs/spawner.tscn" id="13_yievi"]
 [ext_resource type="PackedScene" uid="uid://c3mvfa5he1q33" path="res://prefabs/zombies/suckerWitch.tscn" id="14_0wq88"]
+[ext_resource type="Script" path="res://scripts/ExtractZone.gd" id="15_0m013"]
+[ext_resource type="Texture2D" uid="uid://b7mdxad0slxho" path="res://sprites/ExtractionZonepng.png" id="15_7ijnx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dnlwe"]
 vertices = PackedVector2Array(-1316, 1262, -1324, 1262, -1324, 1150, -1316, 1150, 801, 1006, 796, 1006, 796, 510, 801, 510, -1316, 910, -1326, 910, -1328, 654, -1316, 654, -1332, -354, -1316, -354, -1316, -2, -1331, -2, -1334, -434, -1332, -434, -692, 270, 801, 334, 796, 334, -1076, 286, -804, 270, 801, 1278, 801, 1438, 492, 1438, 316, 1422, 796, 1278, 748, -274, 636, -274, -772, -354, -52, -354, 764, 478, 764, 558, 620, 558, 444, 526, 444, 398, 316, 526, 620, 622, 572, 814, 204, 814, -228, 734, -228, 510, 12, 510, 76, 1118, 764, 1038, 780, 1038, 780, 1118, 316, 1182, 204, 1182, -212, 1166, 204, 942, 572, 942, 76, 1022, 780, -498, 780, -194, 748, -242, -52, 1022, -404, 990, -772, 910, -324, 734, 620, 158, 508, 158, -292, 158, 508, 94, -436, 158, -692, 174, 716, -450, 716, -594, 801, -18, 796, -18, 796, -194, 620, -34, -964, 526, -964, 910, -1092, 1166, -1188, 750, -1188, 606, 764, 622, 636, -594, 636, -450, 476, -530, 476, -658, 604, -690, 204, -354, 348, -530, 204, -498, -212, 1278, 204, 1422, -47, 1470, -708, 14, -708, -194, -436, -18, -196, -706, -148, -706, -52, -498, -340, -386, -340, -466, -292, -690, -852, 14, -804, 174, -1076, 158, -1108, 94, -404, 1054, -52, 1118, -500, 990, 316, 398, 76, 510, 76, 398, 796, 1118, -500, 1166, -500, 1054, -772, 526, -324, 510, -1316, -610, -1332, -610, -1332, -713, -1012, -712, -1012, -706, -564, -706, -564, -690, -292, -706, -196, -707, -148, -707, 604, -701, 801, -701, 801, -610, 796, -610, 796, -498, 76, -690, 348, -658, 556, -34, 556, 94, -292, -18, -1108, 158, 796, 382, 780, 382, 780, 478, 12, 398, 492, 1454, 236, 1454, -852, 1470, -852, 1326, -500, 1278, -916, 1326, -916, 1470, -1092, 1326, -1092, 1470, -1092, 1454, -1204, 1326, -1300, 1454, -1300, 1294, -1284, 1294, -1204, 1166, -1284, 1118, -1300, 1118, -1300, 942, -1284, 942, -1284, 622, -1300, 622, -1300, 430, -1236, 606, -1316, 430, -1316, 238, -1300, 238, -1284, 286, -1300, 30, -1284, 30, -1284, 94, -1284, -386, -1300, -386, -1300, -466, -1316, -466, 236, 1467, 40, -706, 76, -705, 636, -242, -484, -466, -852, -194, -916, -354, -772, -594, -1236, 750, -916, -594, -484, -386)
@@ -1517,6 +1519,9 @@ sources/5 = SubResource("TileSetAtlasSource_xbuax")
 sources/6 = SubResource("TileSetAtlasSource_xcrda")
 sources/8 = SubResource("TileSetAtlasSource_1g5ph")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2267c"]
+size = Vector2(100, 100)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="NavAgentSmall" type="NavigationAgent2D" parent="."]
@@ -1580,37 +1585,6 @@ position = Vector2(-742, -155)
 [node name="Spawner3" parent="Spawners" instance=ExtResource("13_yievi")]
 position = Vector2(179, 412)
 
-[node name="Spawner4" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-318, -473)
-
-[node name="Spawner5" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-731, 438)
-
-[node name="Spawner6" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-1014, 303)
-
-[node name="Spawner7" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-93, 870)
-
-[node name="Spawner8" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-590, -15)
-spawnRange = 100
-
-[node name="Spawner9" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-1003, 896)
-
-[node name="Spawner10" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-630, 597)
-
-[node name="Spawner11" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(291, 1164)
-
-[node name="Spawner12" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-206, 279)
-
-[node name="Spawner13" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-619, 1190)
-
 [node name="player" parent="." instance=ExtResource("9_x4nrp")]
 unique_name_in_owner = true
 position = Vector2(-390, -86)
@@ -1637,12 +1611,27 @@ unique_name_in_owner = true
 script = ExtResource("10_h6b65")
 
 [node name="Zombie2" parent="Zombies" node_paths=PackedStringArray("target") instance=ExtResource("14_0wq88")]
+position = Vector2(-153, -23)
 target = NodePath("../../player")
 
 [node name="Barriers" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(56, -50.934)
+[node name="ExtractZone" type="Area2D" parent="."]
+position = Vector2(576, 340)
+collision_layer = 64
+collision_mask = 128
+script = ExtResource("15_0m013")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExtractZone"]
+shape = SubResource("RectangleShape2D_2267c")
+
+[node name="Sprite2D" type="Sprite2D" parent="ExtractZone"]
+texture = ExtResource("15_7ijnx")
+
+[node name="Coins" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="ExtractZone" to="ExtractZone" method="_on_body_entered"]
 
 [editable path="player"]

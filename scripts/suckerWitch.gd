@@ -20,13 +20,7 @@ func spawn_sucker():
 		get_parent().spawn_zombie(newPos, enums.zombie.sucker)
 
 ## zombie takes damage
-func take_damage(amt):
-	#decrement health
-	if(health > 0):
-		health -= amt
-		
-		#if health is at or below 0, delete zombie
-		if(health <= 0):
-			for i in randi_range(2,5):
-				spawn_sucker()
-			queue_free()
+func die():
+	for i in randi_range(2,5):
+		spawn_sucker()
+	queue_free()

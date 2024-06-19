@@ -35,7 +35,6 @@ func _on_body_entered(body):
 		parts = body.hit_particles().instantiate()
 		parts.position = Vector2.ZERO
 	
-	
 	parts.emitting = true
 	body.add_child(parts)
 	

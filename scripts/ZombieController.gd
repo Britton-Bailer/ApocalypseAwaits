@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name ZombieController
 
 ## Public exports ##
+@export var type: enums.zombie
 @export var target: RigidBody2D
 @export var roamingSpeedRange: Vector2
 @export var chasingSpeedRange: Vector2
@@ -31,6 +32,8 @@ var currentState = enums.zombieState.CHASING  ## Default state is CHASING
 @onready var damageArea = $DamageArea
 @onready var zombiesContainer = get_parent()
 @onready var spriteDirection = $SpriteDirection
+
+var coinWorth = 1
 
 ## Initialization ##
 func _ready():
@@ -125,7 +128,12 @@ func needs_new_point():
 func take_damage(amt):
 	health -= amt
 	if health <= 0:
-		queue_free()
+		zombiesContainer.add_coin(global_position, coinWorth)
+		RoundManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
+		die()
+
+func die():
+	queue_free()
 
 ## Handle collision with damage area ##
 func _on_damage_area_body_entered(body):
