@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2tj0srsyc5c6"]
 
 [ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_drckv"]
-[ext_resource type="Texture2D" uid="uid://drlf3h4lpkdyd" path="res://sprites/zombie.png" id="2_0iage"]
+[ext_resource type="Texture2D" uid="uid://cc20tm4k26yg2" path="res://sprites/CharacterSprites/Jon Zombie Sprite.png" id="2_knlor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l77dx"]
 size = Vector2(15, 15)
@@ -39,7 +39,8 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="SpriteDirection" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_0iage")
+position = Vector2(2, -1)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_knlor")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3mvfa5he1q33"]
 
 [ext_resource type="Script" path="res://scripts/suckerWitch.gd" id="1_o5aoh"]
-[ext_resource type="Texture2D" uid="uid://6tipk8val8rl" path="res://sprites/SuckerWitch.png" id="2_an6px"]
+[ext_resource type="Texture2D" uid="uid://3c1eb0vvxksm" path="res://sprites/CharacterSprites/Jon Sucker Witch Sprite.png" id="2_jq6sy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04e0a"]
 size = Vector2(18, 18)
@@ -46,5 +46,8 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="SpriteDirection" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_an6px")
+position = Vector2(-1, -2)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_jq6sy")
+region_enabled = true
+region_rect = Rect2(-0.327332, 0, 31.3273, 31.1623)
