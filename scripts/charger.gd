@@ -28,7 +28,7 @@ func attack(delta):
 	if can_attack():
 		isCharging = true
 		canCharge = false
-		currentState = enums.zombieState.CHASING
+		currentState = Zombies.zombieState.CHASING
 		originalSpeed = speed  ## Store original speed
 		originalTouchDamage = touchDamage
 		touchDamage = touchDamage * chargeDamageMultiplier
@@ -36,7 +36,7 @@ func attack(delta):
 		canUpdateTargeting = false #turn off targeting while charging (charge in straight line)
 		set_charge_direction()
 	else:
-		currentState = enums.zombieState.ROAMING
+		currentState = Zombies.zombieState.ROAMING
 		speed = roamingSpeed  # Ensure speed is reset to roamingSpeed if not charging
 
 	navigation(delta)
@@ -69,11 +69,11 @@ func move_to_maintain_range(delta):
 	var distance_to_target = position.distance_to(target.position)
 
 	if distance_to_target > preferredRange + 10:
-		currentState = enums.zombieState.CHASING
+		currentState = Zombies.zombieState.CHASING
 		speed = chasingSpeed
 		update_targeting()
 	elif distance_to_target < preferredRange - 10:
-		currentState = enums.zombieState.ROAMING
+		currentState = Zombies.zombieState.ROAMING
 		var direction_to_move = global_position - target.global_position
 		navAgent.target_position = global_position + direction_to_move.normalized() * speed * delta
 	else:

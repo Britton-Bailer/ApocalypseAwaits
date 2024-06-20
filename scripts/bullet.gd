@@ -20,7 +20,7 @@ func _process(delta):
 		var parts = defaultHitParticles.instantiate()
 		parts.position = position
 		parts.emitting = true
-		particles.add_child(parts)
+		ParticlesManager.add_child(parts)
 		queue_free()
 
 ## bullet hit something

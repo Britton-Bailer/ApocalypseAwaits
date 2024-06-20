@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name ZombieController
 
 ## Public exports ##
-@export var type: enums.zombie
+@export var type: Zombies.type
 @export var target: RigidBody2D
 @export var roamingSpeedRange: Vector2
 @export var chasingSpeedRange: Vector2
@@ -24,7 +24,7 @@ var roamingSpeed
 var chasingSpeed
 var touchDamageTimer = 0
 var lastSeenTarget
-var currentState = enums.zombieState.CHASING  ## Default state is CHASING
+var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
 
 ## References to other nodes ##
 @onready var navAgent = $NavigationAgent2D
@@ -32,6 +32,8 @@ var currentState = enums.zombieState.CHASING  ## Default state is CHASING
 @onready var damageArea = $DamageArea
 @onready var zombiesContainer = get_parent()
 @onready var spriteDirection = $SpriteDirection
+@onready var zombiesManager = MissionManager.zombiesManager
+@onready var bulletsManager = MissionManager.bulletsManager
 
 var coinWorth = 1
 
@@ -57,11 +59,11 @@ func _process(delta):
 
 	process(delta)
 	if can_attack():
-		currentState = enums.zombieState.ATTACK
+		currentState = Zombies.zombieState.ATTACK
 		attack(delta)
 
 	move_and_slide()
-	if currentState != enums.zombieState.ATTACK:
+	if currentState != Zombies.zombieState.ATTACK:
 		navigation(delta)
 	do_touch_damage()
 
@@ -81,14 +83,14 @@ func update_targeting():
 	if(canUpdateTargeting):
 		if can_see_target():
 			speed = chasingSpeed
-			if currentState != enums.zombieState.CHASING:
-				currentState = enums.zombieState.CHASING
+			if currentState != Zombies.zombieState.CHASING:
+				currentState = Zombies.zombieState.CHASING
 			lastSeenTarget = target.global_position
 			#broadcast_position(lastSeenTarget)
 		elif needs_new_point():
-			if currentState != enums.zombieState.ROAMING:
+			if currentState != Zombies.zombieState.ROAMING:
 				speed = roamingSpeed
-				currentState = enums.zombieState.ROAMING
+				currentState = Zombies.zombieState.ROAMING
 			lastSeenTarget = global_position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
 	
 	navAgent.target_position = lastSeenTarget
@@ -105,7 +107,7 @@ func navigation(delta):
 ## Set a new target position ##
 func set_target(newPosition):
 	if reactToBroadcast:
-		currentState = enums.zombieState.CHASING
+		currentState = Zombies.zombieState.CHASING
 		speed = chasingSpeed
 		lastSeenTarget = newPosition
 
@@ -128,8 +130,8 @@ func needs_new_point():
 func take_damage(amt):
 	health -= amt
 	if health <= 0:
-		zombiesContainer.add_coin(global_position, coinWorth)
-		RoundManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
+		zombiesManager.add_coin(global_position, coinWorth)
+		MissionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
 		die()
 
 func die():

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://73efuywlefl"]
+
+[node name="NavAgentPlacement" type="Node2D"]
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+navigation_layers = 4

@@ -7,6 +7,7 @@ var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 
 @onready var weapon_direction: Node2D = %WeaponDirection
 @onready var weapon_sprite: Sprite2D = %WeaponSprite
+@onready var bulletsManager = MissionManager.bulletsManager
 
 var timeBetweenShots = 10
 var lastShotTimer = timeBetweenShots
@@ -74,7 +75,7 @@ func reload():
 
 func shoot():
 	#instantiate new bullet at gun with gun rotation
-	BulletsManager.new_bullet(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, BULLET_PREFAB)
+	bulletsManager.new_bullet(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, BULLET_PREFAB)
 
 ## overwrite this when creating a new weapon
 func set_stats():

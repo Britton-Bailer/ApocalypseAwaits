@@ -1,28 +1,38 @@
 extends Node2D
 
+@onready var navAgentPlacement = MissionManager.navAgentPlacement
+@onready var zombiesManager = MissionManager.zombiesManager
+
 var timer = 0
 @export var spawnInterval = 400
 @export var spawnRange = 200
+var spawnRateRange = Vector2(300,500)
 
 var health = 400
 
-@onready var nav_agent_small = %NavAgentSmall
-@onready var nav_agent_medium = %NavAgentMedium
-@onready var nav_agent_large = %NavAgentLarge
-@onready var zombies = %Zombies
+var cumulative_weights: Array = []
+var total_weight: int = 0
+
+var zombies = Zombies.new()
+
+func _ready():
+	calculate_cumulative_weights()
+	spawnRateRange = MissionManager.missionData.spawnRateRange
+	spawnInterval = randi_range(spawnRateRange.x, spawnRateRange.y)
 
 func _process(_delta):
 	if(timer >= spawnInterval):
+		spawnInterval = randi_range(spawnRateRange.x, spawnRateRange.y)
 		timer = 0
 		var newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-		var zombieType = [enums.zombie.base, enums.zombie.throw, enums.zombie.baby, enums.zombie.suckerWitch, enums.zombie.charger].pick_random()
+		var zombieType = select_zombie()
 		
-		nav_agent_large.target_position = newPos
-		while(!nav_agent_large.is_target_reachable()):
+		navAgentPlacement.get_node("NavAgent").target_position = newPos
+		while(!navAgentPlacement.get_node("NavAgent").is_target_reachable()):
 			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-			nav_agent_large.target_position = newPos
+			navAgentPlacement.get_node("NavAgent").target_position = newPos
 		
-		zombies.spawn_zombie(newPos, zombieType)
+		zombiesManager.spawn_zombie(newPos, zombieType)
 
 	timer += 1
 
@@ -33,5 +43,27 @@ func take_damage(amt):
 	
 	#if health is at or below 0, delete zombie
 	if(health <= 0):
-		RoundManager.spawner_destroyed()
+		MissionManager.spawner_destroyed()
 		queue_free()
+
+# Function to calculate cumulative weights
+func calculate_cumulative_weights():
+	total_weight = 0
+	cumulative_weights.clear()
+	
+	for key in MissionManager.missionData.spawnWeights.weights.keys():
+		total_weight += MissionManager.missionData.spawnWeights.weights[key]
+		cumulative_weights.append({"type": key, "cumulative_weight": total_weight})
+
+# Function to select a zombie based on weights
+func select_zombie() -> int:
+	if total_weight == 0:
+		return zombies.type.base
+	
+	var rand_value = randi_range(0, total_weight - 1)
+	
+	for zombie in cumulative_weights:
+		if rand_value < zombie.cumulative_weight:
+			return zombies.nameToEnum[zombie.type]
+	
+	return zombies.type.base

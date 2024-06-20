@@ -1,11 +1,13 @@
 extends RigidBody2D
 
+@onready var weapon = %Weapon
+@onready var zombiesManager = MissionManager.zombiesManager
+
 const SPEED = 150.0
 var maxHealth = 100
 var health = maxHealth
 var healthRegen = 2
 
-@onready var weapon = %Weapon
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")
 var sniperScript = preload("res://scripts/Weapons/Sniper.gd")
@@ -15,6 +17,9 @@ var sprayerScript = preload("res://scripts/Weapons/TheSprayer.gd")
 
 var weapons = [burstScript, smgScript, sniperScript, shotgunScript, assultRifleScript , sprayerScript]
 var index = 0
+
+func _ready():
+	zombiesManager.set_player(self)
 
 func _physics_process(delta):
 	movement()
@@ -40,10 +45,10 @@ func movement():
 		linear_velocity.y = SPEED
 
 func take_damage(dmg):
-	health -= dmg
+	health -= dmg * MissionManager.missionData.damageMultipler
 	
 	if(health <= 0):
-		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		MissionManager.round_loss()
 
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")

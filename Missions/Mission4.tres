@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MissionData" load_steps=4 format=3 uid="uid://cbitvaplgukcj"]
+
+[ext_resource type="Script" path="res://scripts/MissionData.gd" id="1_2kge7"]
+[ext_resource type="Script" path="res://scripts/SpawnWeights.gd" id="2_i2ome"]
+
+[sub_resource type="Resource" id="Resource_6xm57"]
+script = ExtResource("2_i2ome")
+weights = {
+"Baby Zombie": 1,
+"Base": 2,
+"Charger": 0,
+"Sucker": 0,
+"Sucker Witch": 0,
+"Thrower": 2
+}
+
+[resource]
+script = ExtResource("1_2kge7")
+missionType = 1
+bountyTarget = 0
+killGoal = 10
+requiresExtract = false
+moneyGoal = 10
+numSpawners = 3
+spawnRateRange = Vector2(300, 500)
+ambientSpawn = false
+ambientSpawnQueue = Array[int]([])
+ambientSpawnRate = 1000
+maxZombies = 20
+damageMultipler = 1
+spawnWeights = SubResource("Resource_6xm57")

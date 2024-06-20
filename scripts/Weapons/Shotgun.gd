@@ -24,7 +24,7 @@ func set_stats():
 func shoot():
 	#instantiate new bullet at gun with gun rotation
 	for deg in range(-spread, spread+1, 2*spread/(numBullets-1)):
-		BulletsManager.new_bullet(
+		bulletsManager.new_bullet(
 			bullet.speed + randf_range(-200, 200), 
 			bullet.damage, global_position, 
 			rotation + deg_to_rad(deg) + deg_to_rad(randf_range(-spread, spread)), 

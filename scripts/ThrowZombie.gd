@@ -37,11 +37,11 @@ func move_to_maintain_range(delta):
 	var distance_to_target = position.distance_to(target.position)
 
 	if distance_to_target > preferredRange + 10:
-		currentState = enums.zombieState.CHASING
+		currentState = Zombies.zombieState.CHASING
 		speed = chasingSpeed
 		update_targeting()
 	elif distance_to_target < preferredRange - 10:
-		currentState = enums.zombieState.ROAMING
+		currentState = Zombies.zombieState.ROAMING
 		var direction_to_move = global_position - target.global_position
 		navAgent.target_position = global_position + direction_to_move.normalized() * speed * delta
 	else:
@@ -55,7 +55,7 @@ func shoot_bullet():
 	newBullet.position = position
 	newBullet.rotation = bulletRotation
 	
-	BulletsManager.add_child(newBullet)
+	bulletsManager.add_child(newBullet)
 	
 	#choose random time before next shot
 	reloadTime = randi_range(reloadRange.x, reloadRange.y)

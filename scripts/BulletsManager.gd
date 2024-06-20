@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseManager
 
 ## create new bullet with stats (include types in the parameters to have the hints show up when calling later)
 func new_bullet(spd: float, dmg: float, pos: Vector2, rot: float, mxDst: float, bullet_prefab):

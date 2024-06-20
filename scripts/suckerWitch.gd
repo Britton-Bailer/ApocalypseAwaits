@@ -2,6 +2,7 @@ extends ZombieController
 
 @export var spawnInterval = 400
 @export var spawnRange = 100
+@onready var navAgentPlacement = MissionManager.navAgentPlacement
 
 var spawnTimer = 0
 
@@ -12,12 +13,12 @@ func can_see_target():
 func spawn_sucker():
 		spawnTimer = 0
 		var newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-		$NavigationAgent2D.target_position = newPos
-		while(!$NavigationAgent2D.is_target_reachable()):
+		navAgentPlacement.get_node("NavAgent").target_position = newPos
+		while(!navAgentPlacement.get_node("NavAgent").is_target_reachable()):
 			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
-			$NavigationAgent2D.target_position = newPos
+			navAgentPlacement.get_node("NavAgent").target_position = newPos
 		
-		get_parent().spawn_zombie(newPos, enums.zombie.sucker)
+		get_parent().spawn_zombie(newPos, Zombies.type.sucker)
 
 ## zombie takes damage
 func die():

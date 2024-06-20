@@ -1,19 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://dnrhu6484w3pm"]
+[gd_scene load_steps=26 format=3 uid="uid://dnrhu6484w3pm"]
 
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="1_2pvfv"]
+[ext_resource type="Script" path="res://scripts/RoundManager.gd" id="1_ac7or"]
 [ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/Tilemap.png" id="1_qsi4y"]
 [ext_resource type="Texture2D" uid="uid://dli0u8ggmfdbj" path="res://sprites/Tilesets/Grass.png" id="4_207b1"]
 [ext_resource type="Texture2D" uid="uid://dphj77sghqxup" path="res://sprites/Tilesets/Hills.png" id="5_y0jfk"]
 [ext_resource type="Texture2D" uid="uid://qss7qd3swo0g" path="res://sprites/Tilesets/Fences.png" id="6_g3l1b"]
 [ext_resource type="Texture2D" uid="uid://nnfo8llwfby6" path="res://sprites/Tilesets/Water.png" id="7_psc5g"]
 [ext_resource type="Texture2D" uid="uid://ddtoqkrcfu35r" path="res://sprites/Tilesets/JonTileMap.png" id="7_socwu"]
-[ext_resource type="Script" path="res://scripts/Spawner.gd" id="8_vwdum"]
 [ext_resource type="Script" path="res://scripts/ObstacleTileMap.gd" id="9_rd1je"]
-[ext_resource type="PackedScene" uid="uid://c5qj4134r7hb2" path="res://prefabs/player.tscn" id="9_x4nrp"]
-[ext_resource type="Script" path="res://scripts/ZombiesManager.gd" id="10_h6b65"]
-[ext_resource type="Script" path="res://scripts/Minimap.gd" id="11_hxlfl"]
-[ext_resource type="PackedScene" uid="uid://ew47py47v7h2" path="res://prefabs/spawner.tscn" id="13_yievi"]
-[ext_resource type="PackedScene" uid="uid://c3mvfa5he1q33" path="res://prefabs/zombies/suckerWitch.tscn" id="14_0wq88"]
 [ext_resource type="Script" path="res://scripts/ExtractZone.gd" id="15_0m013"]
 [ext_resource type="Texture2D" uid="uid://b7mdxad0slxho" path="res://sprites/ExtractionZonepng.png" id="15_7ijnx"]
 
@@ -1522,24 +1517,8 @@ sources/8 = SubResource("TileSetAtlasSource_1g5ph")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2267c"]
 size = Vector2(100, 100)
 
-[node name="Node2D" type="Node2D"]
-
-[node name="NavAgentSmall" type="NavigationAgent2D" parent="."]
-unique_name_in_owner = true
-
-[node name="NavAgentMedium" type="NavigationAgent2D" parent="."]
-unique_name_in_owner = true
-navigation_layers = 2
-
-[node name="NavAgentLarge" type="NavigationAgent2D" parent="."]
-unique_name_in_owner = true
-navigation_layers = 4
-
-[node name="AmbientSpawner" type="Node2D" parent="."]
-process_mode = 4
-script = ExtResource("8_vwdum")
-spawnInterval = 100
-spawnRange = 1000
+[node name="RoundManager" type="Node2D"]
+script = ExtResource("1_ac7or")
 
 [node name="NavigationRegionSmall" type="NavigationRegion2D" parent="."]
 position = Vector2(-196, 90)
@@ -1577,43 +1556,6 @@ layer_1/name = "Barrier"
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("9_rd1je")
 
-[node name="Spawners" type="Node2D" parent="."]
-
-[node name="Spawner2" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(-742, -155)
-
-[node name="Spawner3" parent="Spawners" instance=ExtResource("13_yievi")]
-position = Vector2(179, 412)
-
-[node name="player" parent="." instance=ExtResource("9_x4nrp")]
-unique_name_in_owner = true
-position = Vector2(-390, -86)
-
-[node name="Minimap2" type="Control" parent="player/Camera2D" index="0" node_paths=PackedStringArray("tilemaps")]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("11_hxlfl")
-camera_node = NodePath("..")
-tilemaps = [NodePath("../../../NavigationRegionSmall/NavigationRegionNormal/NavigationRegionLarge/Tilemaps/BackgroundTilemap"), NodePath("../../../NavigationRegionSmall/NavigationRegionNormal/NavigationRegionLarge/Tilemaps/ForegroundTilemap"), NodePath("../../../NavigationRegionSmall/NavigationRegionNormal/NavigationRegionLarge/Tilemaps/ObstacleTilemap")]
-metadata/_edit_use_anchors_ = true
-
-[node name="AmmoText" parent="player/GameUI" index="0"]
-metadata/_edit_use_anchors_ = true
-
-[node name="AmmoIndicator" parent="player/GameUI" index="1"]
-metadata/_edit_use_anchors_ = true
-
-[node name="HealthIndicator" parent="player" index="5"]
-metadata/_edit_use_anchors_ = true
-
-[node name="Zombies" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("10_h6b65")
-
-[node name="Zombie2" parent="Zombies" node_paths=PackedStringArray("target") instance=ExtResource("14_0wq88")]
-position = Vector2(-153, -23)
-target = NodePath("../../player")
-
 [node name="Barriers" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -1629,9 +1571,4 @@ shape = SubResource("RectangleShape2D_2267c")
 [node name="Sprite2D" type="Sprite2D" parent="ExtractZone"]
 texture = ExtResource("15_7ijnx")
 
-[node name="Coins" type="Node2D" parent="."]
-unique_name_in_owner = true
-
 [connection signal="body_entered" from="ExtractZone" to="ExtractZone" method="_on_body_entered"]
-
-[editable path="player"]

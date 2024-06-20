@@ -1,43 +1,44 @@
-extends Node2D
+extends BaseManager
 
-@export var max_zombies = 100
-@onready var coins = %Coins
-var coin = preload("res://prefabs/coin.tscn")
+var max_zombies = 100
+var player
+var zombies = Zombies.new()
 
-#order should match order of enums
-const zombieTypes = [preload("res://prefabs/zombies/zombie.tscn"), 
-		preload("res://prefabs/zombies/throwZombie.tscn"), 
-		preload("res://prefabs/zombies/babyZombie.tscn"), 
-		preload("res://prefabs/zombies/suckerZombie.tscn"),
-		preload("res://prefabs/zombies/suckerWitch.tscn"),
-		preload("res://prefabs/zombies/charger.tscn"),
-	
-	
-	]
+const coin = preload("res://prefabs/coin.tscn")
 const zombieSpawnParticles = preload("res://prefabs/particles/zombie_spawn_particles.tscn")
 
-func spawn_zombie(pos: Vector2, type: enums.zombie):
+func spawn_zombie(pos: Vector2, type: Zombies.type):
 	if(get_child_count() >= max_zombies):
 		return
 	
 	var parts = zombieSpawnParticles.instantiate()
 	parts.position = pos
 	parts.emitting = true
-	particles.add_child(parts)
+	ParticlesManager.add_child(parts)
 	
 	await parts.get_node("Timer").timeout
 	
-	var newZomb = zombieTypes[type].instantiate()
+	var newZomb = zombies.zombiePrefabs[type].instantiate()
 	newZomb.position = pos
-	newZomb.target = %player
-	self.add_child(newZomb)
+	newZomb.target = player
+	add_child(newZomb)
 	
 	newZomb._ready()
-	
-	print("Num zombies: " + str(get_child_count()))
+	print(get_child_count())
 
 func add_coin(pos, worth):
 	var newCoin = coin.instantiate()
 	newCoin.position = pos
 	newCoin.worth = worth
-	coins.add_child(newCoin)
+	coinsManager.call_deferred("add_child", newCoin)
+
+func update_max_zombies(num):
+	max_zombies = num
+
+func set_player(plr):
+	player = plr
+
+func clear_children():
+	for n in get_children():
+		n.free()
+	return
