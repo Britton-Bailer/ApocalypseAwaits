@@ -1,6 +1,10 @@
 extends RigidBody2D
 
 const SPEED = 150.0
+var sprintSpeed = 0
+var sprintTimer = 0
+var maxSprintTime = 500
+var exhausted = false
 var maxHealth = 100
 var health = maxHealth
 var healthRegen = 2
@@ -21,23 +25,42 @@ func _physics_process(delta):
 	cycle_weapons()
 	handle_pausing()
 	health_regen(delta)
+	sprint_exhaustion()
 
 func movement():
 	var left = Input.is_action_pressed("left")
 	if left:
-		linear_velocity.x = -SPEED
+		linear_velocity.x = -SPEED - sprintSpeed
 		
 	var right = Input.is_action_pressed("right")
 	if right:
-		linear_velocity.x = SPEED
+		linear_velocity.x = SPEED + sprintSpeed
 	
 	var up = Input.is_action_pressed("up")
 	if up:
-		linear_velocity.y = -SPEED
+		linear_velocity.y = -SPEED - sprintSpeed
 		
 	var down = Input.is_action_pressed("down")
 	if down:
-		linear_velocity.y = SPEED
+		linear_velocity.y = SPEED + sprintSpeed
+	
+	var sprint = Input.is_action_pressed("sprint")
+	if sprint && not exhausted:
+		sprintSpeed = 50
+		sprintTimer += 2
+	else:
+		sprintTimer -= 1
+
+
+func sprint_exhaustion():
+	if (sprintTimer <= 0):
+		sprintTimer = 0
+		sprintSpeed = 0
+		exhausted = false
+
+	if (sprintTimer >= maxSprintTime):
+		sprintSpeed = -50
+		exhausted = true
 
 func take_damage(dmg):
 	health -= dmg
