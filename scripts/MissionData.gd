@@ -4,20 +4,27 @@ class_name MissionData
 
 #variables
 @export var missionType = enums.missionType.eradicate
-@export var bountyTarget = Zombies.type.base
-@export var killGoal = 10
+@export var maxZombies = 250
+@export var damageMultipler = 1
 @export var requiresExtract = false
-@export var moneyGoal = 10
+@export var spawnWeights: SpawnWeights
+
+@export_category("Spawners")
 @export var numSpawners = 2
 @export var spawnersRadius = 1000
 @export var spawnRateRange = Vector2(300, 500)
+
+@export_category("Ambient Spawner")
 @export var ambientSpawn = false
 @export var ambientSpawnQueue: Array[Zombies.type]
 @export var ambientSpawnRateRange = Vector2(500, 1000)
-@export var maxZombies = 100
-@export var damageMultipler = 1
 
-@export var spawnWeights: SpawnWeights
+@export_group("Bounty Variables")
+@export var bountyTarget = Zombies.type.base
+@export var killGoal = 0
+
+@export_group("Piggy Bank Variables")
+@export var moneyGoal = 0
 
 #uneditable
 var spawnersDestroyed = 0
