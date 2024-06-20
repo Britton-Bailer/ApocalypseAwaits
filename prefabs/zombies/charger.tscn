@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bg4txesnbkn4u"]
 
 [ext_resource type="Script" path="res://scripts/Charger.gd" id="1_m167g"]
-[ext_resource type="Texture2D" uid="uid://c2gdq87mg57rm" path="res://sprites/Charger.png" id="2_vpxtm"]
+[ext_resource type="Texture2D" uid="uid://x6lsdve4rh82" path="res://sprites/CharacterSprites/Jon Charger Sprite.png" id="2_n87kd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxqa"]
 size = Vector2(15, 15)
@@ -40,7 +40,10 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="SpriteDirection" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_vpxtm")
+position = Vector2(1, 0)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_n87kd")
+region_enabled = true
+region_rect = Rect2(0.720528, -0.0646615, 31.1156, 35.2523)
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

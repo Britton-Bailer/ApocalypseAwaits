@@ -2,7 +2,7 @@ extends RigidBody2D
 
 const SPEED = 150.0
 var sprintSpeed = baseSprintSpeed
-var maxSprintSpeed = 200
+var maxSprintSpeed = 50
 var baseSprintSpeed = 0
 var sprintTimer = 0
 var maxSprintTime = 500

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqjyj6y1g43pd"]
 
 [ext_resource type="Script" path="res://scripts/ThrowZombie.gd" id="1_0toa4"]
-[ext_resource type="Texture2D" uid="uid://1lwnpdlryaxf" path="res://sprites/icon.svg" id="2_ivwce"]
+[ext_resource type="Texture2D" uid="uid://bnb4uour8f8yx" path="res://sprites/CharacterSprites/Jon Zombie Thrower Sprite.png" id="2_a2w7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7srti"]
 size = Vector2(18, 18)
@@ -43,5 +43,5 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="SpriteDirection" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_ivwce")
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_a2w7s")
