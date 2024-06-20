@@ -1,13 +1,12 @@
 extends Control
 
-@export var camera_node: NodePath
-@export var blockSize = 0.8
-@export var minimapOffset: Vector2 = Vector2(0,0)
+var blockSize = 1
+var minimapOffset: Vector2 = Vector2(0,0)
 var playerSize = 3
 
-@onready var player = %player
+var player
 
-@export var tilemaps: Array[TileMap]
+var tilemaps: Array[Node]
 var cell_colors = [Color.TRANSPARENT, Color.TRANSPARENT, Color.BLACK]
 
 var playerDrawOffset = Vector2(blockSize*0.5/2.0, blockSize*0.8/2.0)
@@ -29,4 +28,11 @@ func _draw():
 		draw_rect(Rect2((Vector2(player.position/16.0) - (Vector2.ONE * playerSize/2)) * blockSize, Vector2.ONE * playerSize), Color.PURPLE)
 
 func _process(delta):
+	if(tilemaps == null):
+		return
+	
 	queue_redraw()
+
+func set_vars(plr, tlmps):
+	player = plr
+	tilemaps = tlmps

@@ -3,8 +3,9 @@ extends BaseManager
 @onready var timer = $Timer
 @onready var ENUMS = enums.new()
 var missionsList = preload("res://MissionsList.tres")
-var player = preload("res://prefabs/player.tscn")
-var playerReference
+var playerPrefab = preload("res://prefabs/player.tscn")
+var player
+var tilemaps
 
 var missionNum = 0
 var missionData: MissionData
@@ -14,7 +15,6 @@ var zombies = Zombies.new()
 ## bounty
 func zombie_killed(type: Zombies.type, isMoreZombies: bool):
 	if(missionData.missionType == enums.missionType.eradicate):
-		missionData.allZombiesKilled = !isMoreZombies
 		check_eradicate_win_condition()
 	
 	if(type == missionData.bountyTarget):
@@ -38,15 +38,12 @@ func money_picked_up(amt):
 
 func spawner_destroyed():
 	missionData.numSpawners -= 1
-	
-	if(missionData.numSpawners == 0):
-		missionData.allSpawnersDestroyed = true
 		
-		if(missionData.missionType == enums.missionType.eradicate):
-			check_eradicate_win_condition()
+	if(missionData.missionType == enums.missionType.eradicate):
+		check_eradicate_win_condition()
 
 func check_eradicate_win_condition():
-	if(missionData.allSpawnersDestroyed && missionData.allZombiesKilled):
+	if(spawnersManager.get_child_count() == 0 && zombiesManager.get_child_count() <= 1) || (spawnersManager.get_child_count() <= 1 && zombiesManager.get_child_count() == 0):
 		if(missionData.requiresExtract):
 			missionData.canExtract = true
 		else:
@@ -57,7 +54,7 @@ func extract_attempt():
 		round_win()
 
 func round_win():
-	playerReference.free()
+	player.free()
 	missionNum += 1
 	print("ROUND WIN")
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/MainMenu.tscn")
@@ -75,7 +72,7 @@ func get_mission_name():
 	var name = ENUMS.mission_name(missionData.missionType)
 	var extraInfo = ""
 	if(missionData.missionType == enums.missionType.bounty):
-		extraInfo = " (Target: " + zombies.zombie_name(missionData.bountyTarget) + str(missionData.killCount) + "/" + str(missionData.killGoal) + ")"
+		extraInfo = " (Target: " + zombies.zombie_name(missionData.bountyTarget) + " " + str(missionData.killCount) + "/" + str(missionData.killGoal) + ")"
 	elif(missionData.missionType == enums.missionType.piggyBank):
 		extraInfo = " (Collect coins:" + str(missionData.moneyEarned) + "/" + str(missionData.moneyGoal) + ")"
 	elif(missionData.missionType == enums.missionType.eradicate):
@@ -98,10 +95,15 @@ func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlc
 
 func start_next_round():
 	missionData = missionsList.get_list(missionNum)
-	var newPlayer = player.instantiate()
+	var newPlayer = playerPrefab.instantiate()
 	newPlayer.position = Vector2.ZERO
 	get_tree().root.add_child(newPlayer)
-	playerReference = newPlayer
+	player = newPlayer
 	
 	ambientSpawner.set_vars(missionData.ambientSpawnQueue, missionData.ambientSpawn, missionData.ambientSpawnRateRange)
 	spawnersManager.set_vars(missionData.numSpawners, missionData.spawnersRadius)
+	hudManager.set_vars(player, player.get_weapon(), tilemaps)
+	zombiesManager.set_vars(player)
+
+func set_tilemaps(tlmps):
+	tilemaps = tlmps

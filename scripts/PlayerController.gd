@@ -12,8 +12,6 @@ var health = maxHealth
 var healthRegen = 2
 
 @onready var weapon = %Weapon
-@onready var zombiesManager = MissionManager.zombiesManager
-@onready var hudManager = MissionManager.hudManager
 
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")
@@ -24,10 +22,6 @@ var sprayerScript = preload("res://scripts/Weapons/TheSprayer.gd")
 
 var weapons = [burstScript, smgScript, sniperScript, shotgunScript, assultRifleScript , sprayerScript]
 var index = 0
-
-func _ready():
-	zombiesManager.set_player(self)
-	hudManager.set_vars(self, weapon)
 
 func _physics_process(delta):
 	movement()
@@ -100,3 +94,6 @@ func health_regen(delta):
 		health = maxHealth
 	else:
 		health += healthRegen * delta
+
+func get_weapon():
+	return %Weapon

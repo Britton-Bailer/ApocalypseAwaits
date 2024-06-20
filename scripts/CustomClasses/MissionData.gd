@@ -31,5 +31,3 @@ var spawnersDestroyed = 0
 var moneyEarned = 0
 var killCount = 0
 var canExtract = false
-var allSpawnersDestroyed = false
-var allZombiesKilled = false

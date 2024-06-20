@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="MissionData" load_steps=4 format=3 uid="uid://yokcms036ycb"]
 
-[ext_resource type="Script" path="res://scripts/CustomClasses/MissionData.gd" id="1_yauq3"]
-[ext_resource type="Script" path="res://scripts/CustomClasses/SpawnWeights.gd" id="2_jeuyw"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/MissionData.gd" id="1_1pm4m"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/SpawnWeights.gd" id="2_acwtc"]
 
 [sub_resource type="Resource" id="Resource_6xm57"]
-script = ExtResource("2_jeuyw")
+script = ExtResource("2_acwtc")
 weights = {
 "Baby Zombie": 0,
 "Base": 2,
@@ -15,7 +15,7 @@ weights = {
 }
 
 [resource]
-script = ExtResource("1_yauq3")
+script = ExtResource("1_1pm4m")
 missionType = 1
 maxZombies = 250
 damageMultipler = 1

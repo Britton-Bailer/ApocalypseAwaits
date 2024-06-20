@@ -35,7 +35,7 @@ func add_coin(pos, worth):
 func update_max_zombies(num):
 	max_zombies = num
 
-func set_player(plr):
+func set_vars(plr):
 	player = plr
 
 func clear_children():
