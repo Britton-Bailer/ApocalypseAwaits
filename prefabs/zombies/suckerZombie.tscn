@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgijsj2hvu5sp"]
 
-[ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_uukgp"]
+[ext_resource type="Script" path="res://scripts/Zombies/ZombieController.gd" id="1_ponyi"]
 [ext_resource type="Texture2D" uid="uid://bsnks2h43swep" path="res://sprites/CharacterSprites/Jon Sucker Sprite.png" id="2_2s5d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrouf"]
@@ -13,7 +13,7 @@ radius = 17.0
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_uukgp")
+script = ExtResource("1_ponyi")
 type = 3
 roamingSpeedRange = Vector2(30, 50)
 chasingSpeedRange = Vector2(200, 240)

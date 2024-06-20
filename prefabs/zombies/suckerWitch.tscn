@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3mvfa5he1q33"]
 
-[ext_resource type="Script" path="res://scripts/suckerWitch.gd" id="1_o5aoh"]
+[ext_resource type="Script" path="res://scripts/Zombies/SuckerWitch.gd" id="1_77hrn"]
 [ext_resource type="Texture2D" uid="uid://3c1eb0vvxksm" path="res://sprites/CharacterSprites/Jon Sucker Witch Sprite.png" id="2_jq6sy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04e0a"]
@@ -13,7 +13,7 @@ radius = 14.0357
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_o5aoh")
+script = ExtResource("1_77hrn")
 type = 4
 roamingSpeedRange = Vector2(50, 70)
 chasingSpeedRange = Vector2(50, 70)

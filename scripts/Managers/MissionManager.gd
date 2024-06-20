@@ -2,7 +2,7 @@ extends BaseManager
 
 @onready var timer = $Timer
 @onready var ENUMS = enums.new()
-@export var missionsList: MissionsList
+var missionsList = preload("res://MissionsList.tres")
 var player = preload("res://prefabs/player.tscn")
 var playerReference
 

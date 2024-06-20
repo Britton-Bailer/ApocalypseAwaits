@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://lqvu5w0be8q4"]
 
 [ext_resource type="Texture2D" uid="uid://bqnpb8jgwdu2f" path="res://sprites/Particles/dirt_particle.png" id="1_0uoma"]
-[ext_resource type="Script" path="res://scripts/bulletHitParticles.gd" id="2_ax5yl"]
+[ext_resource type="Script" path="res://scripts/SelfDestroyingParticles.gd" id="2_ax5yl"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mdoh0"]
 particle_flag_disable_z = true

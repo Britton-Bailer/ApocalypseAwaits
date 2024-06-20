@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2tj0srsyc5c6"]
 
-[ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_drckv"]
+[ext_resource type="Script" path="res://scripts/Zombies/ZombieController.gd" id="1_x5gid"]
 [ext_resource type="Texture2D" uid="uid://cc20tm4k26yg2" path="res://sprites/CharacterSprites/Jon Zombie Sprite.png" id="2_knlor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l77dx"]
@@ -13,7 +13,7 @@ radius = 14.0357
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_drckv")
+script = ExtResource("1_x5gid")
 roamingSpeedRange = Vector2(30, 60)
 chasingSpeedRange = Vector2(80, 120)
 broadcastRange = 200

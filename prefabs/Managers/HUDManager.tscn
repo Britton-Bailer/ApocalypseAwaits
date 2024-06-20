@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://ct4rthoqkdwur"]
 
 [ext_resource type="Script" path="res://scripts/Managers/HUDManager.gd" id="1_cxpsa"]
-[ext_resource type="Script" path="res://scripts/AmmoText.gd" id="1_uymdd"]
-[ext_resource type="Script" path="res://scripts/AmmoIndicator.gd" id="2_chqwi"]
-[ext_resource type="Script" path="res://scripts/FPSindicator.gd" id="3_hoh06"]
-[ext_resource type="Script" path="res://scripts/MissionTypeIndicator.gd" id="4_hlawq"]
-[ext_resource type="Script" path="res://scripts/HealthIndicator.gd" id="6_0xmgr"]
-[ext_resource type="Script" path="res://scripts/StaminaIndicator.gd" id="7_0f5y5"]
-[ext_resource type="Script" path="res://scripts/Minimap.gd" id="8_owxug"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/AmmoText.gd" id="2_81ubk"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/AmmoIndicator.gd" id="3_yc5s2"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/FPSindicator.gd" id="4_fnvej"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/MissionTypeIndicator.gd" id="5_vinxj"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/HealthIndicator.gd" id="6_1t3so"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/StaminaIndicator.gd" id="7_hy8ej"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/Minimap.gd" id="8_gi2ab"]
 
 [node name="Hud" type="Node2D"]
 script = ExtResource("1_cxpsa")
@@ -17,7 +17,7 @@ layer = 3
 follow_viewport_scale = 1.5
 
 [node name="AmmoText" type="RichTextLabel" parent="GameUI"]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -30,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "Test"
-script = ExtResource("1_uymdd")
+script = ExtResource("2_81ubk")
 
 [node name="AmmoIndicator" type="Control" parent="GameUI"]
 layout_mode = 3
@@ -45,13 +45,13 @@ offset_right = -38.48
 offset_bottom = -44.7
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("2_chqwi")
+script = ExtResource("3_yc5s2")
 
 [node name="FPSIndicator" type="RichTextLabel" parent="GameUI"]
 offset_right = 77.0
 offset_bottom = 40.0
 text = "test"
-script = ExtResource("3_hoh06")
+script = ExtResource("4_fnvej")
 
 [node name="MissionTypeText" type="RichTextLabel" parent="GameUI"]
 anchors_preset = 5
@@ -62,7 +62,7 @@ offset_right = 147.0
 offset_bottom = 40.0
 grow_horizontal = 2
 text = "Mission: "
-script = ExtResource("4_hlawq")
+script = ExtResource("5_vinxj")
 
 [node name="HealthIndicator" type="Control" parent="GameUI"]
 layout_mode = 3
@@ -77,7 +77,7 @@ offset_right = 20.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("6_0xmgr")
+script = ExtResource("6_1t3so")
 
 [node name="StaminaIndicator" type="Control" parent="GameUI"]
 layout_mode = 3
@@ -92,7 +92,7 @@ offset_right = 20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("7_0f5y5")
+script = ExtResource("7_hy8ej")
 
 [node name="Minimap" type="Control" parent="GameUI"]
 process_mode = 4
@@ -103,4 +103,4 @@ offset_left = 570.0
 offset_top = 286.0
 offset_right = 610.0
 offset_bottom = 326.0
-script = ExtResource("8_owxug")
+script = ExtResource("8_gi2ab")

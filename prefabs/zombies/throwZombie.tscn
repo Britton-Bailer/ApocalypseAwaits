@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqjyj6y1g43pd"]
 
-[ext_resource type="Script" path="res://scripts/ThrowZombie.gd" id="1_0toa4"]
+[ext_resource type="Script" path="res://scripts/Zombies/ThrowZombie.gd" id="1_dekml"]
 [ext_resource type="Texture2D" uid="uid://bnb4uour8f8yx" path="res://sprites/CharacterSprites/Jon Zombie Thrower Sprite.png" id="2_a2w7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7srti"]
@@ -14,7 +14,7 @@ position = Vector2(-1, 0)
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_0toa4")
+script = ExtResource("1_dekml")
 type = 1
 roamingSpeedRange = Vector2(40, 50)
 chasingSpeedRange = Vector2(70, 110)
