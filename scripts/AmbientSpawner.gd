@@ -31,9 +31,9 @@ func _process(_delta):
 
 	timer += 1
 
-func update_spawn_queue(queue):
+func set_vars(queue, cnSpwn, spwnRng):
 	spawnQueue = queue
 	spawnIndex = 0
-
-func update_can_spawn(cnSpwn):
 	canSpawn = cnSpwn
+	spawnRateRange = spwnRng
+	spawnInterval = randi_range(spawnRateRange.x, spawnRateRange.y)

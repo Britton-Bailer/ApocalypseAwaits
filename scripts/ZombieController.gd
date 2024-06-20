@@ -15,6 +15,7 @@ class_name ZombieController
 @export var touchDamageInterval = 100
 @export var reactToBroadcast = true
 @export var separationForceFactor = 650  ## Adjust the strength of separation force
+@export var coinWorth = 1
 
 var canUpdateTargeting = true
 
@@ -34,8 +35,6 @@ var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
 @onready var spriteDirection = $SpriteDirection
 @onready var zombiesManager = MissionManager.zombiesManager
 @onready var bulletsManager = MissionManager.bulletsManager
-
-var coinWorth = 1
 
 ## Initialization ##
 func _ready():
@@ -128,11 +127,12 @@ func needs_new_point():
 
 ## Handle damage taken by the zombie ##
 func take_damage(amt):
-	health -= amt
-	if health <= 0:
-		zombiesManager.add_coin(global_position, coinWorth)
-		MissionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
-		die()
+	if(health > 0):
+		health -= amt
+		if health <= 0:
+			zombiesManager.add_coin(global_position, coinWorth)
+			MissionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
+			die()
 
 func die():
 	queue_free()

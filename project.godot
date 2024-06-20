@@ -24,7 +24,6 @@ ParticlesManager="*res://particles_controller.gd"
 
 window/size/mode=2
 window/stretch/scale=1.3
-window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://sprites/cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2(10, 10)
 mouse_cursor/tooltip_position_offset=Vector2(0, 0)

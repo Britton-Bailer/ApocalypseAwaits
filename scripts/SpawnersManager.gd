@@ -1,12 +1,12 @@
 extends BaseManager
 
-var spawnRange = 100
+var spawnRange = 1000
 var numSpawners = 0
 
 var spawner = preload("res://prefabs/spawner.tscn")
 
 func spawn_spawners():
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.1).timeout
 	for i in numSpawners:
 		var newPos = global_position + Vector2(randi_range(-spawnRange, spawnRange), randi_range(-spawnRange, spawnRange))
 		
@@ -19,8 +19,9 @@ func spawn_spawners():
 		newSpawner.position = newPos
 		add_child(newSpawner)
 
-func update_num_spawners(num):
+func set_vars(num, spwnRng):
 	numSpawners = num
+	spawnRange = spwnRng
 	spawn_spawners()
 
 func clear_children():

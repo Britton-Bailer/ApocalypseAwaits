@@ -4,9 +4,9 @@ extends RigidBody2D
 @onready var zombiesManager = MissionManager.zombiesManager
 
 const SPEED = 150.0
-var maxHealth = 100
+var maxHealth = 50
 var health = maxHealth
-var healthRegen = 2
+var healthRegen = 1
 
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")

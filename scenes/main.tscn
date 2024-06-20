@@ -1521,7 +1521,7 @@ size = Vector2(100, 100)
 script = ExtResource("1_ac7or")
 
 [node name="NavigationRegionSmall" type="NavigationRegion2D" parent="."]
-position = Vector2(-196, 90)
+position = Vector2(246, -302)
 navigation_polygon = SubResource("NavigationPolygon_dnlwe")
 
 [node name="NavigationRegionNormal" type="NavigationRegion2D" parent="NavigationRegionSmall"]
@@ -1560,7 +1560,7 @@ script = ExtResource("9_rd1je")
 unique_name_in_owner = true
 
 [node name="ExtractZone" type="Area2D" parent="."]
-position = Vector2(576, 340)
+position = Vector2(982, 371)
 collision_layer = 64
 collision_mask = 128
 script = ExtResource("15_0m013")

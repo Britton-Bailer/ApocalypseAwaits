@@ -17,29 +17,23 @@ var navAgentPlacement
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ambientSpawner = ambientSpawnerPrefab.instantiate()
-	get_tree().root.add_child(ambientSpawner)
+	add_child(ambientSpawner)
 	
 	zombiesManager = zombiesManagerPrefab.instantiate()
-	get_tree().root.add_child(zombiesManager)
+	add_child(zombiesManager)
 	
 	coinsManager = coinsManagerPrefab.instantiate()
-	get_tree().root.add_child(coinsManager)
+	add_child(coinsManager)
 	
 	spawnersManager = spawnersManagerPrefab.instantiate()
-	get_tree().root.add_child(spawnersManager)
+	add_child(spawnersManager)
 	
 	bulletsManager = bulletsManagerPrefab.instantiate()
-	get_tree().root.add_child(bulletsManager)
+	add_child(bulletsManager)
 	
 	navAgentPlacement = navAgentPlacementPrefab.instantiate()
-	get_tree().root.add_child(navAgentPlacement)
+	add_child(navAgentPlacement)
 	
 	
 	MissionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, bulletsManager, navAgentPlacement)
 	MissionManager.start_next_round()
-# ambient spawner
-# zombies manager
-# coins
-# spawners manager
-# bullets manager
-# nav Agent placement

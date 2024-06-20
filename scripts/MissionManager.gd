@@ -4,6 +4,7 @@ extends BaseManager
 @onready var ENUMS = enums.new()
 @export var missionsList: MissionsList
 var player = preload("res://prefabs/player.tscn")
+var playerReference
 
 var missionNum = 0
 var missionData: MissionData
@@ -56,6 +57,7 @@ func extract_attempt():
 		round_win()
 
 func round_win():
+	playerReference.free()
 	missionNum += 1
 	print("ROUND WIN")
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/MainMenu.tscn")
@@ -77,7 +79,7 @@ func get_mission_name():
 	elif(missionData.missionType == enums.missionType.piggyBank):
 		extraInfo = " (Collect coins:" + str(missionData.moneyEarned) + "/" + str(missionData.moneyGoal) + ")"
 	elif(missionData.missionType == enums.missionType.eradicate):
-		extraInfo = " (Destroy all Spawners and Eradicate all zombies)"
+		extraInfo = " (Destroy all Spawners (" + str(missionData.numSpawners) + ") and Zombies)"
 	return name + extraInfo
 
 func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt):
@@ -98,7 +100,7 @@ func start_next_round():
 	var newPlayer = player.instantiate()
 	newPlayer.position = Vector2.ZERO
 	get_tree().root.add_child(newPlayer)
+	playerReference = newPlayer
 	
-	ambientSpawner.update_spawn_queue(missionData.ambientSpawnQueue)
-	ambientSpawner.update_can_spawn(missionData.ambientSpawn)
-	spawnersManager.update_num_spawners(missionData.numSpawners)
+	ambientSpawner.set_vars(missionData.ambientSpawnQueue, missionData.ambientSpawn, missionData.ambientSpawnRateRange)
+	spawnersManager.set_vars(missionData.numSpawners, missionData.spawnersRadius)

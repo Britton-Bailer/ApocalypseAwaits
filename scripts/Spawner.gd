@@ -38,13 +38,14 @@ func _process(_delta):
 
 ## takes damage
 func take_damage(amt):
-	#decrement health
-	health -= amt
-	
-	#if health is at or below 0, delete zombie
-	if(health <= 0):
-		MissionManager.spawner_destroyed()
-		queue_free()
+	if(health > 0):
+		#decrement health
+		health -= amt
+		
+		#if health is at or below 0, delete zombie
+		if(health <= 0):
+			MissionManager.spawner_destroyed()
+			queue_free()
 
 # Function to calculate cumulative weights
 func calculate_cumulative_weights():

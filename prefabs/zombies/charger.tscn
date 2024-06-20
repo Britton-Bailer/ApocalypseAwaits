@@ -19,6 +19,7 @@ roamingSpeedRange = Vector2(40, 55)
 chasingSpeedRange = Vector2(90, 130)
 touchDamage = 5.0
 touchDamageInterval = 200
+coinWorth = 4
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2hxqa")
