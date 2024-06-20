@@ -1,7 +1,9 @@
 extends RigidBody2D
 
 const SPEED = 150.0
-var sprintSpeed = 0
+var sprintSpeed = baseSprintSpeed
+var maxSprintSpeed = 200
+var baseSprintSpeed = 0
 var sprintTimer = 0
 var maxSprintTime = 500
 var exhausted = false
@@ -46,20 +48,21 @@ func movement():
 	
 	var sprint = Input.is_action_pressed("sprint")
 	if sprint && not exhausted:
-		sprintSpeed = 50
-		sprintTimer += 2
+		sprintSpeed = maxSprintSpeed
+		sprintTimer += maxSprintSpeed/25
 	else:
-		sprintTimer -= 1
+		sprintTimer -= 0.5
+		sprintSpeed = baseSprintSpeed
 
 
 func sprint_exhaustion():
 	if (sprintTimer <= 0):
 		sprintTimer = 0
-		sprintSpeed = 0
+		baseSprintSpeed = 0
 		exhausted = false
 
 	if (sprintTimer >= maxSprintTime):
-		sprintSpeed = -50
+		baseSprintSpeed = -50
 		exhausted = true
 
 func take_damage(dmg):
