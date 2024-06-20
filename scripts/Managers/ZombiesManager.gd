@@ -1,7 +1,7 @@
 extends BaseManager
 
 var max_zombies = 100
-var player
+var player: RigidBody2D
 var zombies = Zombies.new()
 
 const coin = preload("res://prefabs/coin.tscn")
@@ -19,8 +19,8 @@ func spawn_zombie(pos: Vector2, type: Zombies.type):
 	await parts.get_node("Timer").timeout
 	
 	var newZomb = zombies.zombiePrefabs[type].instantiate()
+	print("zombie type: " + str(type))
 	newZomb.position = pos
-	newZomb.target = player
 	add_child(newZomb)
 	
 	newZomb._ready()

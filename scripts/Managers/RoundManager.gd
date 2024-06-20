@@ -41,4 +41,4 @@ func _ready():
 	
 	
 	MissionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, bulletsManager, navAgentPlacement, hudManager)
-	MissionManager.start_next_round()
+	MissionManager.start_next_round(self)

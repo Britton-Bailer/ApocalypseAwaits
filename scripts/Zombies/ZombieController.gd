@@ -4,7 +4,6 @@ class_name ZombieController
 
 ## Public exports ##
 @export var type: Zombies.type
-@export var target: RigidBody2D
 @export var roamingSpeedRange: Vector2
 @export var chasingSpeedRange: Vector2
 @export var acceleration = 8
@@ -35,6 +34,7 @@ var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
 @onready var spriteDirection = $SpriteDirection
 @onready var zombiesManager = MissionManager.zombiesManager
 @onready var bulletsManager = MissionManager.bulletsManager
+@onready var target = MissionManager.player
 
 ## Initialization ##
 func _ready():

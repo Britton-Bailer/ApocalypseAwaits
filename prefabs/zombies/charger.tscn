@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bg4txesnbkn4u"]
 
-[ext_resource type="Script" path="res://scripts/Charger.gd" id="1_m167g"]
+[ext_resource type="Script" path="res://scripts/Zombies/Charger.gd" id="1_hrkla"]
 [ext_resource type="Texture2D" uid="uid://x6lsdve4rh82" path="res://sprites/CharacterSprites/Jon Charger Sprite.png" id="2_n87kd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxqa"]
@@ -13,13 +13,10 @@ radius = 14.0357
 collision_layer = 2
 collision_mask = 24
 motion_mode = 1
-script = ExtResource("1_m167g")
+script = ExtResource("1_hrkla")
 type = 5
-roamingSpeedRange = Vector2(40, 55)
-chasingSpeedRange = Vector2(90, 130)
-touchDamage = 5.0
-touchDamageInterval = 200
-coinWorth = 4
+roamingSpeedRange = Vector2(50, 80)
+chasingSpeedRange = Vector2(100, 150)
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2hxqa")

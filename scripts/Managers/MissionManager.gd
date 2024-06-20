@@ -54,7 +54,6 @@ func extract_attempt():
 		round_win()
 
 func round_win():
-	player.free()
 	missionNum += 1
 	print("ROUND WIN")
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/MainMenu.tscn")
@@ -93,11 +92,11 @@ func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlc
 	spawnersManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
 	bulletsManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
 
-func start_next_round():
+func start_next_round(rndMngr):
 	missionData = missionsList.get_list(missionNum)
 	var newPlayer = playerPrefab.instantiate()
 	newPlayer.position = Vector2.ZERO
-	get_tree().root.add_child(newPlayer)
+	rndMngr.add_child(newPlayer)
 	player = newPlayer
 	
 	ambientSpawner.set_vars(missionData.ambientSpawnQueue, missionData.ambientSpawn, missionData.ambientSpawnRateRange)
