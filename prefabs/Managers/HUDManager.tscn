@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://ct4rthoqkdwur"]
+
+[ext_resource type="Script" path="res://scripts/Managers/HUDManager.gd" id="1_cxpsa"]
+[ext_resource type="Script" path="res://scripts/AmmoText.gd" id="1_uymdd"]
+[ext_resource type="Script" path="res://scripts/AmmoIndicator.gd" id="2_chqwi"]
+[ext_resource type="Script" path="res://scripts/FPSindicator.gd" id="3_hoh06"]
+[ext_resource type="Script" path="res://scripts/MissionTypeIndicator.gd" id="4_hlawq"]
+[ext_resource type="Script" path="res://scripts/HealthIndicator.gd" id="6_0xmgr"]
+[ext_resource type="Script" path="res://scripts/StaminaIndicator.gd" id="7_0f5y5"]
+[ext_resource type="Script" path="res://scripts/Minimap.gd" id="8_owxug"]
+
+[node name="Hud" type="Node2D"]
+script = ExtResource("1_cxpsa")
+
+[node name="GameUI" type="CanvasLayer" parent="."]
+layer = 3
+follow_viewport_scale = 1.5
+
+[node name="AmmoText" type="RichTextLabel" parent="GameUI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 520.0
+offset_top = 268.0
+offset_right = 573.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Test"
+script = ExtResource("1_uymdd")
+
+[node name="AmmoIndicator" type="Control" parent="GameUI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.48
+offset_top = -44.7
+offset_right = -38.48
+offset_bottom = -44.7
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2_chqwi")
+
+[node name="FPSIndicator" type="RichTextLabel" parent="GameUI"]
+offset_right = 77.0
+offset_bottom = 40.0
+text = "test"
+script = ExtResource("3_hoh06")
+
+[node name="MissionTypeText" type="RichTextLabel" parent="GameUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_right = 147.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "Mission: "
+script = ExtResource("4_hlawq")
+
+[node name="HealthIndicator" type="Control" parent="GameUI"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -32.0
+offset_right = 20.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("6_0xmgr")
+
+[node name="StaminaIndicator" type="Control" parent="GameUI"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -44.0
+offset_right = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("7_0f5y5")
+
+[node name="Minimap" type="Control" parent="GameUI"]
+process_mode = 4
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 570.0
+offset_top = 286.0
+offset_right = 610.0
+offset_bottom = 326.0
+script = ExtResource("8_owxug")

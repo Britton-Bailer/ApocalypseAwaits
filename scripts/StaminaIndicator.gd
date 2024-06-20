@@ -2,19 +2,20 @@ extends Control
 
 var player
 #width of bar
-var width = 60.0000
-var height = 8
-
-func _ready():
-	player = get_parent()
+var width = 600.0
+var height = 10
 
 func _draw():
+	if (player == null):
+		return
 	#bar outline (max health)
 	draw_rect(Rect2((-width/2) + 20, 0, width, height), Color.BLACK, false, 1)
 	
 	#red health bar inside (current health)
-	draw_rect(Rect2((-width/2) + 20, 0, (width/player.maxSprintTime) * player.sprintTimer, height), Color.LAWN_GREEN, true)
+	draw_rect(Rect2((-width/2) + 20, 0.5, width - ((width/player.maxSprintTime) * player.sprintTimer), height-1), Color.SKY_BLUE, true)
 
 func _process(_delta):
 	queue_redraw()
 	
+func set_player(plr):
+	player = plr

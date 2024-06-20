@@ -13,6 +13,7 @@ var healthRegen = 2
 
 @onready var weapon = %Weapon
 @onready var zombiesManager = MissionManager.zombiesManager
+@onready var hudManager = MissionManager.hudManager
 
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")
@@ -26,6 +27,7 @@ var index = 0
 
 func _ready():
 	zombiesManager.set_player(self)
+	hudManager.set_vars(self, weapon)
 
 func _physics_process(delta):
 	movement()

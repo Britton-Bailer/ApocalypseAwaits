@@ -17,8 +17,8 @@ config/icon="res://sprites/icon.svg"
 
 [autoload]
 
-MissionManager="*res://prefabs/MissionManager.tscn"
-ParticlesManager="*res://particles_controller.gd"
+MissionManager="*res://prefabs/Managers/MissionManager.tscn"
+ParticlesContainer="*res://particles_container.gd"
 
 [display]
 

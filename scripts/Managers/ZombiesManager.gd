@@ -14,7 +14,7 @@ func spawn_zombie(pos: Vector2, type: Zombies.type):
 	var parts = zombieSpawnParticles.instantiate()
 	parts.position = pos
 	parts.emitting = true
-	ParticlesManager.add_child(parts)
+	ParticlesContainer.add_child(parts)
 	
 	await parts.get_node("Timer").timeout
 	

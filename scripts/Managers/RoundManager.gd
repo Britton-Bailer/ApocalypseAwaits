@@ -1,11 +1,12 @@
 extends Node2D
 
 var ambientSpawnerPrefab = preload("res://prefabs/AmbientSpawner.tscn")
-var zombiesManagerPrefab = preload("res://prefabs/ZombiesManager.tscn")
-var coinsManagerPrefab = preload("res://prefabs/CoinsManager.tscn")
-var spawnersManagerPrefab = preload("res://prefabs/SpawnersManager.tscn")
-var bulletsManagerPrefab = preload("res://prefabs/BulletsManager.tscn")
-var navAgentPlacementPrefab = preload("res://prefabs/NavAgentPlacement.tscn")
+var zombiesManagerPrefab = preload("res://prefabs/Managers/ZombiesManager.tscn")
+var coinsManagerPrefab = preload("res://prefabs/Managers/CoinsManager.tscn")
+var spawnersManagerPrefab = preload("res://prefabs/Managers/SpawnersManager.tscn")
+var bulletsManagerPrefab = preload("res://prefabs/Managers/BulletsManager.tscn")
+var navAgentPlacementPrefab = preload("res://prefabs/Managers/NavAgentPlacement.tscn")
+var hudManagerPrefab = preload("res://prefabs/Managers/HUDManager.tscn")
 
 var ambientSpawner
 var zombiesManager
@@ -13,6 +14,7 @@ var coinsManager
 var spawnersManager
 var bulletsManager
 var navAgentPlacement
+var hudManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +36,9 @@ func _ready():
 	navAgentPlacement = navAgentPlacementPrefab.instantiate()
 	add_child(navAgentPlacement)
 	
+	hudManager = hudManagerPrefab.instantiate()
+	add_child(hudManager)
 	
-	MissionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, bulletsManager, navAgentPlacement)
+	
+	MissionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, bulletsManager, navAgentPlacement, hudManager)
 	MissionManager.start_next_round()

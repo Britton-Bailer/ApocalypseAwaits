@@ -20,7 +20,7 @@ func _process(delta):
 		var parts = defaultHitParticles.instantiate()
 		parts.position = position
 		parts.emitting = true
-		ParticlesManager.add_child(parts)
+		ParticlesContainer.add_child(parts)
 		queue_free()
 
 ## bullet hit something
@@ -29,14 +29,17 @@ func _on_body_entered(body):
 	if(body.has_method("take_damage")):
 		body.take_damage(damage)
 	
+	#set parts to default with position of bullet
 	var parts = defaultHitParticles.instantiate()
-	parts.position = position
+	
+	#if body has its own parts it wants to use, use those
 	if(body.has_method("hit_particles")):
 		parts = body.hit_particles().instantiate()
-		parts.position = Vector2.ZERO
+	
+	parts.position = position
 	
 	parts.emitting = true
-	body.add_child(parts)
+	ParticlesContainer.add_child(parts)
 	
 	#delete bullet
 	queue_free()

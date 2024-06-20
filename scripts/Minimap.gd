@@ -5,8 +5,6 @@ extends Control
 @export var minimapOffset: Vector2 = Vector2(0,0)
 var playerSize = 3
 
-
-@onready var camera  = get_node(camera_node)
 @onready var player = %player
 
 @export var tilemaps: Array[TileMap]

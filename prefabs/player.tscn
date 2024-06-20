@@ -1,16 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=8 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
 [ext_resource type="Script" path="res://scripts/Weapons/Shotgun.gd" id="3_4ebqj"]
-[ext_resource type="Script" path="res://scripts/AmmoIndicator.gd" id="3_skj3q"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="4_igmwc"]
-[ext_resource type="Script" path="res://scripts/AmmoText.gd" id="4_ja6kb"]
-[ext_resource type="Script" path="res://scripts/HealthIndicator.gd" id="6_g467v"]
-[ext_resource type="Script" path="res://scripts/FPSindicator.gd" id="7_48vg2"]
-[ext_resource type="Script" path="res://scripts/MissionTypeIndicator.gd" id="8_ckag2"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
-[ext_resource type="Script" path="res://scripts/StaminaIndicator.gd" id="8_mjqch"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
 friction = 0.0
@@ -52,80 +46,6 @@ z_index = 1
 position = Vector2(11, 2)
 scale = Vector2(0.655, 0.655)
 texture = ExtResource("4_igmwc")
-
-[node name="GameUI" type="CanvasLayer" parent="."]
-layer = 3
-
-[node name="AmmoText" type="RichTextLabel" parent="GameUI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -53.0
-grow_horizontal = 0
-grow_vertical = 0
-bbcode_enabled = true
-text = "Test"
-script = ExtResource("4_ja6kb")
-
-[node name="AmmoIndicator" type="Control" parent="GameUI"]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -38.48
-offset_top = -44.7
-offset_right = -38.48
-offset_bottom = -44.7
-grow_horizontal = 0
-grow_vertical = 0
-script = ExtResource("3_skj3q")
-
-[node name="FPS indicator" type="RichTextLabel" parent="GameUI"]
-offset_right = 77.0
-offset_bottom = 40.0
-text = "test"
-script = ExtResource("7_48vg2")
-
-[node name="Mission Type" type="RichTextLabel" parent="GameUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -147.0
-offset_right = 147.0
-offset_bottom = 40.0
-grow_horizontal = 2
-text = "Mission: "
-script = ExtResource("8_ckag2")
-
-[node name="HealthIndicator" type="Control" parent="."]
-z_index = 1
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -32.0
-offset_right = 20.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("6_g467v")
-
-[node name="StaminaIndicator" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -20.0
-offset_top = -49.0
-offset_right = 19.0
-offset_bottom = -29.0
-script = ExtResource("8_mjqch")
 
 [node name="PauseScreen" type="Control" parent="."]
 unique_name_in_owner = true
