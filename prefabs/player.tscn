@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=14 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
@@ -119,7 +119,6 @@ grow_vertical = 0
 script = ExtResource("6_g467v")
 
 [node name="StaminaIndicator" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -20.0

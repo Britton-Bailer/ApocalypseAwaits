@@ -14,11 +14,6 @@ var healthRegen = 2
 @onready var weapon = %Weapon
 @onready var zombiesManager = MissionManager.zombiesManager
 
-const SPEED = 150.0
-var maxHealth = 50
-var health = maxHealth
-var healthRegen = 1
-
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")
 var sniperScript = preload("res://scripts/Weapons/Sniper.gd")
