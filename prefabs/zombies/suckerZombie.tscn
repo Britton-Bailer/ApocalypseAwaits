@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgijsj2hvu5sp"]
+[gd_scene load_steps=8 format=3 uid="uid://bgijsj2hvu5sp"]
 
-[ext_resource type="Script" path="res://scripts/ZombieController.gd" id="1_uukgp"]
+[ext_resource type="Script" path="res://scripts/suckerZombie.gd" id="1_dh5dw"]
 [ext_resource type="Texture2D" uid="uid://bsnks2h43swep" path="res://sprites/CharacterSprites/Jon Sucker Sprite.png" id="2_2s5d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrouf"]
@@ -9,20 +9,38 @@ size = Vector2(13, 13)
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 17.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfae0"]
+atlas = ExtResource("2_2s5d7")
+region = Rect2(0, 30, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1khad"]
+atlas = ExtResource("2_2s5d7")
+region = Rect2(0, 0, 24, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cu20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfae0")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1khad")
+}],
+"loop": true,
+"name": &"Normal",
+"speed": 5.0
+}]
+
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_uukgp")
-roamingSpeedRange = Vector2(30, 50)
-chasingSpeedRange = Vector2(200, 240)
-acceleration = 20
-sightRange = 200
-broadcastRange = 0
-health = 30
-touchDamage = 0.3
-touchDamageInterval = 0
-reactToBroadcast = false
+script = ExtResource("1_dh5dw")
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wrouf")
@@ -43,11 +61,8 @@ shape = SubResource("CircleShape2D_o7745")
 
 [node name="SpriteDirection" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
-position = Vector2(5.68434e-14, -1.19209e-07)
-scale = Vector2(1.774, 1.8)
-texture = ExtResource("2_2s5d7")
-region_enabled = true
-region_rect = Rect2(0, 0, 24, 25)
+[node name="SuckerZombieAnimation" type="AnimatedSprite2D" parent="SpriteDirection"]
+sprite_frames = SubResource("SpriteFrames_0cu20")
+animation = &"Attack"
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

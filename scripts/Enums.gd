@@ -15,4 +15,5 @@ enum zombieState {
 	ROAMING,
 	CHASING,
 	ATTACK,
+	WINDUP,
 }

@@ -1,12 +1,15 @@
 extends ZombieController
 
 ## Charger-specific variables ##
+@onready var animate = $SpriteDirection/ChargerAnimation
 var preferredRange = randi_range(100, 130)  ## Preferred range to maintain from the player
 var chargeSpeedMultiplier = 3  ## Speed multiplier during charge
 var chargeDamageMultiplier = 6
 var isCharging = false  ## Flag to track if zombie is currently charging
 var originalSpeed  ## Variable to store the original speed for restoration after charge
 var originalTouchDamage
+var x = 0
+
 
 var chargingCooldownTimer = 0
 var cooldownRange = Vector2(400, 700)
@@ -28,18 +31,22 @@ func attack(delta):
 	if can_attack():
 		isCharging = true
 		canCharge = false
-		currentState = enums.zombieState.CHASING
+		currentState = enums.zombieState.WINDUP
 		originalSpeed = speed  ## Store original speed
 		originalTouchDamage = touchDamage
 		touchDamage = touchDamage * chargeDamageMultiplier
 		speed = chasingSpeed * chargeSpeedMultiplier  ## Increase speed for charge
 		canUpdateTargeting = false #turn off targeting while charging (charge in straight line)
 		set_charge_direction()
+
+		
 	else:
 		currentState = enums.zombieState.ROAMING
 		speed = roamingSpeed  # Ensure speed is reset to roamingSpeed if not charging
 
+
 	navigation(delta)
+
 
 func process(delta):
 	if(isCharging):
@@ -53,6 +60,8 @@ func process(delta):
 		speed = originalSpeed  # Restore original speed after charge
 		touchDamage = originalTouchDamage
 		chargeCooldownTime = randi_range(cooldownRange.x, cooldownRange.y) # choose random time before next charge
+		
+		
 	else:
 		move_to_maintain_range(delta)
 
@@ -60,9 +69,24 @@ func process(delta):
 		chargingCooldownTimer += 1
 	else:
 		canCharge = true
+	
+	if (currentState == enums.zombieState.WINDUP):
+		animate.animation = "Windup"
+		print_debug("Winding up")
+	
+	if (currentState == enums.zombieState.ROAMING):
+		animate.animation = "Normal"
+	
+	if (currentState == enums.zombieState.CHASING):
+		animate.animation = "Normal"
+	
+	if (currentState == enums.zombieState.ATTACK):
+		animate.animation = "Normal"
+	print_debug(currentState)
 
 func set_charge_direction():
 	chargeDir = ((target.position + target.linear_velocity * global_position.distance_to(target.global_position)/300) - global_position).normalized()
+	currentState = enums.zombieState.WINDUP
 
 ## Move towards or away from the player to maintain preferred range ##
 func move_to_maintain_range(delta):
