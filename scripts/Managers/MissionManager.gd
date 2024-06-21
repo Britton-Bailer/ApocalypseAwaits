@@ -28,9 +28,9 @@ func zombie_killed(type: Zombies.type, isMoreZombies: bool):
 			round_win()
 
 ## piggyBank
-func money_picked_up():
-	missionData.moneyEarned += 1
-	currency += 1
+func money_picked_up(worth):
+	missionData.moneyEarned += worth
+	currency += worth
 
 	hudManager.set_money(currency)
 

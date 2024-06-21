@@ -14,3 +14,6 @@ func _process(delta):
 		#position = get_global_mouse_position() - player.global_position
 	#else:
 		#position = (get_global_mouse_position() - player.global_position).normalized() * maxDist
+
+func set_dist(dist):
+	maxDist = dist

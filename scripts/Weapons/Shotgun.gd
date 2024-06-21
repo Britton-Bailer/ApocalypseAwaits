@@ -2,8 +2,8 @@
 extends Weapon
 
 #new variables that do not exist on WeaponBase.gd
-var spread = 15
-var numBullets = 15
+var spread = 25
+var numBullets = 8
 
 ## Override variables on WeaponBase
 func set_stats():
@@ -23,10 +23,10 @@ func set_stats():
 ## Override shoot function to shoow spread of bullets
 func shoot():
 	#instantiate new bullet at gun with gun rotation
-	for deg in range(-spread, spread+1, 2*spread/(numBullets-1)):
+	for i in range(numBullets):
 		bulletsManager.new_bullet(
 			bullet.speed + randf_range(-200, 200), 
 			bullet.damage, global_position, 
-			rotation + deg_to_rad(deg) + deg_to_rad(randf_range(-spread, spread)), 
+			rotation + deg_to_rad(randf_range(-spread, spread)), 
 			bullet.range + randf_range(-50, 50), 
 			BULLET_PREFAB)
