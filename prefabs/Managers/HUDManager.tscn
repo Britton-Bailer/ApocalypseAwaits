@@ -139,12 +139,12 @@ bbcode_enabled = true
 text = "[center]Mission description goes here[/center]"
 fit_content = true
 
-[node name="CoinLabel" type="RichTextLabel" parent="GameUI"]
+[node name="CurrencyLabel" type="RichTextLabel" parent="GameUI"]
 custom_minimum_size = Vector2(200, 0)
 anchors_preset = -1
 offset_left = 2.0
 offset_top = 32.0
 offset_right = 42.0
 offset_bottom = 72.0
-text = "Coins: 0"
+text = "Bullets: 0"
 fit_content = true

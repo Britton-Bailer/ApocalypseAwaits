@@ -8,7 +8,8 @@ extends BaseManager
 @onready var staminaIndicator = $GameUI/StaminaIndicator
 @onready var minimap = $GameUI/Minimap
 @onready var missionLabels = $GameUI/MissionLabels
-@onready var coinLabel = $GameUI/CoinLabel
+@onready var currencyLabel = $GameUI/CurrencyLabel
+
 
 func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
 	ammoText.set_weapon(wpn)
@@ -20,4 +21,4 @@ func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
 	missionTypeText.set_vars(mssnNum, mssnName, mssnInfo)
 
 func set_money(amt):
-	coinLabel.text = "Coins: " + str(amt)
+	currencyLabel.text = "Bullets: " + str(amt)

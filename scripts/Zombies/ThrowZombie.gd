@@ -15,7 +15,7 @@ func ready():
 
 ## Check if the zombie can attack (within preferred range) ##
 func can_attack():
-	return position.distance_to(target.position) <= preferredRange + 10
+	return position.distance_to(target.position) <= preferredRange + 10 && can_see_target()
 
 ## Attack logic, including shooting bullets and maintaining distance ##
 func attack(delta):
