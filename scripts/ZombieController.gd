@@ -42,25 +42,22 @@ func _ready():
 	
 	ready()
 
-## Main update loop ##
+## Do NOT overwrite this.  Use "process()" to add functionality ##
 func _process(delta):
-	if (velocity.x < 0):
-		spriteDirection.scale.x = -1
-	else:
-		spriteDirection.scale.x = 1
+	sprite_direction()
 	
 	if can_see_target() or needs_new_point():
 		update_targeting()
-
-	process(delta)
+	
 	if can_attack():
 		currentState = enums.zombieState.ATTACK
 		attack(delta)
-
-	move_and_slide()
-	if currentState != enums.zombieState.ATTACK:
+	else:
 		navigation(delta)
+	
+	process(delta)
 	do_touch_damage()
+	move_and_slide()
 
 ## Perform touch damage to overlapping bodies ##
 func do_touch_damage():
@@ -158,6 +155,12 @@ func calculateSeparationForce():
 		separationForce *= separationForceFactor
 
 	return separationForce
+
+func sprite_direction():
+	if (velocity.x < 0):
+		spriteDirection.scale.x = -1
+	else:
+		spriteDirection.scale.x = 1
 
 ## Placeholder for additional ready logic ##
 func ready():
