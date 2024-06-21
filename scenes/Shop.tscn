@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn30q6lio4d1f"]
+
+[ext_resource type="Script" path="res://scripts/Shop.gd" id="1_6gns3"]
+[ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="1_lmd17"]
+[ext_resource type="Texture2D" uid="uid://bub3xb7p8a8ex" path="res://sprites/ShopBackgroundImage.png" id="2_ht5t0"]
+
+[sub_resource type="Theme" id="Theme_u1ein"]
+default_font_size = 20
+
+[sub_resource type="Theme" id="Theme_nvj0d"]
+default_font_size = 50
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6gns3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_ht5t0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/LeftPanel"]
+layout_mode = 2
+texture = ExtResource("1_lmd17")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Stats" type="VBoxContainer" parent="HBoxContainer/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsLabel" type="RichTextLabel" parent="HBoxContainer/LeftPanel/Stats"]
+layout_mode = 2
+theme = SubResource("Theme_u1ein")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]Stats:[/center]"
+fit_content = true
+
+[node name="StatsContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopLabel" type="RichTextLabel" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = SubResource("Theme_nvj0d")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]SHOP[/center]"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShopOptions" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="idk" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Next Round" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1000.0
+offset_top = 4.0
+offset_right = 1150.0
+offset_bottom = 54.0
+text = "Next Round"
+
+[connection signal="pressed" from="Next Round" to="." method="_on_next_round_pressed"]

@@ -8,6 +8,7 @@ var player
 var tilemaps
 
 var missionNum = 0
+var currency = 0
 var missionData: MissionData
 
 var zombies = Zombies.new()
@@ -27,8 +28,11 @@ func zombie_killed(type: Zombies.type, isMoreZombies: bool):
 			round_win()
 
 ## piggyBank
-func money_picked_up(amt):
-	missionData.moneyEarned += amt
+func money_picked_up():
+	missionData.moneyEarned += 1
+	currency += 1
+
+	hudManager.set_money(currency)
 
 	if(missionData.missionType == enums.missionType.piggyBank && missionData.moneyEarned >= missionData.moneyGoal):
 		if(missionData.requiresExtract):
@@ -55,8 +59,7 @@ func extract_attempt():
 
 func round_win():
 	missionNum += 1
-	print("ROUND WIN")
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/MainMenu.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/Shop.tscn")
 
 func round_loss():
 	pass
@@ -68,15 +71,21 @@ func _on_timer_timeout():
 		round_win()
 
 func get_mission_name():
-	var name = ENUMS.mission_name(missionData.missionType)
+	return ENUMS.mission_name(missionData.missionType)
+
+func get_mission_info():
 	var extraInfo = ""
 	if(missionData.missionType == enums.missionType.bounty):
-		extraInfo = " (Target: " + zombies.zombie_name(missionData.bountyTarget) + " " + str(missionData.killCount) + "/" + str(missionData.killGoal) + ")"
+		extraInfo = "Kill " + str(missionData.killGoal) + " " + zombies.zombie_name(missionData.bountyTarget) + "s"
 	elif(missionData.missionType == enums.missionType.piggyBank):
-		extraInfo = " (Collect coins:" + str(missionData.moneyEarned) + "/" + str(missionData.moneyGoal) + ")"
+		extraInfo = "Collect " + str(missionData.moneyGoal) + " coins"
 	elif(missionData.missionType == enums.missionType.eradicate):
-		extraInfo = " (Destroy all Spawners (" + str(missionData.numSpawners) + ") and Zombies)"
-	return name + extraInfo
+		extraInfo = "Destroy all Spawners (" + str(missionData.numSpawners) + ") and Zombies"
+	
+	if(missionData.requiresExtract):
+		extraInfo += " and extract"
+	
+	return extraInfo
 
 func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr):
 	ambientSpawner = ambSpwnr
@@ -101,8 +110,9 @@ func start_next_round(rndMngr):
 	
 	ambientSpawner.set_vars(missionData.ambientSpawnQueue, missionData.ambientSpawn, missionData.ambientSpawnRateRange)
 	spawnersManager.set_vars(missionData.numSpawners, missionData.spawnersRadius)
-	hudManager.set_vars(player, player.get_weapon(), tilemaps)
+	hudManager.set_vars(player, player.get_weapon(), tilemaps, missionNum+1, get_mission_name(), get_mission_info())
 	zombiesManager.set_vars(player)
+	hudManager.set_money(currency)
 
 func set_tilemaps(tlmps):
 	tilemaps = tlmps

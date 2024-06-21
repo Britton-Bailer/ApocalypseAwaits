@@ -1,5 +1,4 @@
 extends RichTextLabel
 
-# Called when the node enters the scene tree for the first time.
-func _process(delta):
-	text = "Mission: " + MissionManager.get_mission_name()
+func set_vars(mssnNum, mssnName, mssnInfo):
+	text = "[center] Mission " + str(mssnNum) + ": " + str(mssnName) + " (" + str(mssnInfo) + ")[/center]"

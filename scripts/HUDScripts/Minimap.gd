@@ -1,7 +1,7 @@
 extends Control
 
 var blockSize = 1
-var minimapOffset: Vector2 = Vector2(0,0)
+var minimapOffset: Vector2 = Vector2(-275,125)
 var playerSize = 3
 
 var player
@@ -22,10 +22,10 @@ func _draw():
 		var cells = get_cells(tilemaps[id], 0)
 		for cell in cells:
 			#draw tileset cells
-			draw_rect(Rect2((Vector2(cell) + playerDrawOffset) * blockSize, Vector2.ONE * blockSize), color)
+			draw_rect(Rect2((Vector2(cell) + playerDrawOffset) * blockSize, Vector2(blockSize, blockSize)), color)
 				
 		#draw player
-		draw_rect(Rect2((Vector2(player.position/16.0) - (Vector2.ONE * playerSize/2)) * blockSize, Vector2.ONE * playerSize), Color.PURPLE)
+		draw_rect(Rect2((Vector2(player.position/16.0) - (Vector2.ONE * playerSize/2)) * blockSize, Vector2(playerSize, playerSize)), Color.PURPLE)
 
 func _process(delta):
 	if(tilemaps == null):
