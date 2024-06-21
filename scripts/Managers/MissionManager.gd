@@ -58,10 +58,12 @@ func extract_attempt():
 		round_win()
 
 func round_win():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	missionNum += 1
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/Shop.tscn")
 
 func round_loss():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	pass
 
 func _on_timer_timeout():

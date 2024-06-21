@@ -1,15 +1,15 @@
 extends ZombieController
 
 ## Charger-specific variables ##
-var preferredRange = randi_range(100, 130)  ## Preferred range to maintain from the player
-var chargeSpeedMultiplier = 3  ## Speed multiplier during charge
+var preferredRange = randi_range(120, 160)  ## Preferred range to maintain from the player
+var chargeSpeedMultiplier = 3.5  ## Speed multiplier during charge
 var chargeDamageMultiplier = 6
 var isCharging = false  ## Flag to track if zombie is currently charging
 var originalSpeed  ## Variable to store the original speed for restoration after charge
 var originalTouchDamage
 
 var chargingCooldownTimer = 0
-var cooldownRange = Vector2(400, 700)
+var cooldownRange = Vector2(300, 600)
 var chargeCooldownTime  ## Cooldown time after charge (in milliseconds)
 var canCharge = false
 var chargeDir = Vector2.ZERO

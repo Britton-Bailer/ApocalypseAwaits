@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=10 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
 [ext_resource type="Script" path="res://scripts/Weapons/Shotgun.gd" id="3_4ebqj"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="4_igmwc"]
+[ext_resource type="Texture2D" uid="uid://se023yrad5tj" path="res://sprites/cursor.png" id="6_ansia"]
+[ext_resource type="Script" path="res://scripts/Cursor.gd" id="7_88osa"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
@@ -94,6 +96,11 @@ text = "Resume"
 [node name="Main Menu" type="Button" parent="PauseScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
+
+[node name="Cursor" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_ansia")
+script = ExtResource("7_88osa")
 
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]

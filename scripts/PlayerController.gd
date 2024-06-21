@@ -88,6 +88,7 @@ func handle_pausing():
 	if(pause):
 		get_tree().paused = true #pause
 		%PauseScreen.visible = true #show pause screen
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func health_regen(delta):
 	if(health > maxHealth):
