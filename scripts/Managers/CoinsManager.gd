@@ -6,4 +6,4 @@ func add_coins(pos, num):
 	for i in range(num):
 		var newCoin = coin.instantiate()
 		newCoin.position = pos + Vector2(randf_range(-10, 10), randf_range(-10, 10))
-		add_child(newCoin)
+		call_deferred("add_child", newCoin)

@@ -62,7 +62,7 @@ func process(delta):
 		canCharge = true
 
 func set_charge_direction():
-	chargeDir = ((target.position + target.linear_velocity * global_position.distance_to(target.global_position)/300) - global_position).normalized()
+	chargeDir = ((target.position + target.linear_velocity.normalized() * 75) - global_position).normalized()
 
 ## Move towards or away from the player to maintain preferred range ##
 func move_to_maintain_range(delta):
