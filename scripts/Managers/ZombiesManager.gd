@@ -4,7 +4,6 @@ var max_zombies = 100
 var player: RigidBody2D
 var zombies = Zombies.new()
 
-const coin = preload("res://prefabs/coin.tscn")
 const zombieSpawnParticles = preload("res://prefabs/particles/zombie_spawn_particles.tscn")
 
 func spawn_zombie(pos: Vector2, type: Zombies.type):
@@ -19,18 +18,11 @@ func spawn_zombie(pos: Vector2, type: Zombies.type):
 	await parts.get_node("Timer").timeout
 	
 	var newZomb = zombies.zombiePrefabs[type].instantiate()
-	print("zombie type: " + str(type))
 	newZomb.position = pos
 	add_child(newZomb)
 	
 	newZomb._ready()
 	print(get_child_count())
-
-func add_coin(pos, worth):
-	var newCoin = coin.instantiate()
-	newCoin.position = pos
-	newCoin.worth = worth
-	coinsManager.call_deferred("add_child", newCoin)
 
 func update_max_zombies(num):
 	max_zombies = num
