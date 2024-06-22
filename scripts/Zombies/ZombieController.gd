@@ -14,7 +14,7 @@ class_name ZombieController
 @export var touchDamageInterval = 100
 @export var reactToBroadcast = true
 @export var separationForceFactor = 650  ## Adjust the strength of separation force
-@export var coinWorth = 1
+@export var coinWorth = 3
 
 var canUpdateTargeting = true
 

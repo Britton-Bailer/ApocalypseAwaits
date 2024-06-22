@@ -22,7 +22,7 @@ acceleration = 6
 sightRange = 400
 broadcastRange = 200
 touchDamage = 20.0
-coinWorth = 3
+coinWorth = 5
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7srti")

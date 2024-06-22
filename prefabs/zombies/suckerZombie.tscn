@@ -24,6 +24,7 @@ health = 30
 touchDamage = 0.3
 touchDamageInterval = 0
 reactToBroadcast = false
+coinWorth = 4
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wrouf")

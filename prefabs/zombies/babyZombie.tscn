@@ -20,7 +20,7 @@ chasingSpeedRange = Vector2(130, 160)
 acceleration = 9
 broadcastRange = 150
 health = 70
-coinWorth = 2
+coinWorth = 5
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xyn48")

@@ -141,7 +141,6 @@ fit_content = true
 
 [node name="CurrencyLabel" type="RichTextLabel" parent="GameUI"]
 custom_minimum_size = Vector2(200, 0)
-anchors_preset = -1
 offset_left = 2.0
 offset_top = 32.0
 offset_right = 42.0

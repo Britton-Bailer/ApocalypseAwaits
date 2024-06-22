@@ -17,6 +17,7 @@ script = ExtResource("1_hrkla")
 type = 5
 roamingSpeedRange = Vector2(50, 80)
 chasingSpeedRange = Vector2(100, 150)
+coinWorth = 6
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2hxqa")

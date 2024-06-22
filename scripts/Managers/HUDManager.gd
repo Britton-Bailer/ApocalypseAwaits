@@ -20,5 +20,5 @@ func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
 	missionLabels.set_vars(mssnNum, mssnName, mssnInfo)
 	missionTypeText.set_vars(mssnNum, mssnName, mssnInfo)
 
-func set_money(amt):
+func update_money(amt):
 	currencyLabel.text = "Bullets: " + str(amt)

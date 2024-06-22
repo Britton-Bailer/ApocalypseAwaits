@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Weapon
 
+@export var shotCost = 1
+
 var WEAPON_SPRITE = preload("res://sprites/Weapons/assault_rifle.png")
 var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 
@@ -47,8 +49,9 @@ func _process(delta):
 	lastShotTimer += 1
 	
 	#if mouse pressed and time between shots has elapsed, shoot
-	if(Input.is_action_pressed("shoot") && lastShotTimer > timeBetweenShots && reloading == false):
+	if(Input.is_action_pressed("shoot") && lastShotTimer > timeBetweenShots && reloading == false && MissionManager.currency >= shotCost):
 		shoot()
+		MissionManager.shot_fired(shotCost)
 		
 		mag -= 1
 		
