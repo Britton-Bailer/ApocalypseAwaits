@@ -10,6 +10,7 @@ var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 @onready var weapon_direction: Node2D = %WeaponDirection
 @onready var weapon_sprite: Sprite2D = %WeaponSprite
 @onready var bulletsManager = MissionManager.bulletsManager
+@onready var hudManager = MissionManager.hudManager
 
 var timeBetweenShots = 10
 var lastShotTimer = timeBetweenShots
@@ -49,14 +50,17 @@ func _process(delta):
 	lastShotTimer += 1
 	
 	#if mouse pressed and time between shots has elapsed, shoot
-	if(Input.is_action_pressed("shoot") && lastShotTimer > timeBetweenShots && reloading == false && MissionManager.currency >= shotCost):
-		shoot()
-		MissionManager.shot_fired(shotCost)
-		
-		mag -= 1
-		
+	if(Input.is_action_pressed("shoot") && lastShotTimer > timeBetweenShots && reloading == false):
 		#reset last shot timer
 		lastShotTimer = 0
+		
+		if(MissionManager.currency >= shotCost):
+			shoot()
+			MissionManager.shot_fired(shotCost)
+			
+			mag -= 1
+		else:
+			hudManager.flash_text("", "Not enough ammo")
 
 	if(mag == 0):
 		reloading = true

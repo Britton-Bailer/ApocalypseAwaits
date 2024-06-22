@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct4rthoqkdwur"]
+[gd_scene load_steps=9 format=3 uid="uid://ct4rthoqkdwur"]
 
 [ext_resource type="Script" path="res://scripts/Managers/HUDManager.gd" id="1_cxpsa"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/AmmoText.gd" id="2_81ubk"]
@@ -8,19 +8,11 @@
 [ext_resource type="Script" path="res://scripts/HUDScripts/HealthIndicator.gd" id="6_1t3so"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/StaminaIndicator.gd" id="7_hy8ej"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/Minimap.gd" id="8_gi2ab"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/MissionLabelsFade.gd" id="9_w6rcf"]
-
-[sub_resource type="Theme" id="Theme_v8deh"]
-default_font_size = 40
-
-[sub_resource type="Theme" id="Theme_exw1g"]
-default_font_size = 20
 
 [node name="Hud" type="Node2D"]
 script = ExtResource("1_cxpsa")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
-layer = 3
 follow_viewport_scale = 1.5
 
 [node name="AmmoText" type="RichTextLabel" parent="GameUI"]
@@ -114,31 +106,6 @@ fit_content = true
 scroll_following = true
 script = ExtResource("5_vinxj")
 
-[node name="MissionLabels" type="VBoxContainer" parent="GameUI"]
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -121.0
-offset_bottom = -34.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("9_w6rcf")
-
-[node name="Mission" type="RichTextLabel" parent="GameUI/MissionLabels"]
-layout_mode = 2
-theme = SubResource("Theme_v8deh")
-bbcode_enabled = true
-text = "[center]Mission #: Mission Name[/center]"
-fit_content = true
-
-[node name="MissionDescription" type="RichTextLabel" parent="GameUI/MissionLabels"]
-layout_mode = 2
-theme = SubResource("Theme_exw1g")
-bbcode_enabled = true
-text = "[center]Mission description goes here[/center]"
-fit_content = true
-
 [node name="CurrencyLabel" type="RichTextLabel" parent="GameUI"]
 custom_minimum_size = Vector2(200, 0)
 offset_left = 2.0
@@ -147,3 +114,11 @@ offset_right = 42.0
 offset_bottom = 72.0
 text = "Bullets: 0"
 fit_content = true
+
+[node name="FlashTextContainer" type="Control" parent="GameUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

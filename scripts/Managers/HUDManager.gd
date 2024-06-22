@@ -1,5 +1,9 @@
 extends BaseManager
 
+@onready var flashTextPrefab = preload("res://prefabs/flashText.tscn")
+
+@onready var flashTextContainer = $GameUI/FlashTextContainer
+
 @onready var ammoText = $GameUI/AmmoText
 @onready var ammoIndicator = $GameUI/AmmoIndicator
 @onready var fpsIndicator = $GameUI/FPSIndicator
@@ -7,9 +11,7 @@ extends BaseManager
 @onready var healthIndicator = $GameUI/HealthIndicator
 @onready var staminaIndicator = $GameUI/StaminaIndicator
 @onready var minimap = $GameUI/Minimap
-@onready var missionLabels = $GameUI/MissionLabels
 @onready var currencyLabel = $GameUI/CurrencyLabel
-
 
 func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
 	ammoText.set_weapon(wpn)
@@ -17,8 +19,14 @@ func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
 	healthIndicator.set_player(plr)
 	staminaIndicator.set_player(plr)
 	minimap.set_vars(plr, tlmps)
-	missionLabels.set_vars(mssnNum, mssnName, mssnInfo)
 	missionTypeText.set_vars(mssnNum, mssnName, mssnInfo)
+	flash_text("Mission: " + str(mssnNum) + " " + str(mssnName), str(mssnInfo))
 
 func update_money(amt):
 	currencyLabel.text = "Bullets: " + str(amt)
+
+func flash_text(mainMessage, subMessage):
+	if(flashTextContainer.get_child_count() == 0):
+		var flashText = flashTextPrefab.instantiate()
+		flashText.set_vars(mainMessage, subMessage)
+		flashTextContainer.add_child(flashText)
