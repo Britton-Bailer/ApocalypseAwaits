@@ -10,8 +10,11 @@ var exhausted = false
 var maxHealth = 100
 var health = maxHealth
 var healthRegen = 2
+var swapWeaponTimer = 0
+var swapWeaponInterval = 10
 
-@onready var weapon = %Weapon
+var is_primary = true
+@onready var weapon = get_equipped_weapon()
 
 var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
 var smgScript = preload("res://scripts/Weapons/SMG.gd")
@@ -82,6 +85,18 @@ func cycle_weapons():
 			index = 0
 		else:
 			index += 1 #index = index + 1
+	
+	var swapWeapon = Input.is_action_just_released("SwapWeapon")
+	if(swapWeapon && swapWeaponTimer > swapWeaponInterval):
+		swapWeaponTimer = 0
+		get_equipped_weapon().process_mode = Node.PROCESS_MODE_DISABLED
+		get_equipped_weapon().visible = false
+		is_primary = !is_primary
+		get_equipped_weapon().process_mode = Node.PROCESS_MODE_ALWAYS
+		get_equipped_weapon().visible = true
+		MissionManager.set_weapon(get_equipped_weapon())
+	
+	swapWeaponTimer += 1
 
 func handle_pausing():
 	var pause = Input.is_action_just_pressed("pause")
@@ -96,5 +111,8 @@ func health_regen(delta):
 	else:
 		health += healthRegen * delta
 
-func get_weapon():
-	return %Weapon
+func get_equipped_weapon():
+	if(is_primary):
+		return %Primary
+	else:
+		return %Secondary

@@ -116,9 +116,12 @@ func start_next_round(rndMngr):
 	
 	ambientSpawner.set_vars(missionData.ambientSpawnQueue, missionData.ambientSpawn, missionData.ambientSpawnRateRange)
 	spawnersManager.set_vars(missionData.numSpawners, missionData.spawnersRadius)
-	hudManager.set_vars(player, player.get_weapon(), tilemaps, missionNum+1, get_mission_name(), get_mission_info())
+	hudManager.set_vars(player, player.get_equipped_weapon(), tilemaps, missionNum+1, get_mission_name(), get_mission_info())
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
 
 func set_tilemaps(tlmps):
 	tilemaps = tlmps
+
+func set_weapon(weapon):
+	hudManager.set_weapon(weapon)

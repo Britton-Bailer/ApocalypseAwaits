@@ -7,8 +7,8 @@ class_name Weapon
 var WEAPON_SPRITE = preload("res://sprites/Weapons/assault_rifle.png")
 var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 
-@onready var weapon_direction: Node2D = %WeaponDirection
-@onready var weapon_sprite: Sprite2D = %WeaponSprite
+@onready var weapon_direction: Node2D = get_child(0)
+@onready var weapon_sprite: Sprite2D = get_child(0).get_child(0)
 @onready var bulletsManager = MissionManager.bulletsManager
 @onready var hudManager = MissionManager.hudManager
 
@@ -60,7 +60,7 @@ func _process(delta):
 			
 			mag -= 1
 		else:
-			hudManager.flash_text("", "Not enough ammo")
+			hudManager.flash_text("", "Not enough ammo. Switch to your secondary!", 0.8)
 
 	if(mag == 0):
 		reloading = true

@@ -25,8 +25,12 @@ func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
 func update_money(amt):
 	currencyLabel.text = "Bullets: " + str(amt)
 
-func flash_text(mainMessage, subMessage):
+func flash_text(mainMessage, subMessage, fadeSpeed = 0.2):
 	if(flashTextContainer.get_child_count() == 0):
 		var flashText = flashTextPrefab.instantiate()
-		flashText.set_vars(mainMessage, subMessage)
+		flashText.set_vars(mainMessage, subMessage, fadeSpeed)
 		flashTextContainer.add_child(flashText)
+
+func set_weapon(wpn):
+	ammoText.set_weapon(wpn)
+	ammoIndicator.set_weapon(wpn)

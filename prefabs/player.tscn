@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=11 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
 [ext_resource type="Script" path="res://scripts/Weapons/Shotgun.gd" id="3_4ebqj"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="4_igmwc"]
+[ext_resource type="Script" path="res://scripts/Weapons/Pistol.gd" id="5_6vgmc"]
 [ext_resource type="Texture2D" uid="uid://se023yrad5tj" path="res://sprites/cursor.png" id="6_ansia"]
 [ext_resource type="Script" path="res://scripts/Cursor.gd" id="7_88osa"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
@@ -35,18 +36,32 @@ texture = ExtResource("2_w6c1n")
 scale = Vector2(1.54164, 1)
 zoom = Vector2(1.2, 1.2)
 
-[node name="Weapon" type="Node2D" parent="."]
+[node name="Primary" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 1
 script = ExtResource("3_4ebqj")
 
-[node name="WeaponDirection" type="Node2D" parent="Weapon"]
-unique_name_in_owner = true
+[node name="WeaponDirection" type="Node2D" parent="Primary"]
 
-[node name="WeaponSprite" type="Sprite2D" parent="Weapon/WeaponDirection"]
-unique_name_in_owner = true
+[node name="WeaponSprite" type="Sprite2D" parent="Primary/WeaponDirection"]
 z_index = 1
 position = Vector2(4, 1.19209e-07)
+scale = Vector2(0.655, 0.655)
+texture = ExtResource("4_igmwc")
+
+[node name="Secondary" type="Node2D" parent="."]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+z_index = 1
+script = ExtResource("5_6vgmc")
+shotCost = 0
+
+[node name="WeaponDirection" type="Node2D" parent="Secondary"]
+
+[node name="WeaponSprite" type="Sprite2D" parent="Secondary/WeaponDirection"]
+z_index = 1
+position = Vector2(12, 8.47033e-22)
 scale = Vector2(0.655, 0.655)
 texture = ExtResource("4_igmwc")
 
