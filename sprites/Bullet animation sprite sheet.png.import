@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5hyrjekjuwsg"
-path="res://.godot/imported/TileMap.png-f8db801b08609a9849f8364f4ee51dc7.ctex"
+uid="uid://c2albsqphmhux"
+path="res://.godot/imported/Bullet animation sprite sheet.png-997802852fb935d8153d34fd64e19d37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Tilesets/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-f8db801b08609a9849f8364f4ee51dc7.ctex"]
+source_file="res://sprites/Bullet animation sprite sheet.png"
+dest_files=["res://.godot/imported/Bullet animation sprite sheet.png-997802852fb935d8153d34fd64e19d37.ctex"]
 
 [params]
 

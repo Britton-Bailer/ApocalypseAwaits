@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5hyrjekjuwsg"
-path="res://.godot/imported/TileMap.png-f8db801b08609a9849f8364f4ee51dc7.ctex"
+uid="uid://cnea1fxyld6q4"
+path="res://.godot/imported/Coin with shadow sprite map.png-7e6779a6d2acfe1cb0ced02eb1b0a4e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Tilesets/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-f8db801b08609a9849f8364f4ee51dc7.ctex"]
+source_file="res://sprites/Coin with shadow sprite map.png"
+dest_files=["res://.godot/imported/Coin with shadow sprite map.png-7e6779a6d2acfe1cb0ced02eb1b0a4e1.ctex"]
 
 [params]
 
