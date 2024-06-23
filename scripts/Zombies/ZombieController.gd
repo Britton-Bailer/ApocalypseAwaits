@@ -36,6 +36,7 @@ var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
 @onready var bulletsManager = MissionManager.bulletsManager
 @onready var coinsManager = MissionManager.coinsManager
 @onready var target = MissionManager.player
+@onready var expeditionStats = MissionManager.expeditionStats
 
 ## Initialization ##
 func _ready():
@@ -46,6 +47,9 @@ func _ready():
 	lastSeenTarget = position
 	
 	ready()
+	
+	health *= expeditionStats.zombieHealthMultiplier
+	speed *= expeditionStats.zombieSpeedMultiplier
 
 ## Main update loop ##
 func _process(delta):
@@ -102,7 +106,7 @@ func update_targeting():
 ## Navigate towards the next path position ##
 func navigation(delta):
 	var direction = navAgent.get_next_path_position() - global_position
-	velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
+	velocity = velocity.lerp(direction.normalized() * speed * expeditionStats.zombieSpeedMultiplier, acceleration * delta)
 
 ## Set a new target position ##
 func set_target(newPosition):
@@ -129,7 +133,7 @@ func needs_new_point():
 ## Handle damage taken by the zombie ##
 func take_damage(amt):
 	if(health > 0):
-		health -= amt
+		health -= amt * expeditionStats.bulletDamageMultiplier
 		if health <= 0:
 			coinsManager.add_coins(global_position, coinWorth)
 			MissionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)

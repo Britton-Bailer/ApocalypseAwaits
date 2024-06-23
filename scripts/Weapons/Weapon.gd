@@ -11,12 +11,14 @@ var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 @onready var weapon_sprite: Sprite2D = get_child(0).get_child(0)
 @onready var bulletsManager = MissionManager.bulletsManager
 @onready var hudManager = MissionManager.hudManager
+@onready var expeditionStats = MissionManager.expeditionStats
 
 var timeBetweenShots = 10
 var lastShotTimer = timeBetweenShots
 
 var mag = 20
 var reloadTimer = 0
+var reloadSpeed = 1
 var reloading = false
 var magSize = 20
 var reloadTime = 150
@@ -31,6 +33,9 @@ var bullet = {
 func _ready():
 	set_stats()
 	weapon_sprite.texture = WEAPON_SPRITE
+	
+	reloadSpeed *= expeditionStats.weaponReloadSpeedMultiplier
+	bullet.speed *= expeditionStats.bulletSpeedMultiplier
 
 ## rotate gun to mouse
 func _process(delta):
@@ -66,7 +71,7 @@ func _process(delta):
 		reloading = true
 
 	if(reloading):
-		reloadTimer += 1
+		reloadTimer += reloadSpeed
 	
 	if(reloadTimer > reloadTime):
 		mag = magSize

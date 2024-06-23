@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://cvv8ote7kxrar"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_6puh6"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_gb8mk"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="2_uimft"]
+
+[sub_resource type="Resource" id="Resource_4rflq"]
+script = ExtResource("1_6puh6")
+playerMaxHealth = -5.0
+playerSpeed = 5.0
+playerHealthRegen = 0.1
+playerArmor = 0.0
+playerStaminaDrain = 0.0
+playerStaminaRegen = 0.0
+zombieHealthMultiplier = 0.0
+zombieDamageMultiplier = 0.0
+zombieDropMultiplier = 0.0
+zombieSpeedMultiplier = 0.0
+bulletSpeedMultiplier = 0.0
+bulletDamageMultiplier = 0.0
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = 0.0
+weaponReloadSpeedMultiplier = 0.0
+weaponBulletCostMultiplier = 0.0
+
+[resource]
+script = ExtResource("2_uimft")
+itemName = "Weight Loss Pills"
+itemSprite = ExtResource("1_gb8mk")
+changedStats = SubResource("Resource_4rflq")

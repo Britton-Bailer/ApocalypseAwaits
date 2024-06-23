@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ExpeditionStats" load_steps=2 format=3 uid="uid://5sib5hd75o18"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_0yt1r"]
+
+[resource]
+script = ExtResource("1_0yt1r")
+playerMaxHealth = 50.0
+playerSpeed = 150.0
+playerHealthRegen = 1.0
+playerArmor = 0.0
+playerStaminaDrain = 1.0
+playerStaminaRegen = 1.0
+zombieHealthMultiplier = 1.0
+zombieDamageMultiplier = 1.0
+zombieDropMultiplier = 1.0
+zombieSpeedMultiplier = 1.0
+bulletSpeedMultiplier = 1.0
+bulletDamageMultiplier = 1.0
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = 0.5
+weaponReloadSpeedMultiplier = 1.0
+weaponBulletCostMultiplier = 1.0

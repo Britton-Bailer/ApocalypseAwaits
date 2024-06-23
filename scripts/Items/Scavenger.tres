@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://rqqfv1odsyyf"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_su0nu"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="2_8sigu"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="3_k2yqb"]
+
+[sub_resource type="Resource" id="Resource_nd8lx"]
+script = ExtResource("1_su0nu")
+playerMaxHealth = 0.0
+playerSpeed = 0.0
+playerHealthRegen = 0.0
+playerArmor = 0.0
+playerStaminaDrain = 0.0
+playerStaminaRegen = 0.0
+zombieHealthMultiplier = 0.0
+zombieDamageMultiplier = 0.0
+zombieDropMultiplier = 0.05
+zombieSpeedMultiplier = 0.0
+bulletSpeedMultiplier = 0.0
+bulletDamageMultiplier = 0.0
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = 0.0
+weaponReloadSpeedMultiplier = 0.0
+weaponBulletCostMultiplier = 0.0
+
+[resource]
+script = ExtResource("3_k2yqb")
+itemName = "Scavenger"
+itemSprite = ExtResource("2_8sigu")
+changedStats = SubResource("Resource_nd8lx")

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://qdv6xewhad4"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_5e8du"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="2_3cdxk"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="3_2gclt"]
+
+[sub_resource type="Resource" id="Resource_odeky"]
+script = ExtResource("1_5e8du")
+playerMaxHealth = 0.0
+playerSpeed = 0.0
+playerHealthRegen = 0.0
+playerArmor = 0.0
+playerStaminaDrain = 0.0
+playerStaminaRegen = 0.0
+zombieHealthMultiplier = 0.0
+zombieDamageMultiplier = 0.0
+zombieDropMultiplier = 0.0
+zombieSpeedMultiplier = 0.0
+bulletSpeedMultiplier = 0.0
+bulletDamageMultiplier = 0.1
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = 0.0
+weaponReloadSpeedMultiplier = 0.0
+weaponBulletCostMultiplier = 0.1
+
+[resource]
+script = ExtResource("3_2gclt")
+itemName = "Piercing Rounds"
+itemSprite = ExtResource("2_3cdxk")
+changedStats = SubResource("Resource_odeky")

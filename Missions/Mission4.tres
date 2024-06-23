@@ -17,7 +17,7 @@ weights = {
 [resource]
 script = ExtResource("1_2kge7")
 missionType = 1
-maxZombies = 20
+maxZombies = 250
 damageMultipler = 1
 requiresExtract = false
 spawnWeights = SubResource("Resource_6xm57")

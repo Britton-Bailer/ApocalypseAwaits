@@ -10,6 +10,8 @@ var tilemaps
 var missionNum = 0
 var currency = 100
 var missionData: MissionData
+var items: Array[BaseItemResource] = [preload("res://scripts/Items/TestItem.tres"), preload("res://scripts/Items/TestItem.tres")]
+var expeditionStats
 
 var zombies = Zombies.new()
 
@@ -108,6 +110,9 @@ func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlc
 	bulletsManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
 
 func start_next_round(rndMngr):
+	expeditionStats = preload("res://BaseStats.tres")
+	apply_items()
+	
 	missionData = missionsList.get_list(missionNum)
 	var newPlayer = playerPrefab.instantiate()
 	newPlayer.position = Vector2.ZERO
@@ -125,3 +130,10 @@ func set_tilemaps(tlmps):
 
 func set_weapon(weapon):
 	hudManager.set_weapon(weapon)
+
+func add_item(item: BaseItem):
+	items.append(item)
+
+func apply_items():
+	for item in items:
+		item.apply_item(expeditionStats)

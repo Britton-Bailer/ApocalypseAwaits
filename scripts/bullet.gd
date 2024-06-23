@@ -5,8 +5,17 @@ var defaultHitParticles = preload("res://prefabs/particles/bullet_hit_particles.
 var bulletSpeed = 800
 var damage = 50
 var maxDist = 500
+var maxPierces = 0
+var pierces = 0
+var pierceDamageMultiplier = 0.5
 
 var dist = 0
+
+@onready var expeditionStats = MissionManager.expeditionStats
+
+func _ready():
+	pierceDamageMultiplier = expeditionStats.bulletPierceDamageMultiplier
+	maxPierces = expeditionStats.bulletMaxPierces
 
 ## move bullet every frame
 func _process(delta):
@@ -41,8 +50,12 @@ func _on_body_entered(body):
 	parts.emitting = true
 	ParticlesContainer.add_child(parts)
 	
-	#delete bullet
-	queue_free()
+	if(pierces >= maxPierces):
+		#delete bullet
+		queue_free()
+		
+	pierces += 1
+	damage *= pierceDamageMultiplier
 
 func set_vars(spd, dmg, mxDst, friendly):
 	bulletSpeed = spd
