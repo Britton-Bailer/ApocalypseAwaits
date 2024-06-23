@@ -21,7 +21,8 @@ class_name ExpeditionStats
 
 @export var weaponReloadSpeedMultiplier = 0.0
 @export var weaponBulletCostMultiplier = 0.0
-
+@export var weaponMagSizeMultiplier = 0.0
+@export var weaponSpreadMultiplier = 0.0
 
 func get_properties():
 	var props = []
@@ -44,5 +45,7 @@ func get_properties():
 	
 	props.append({name = "weapon reload speed", type = "multiplier", value = weaponReloadSpeedMultiplier, varName = "weaponReloadSpeedMultiplier"})
 	props.append({name = "weapon bullet cost", type = "multiplier", value = weaponBulletCostMultiplier, varName = "weaponBulletCostMultiplier"})
+	props.append({name = "mag size", type = "multiplier", value = weaponMagSizeMultiplier, varName = "weaponMagSizeMultiplier"})
+	props.append({name = "bullet spread", type = "multiplier", value = weaponSpreadMultiplier, varName = "weaponSpreadMultiplier"})
 
 	return props

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://ywqtmwsewpfu"]
 
-[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_x22am"]
-[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="2_hg4gi"]
-[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="3_a6d2a"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_tftar"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="2_531b1"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="3_dpp26"]
 
 [sub_resource type="Resource" id="Resource_6r1l7"]
-script = ExtResource("1_x22am")
+script = ExtResource("1_tftar")
 playerMaxHealth = 0.0
 playerSpeed = 0.0
 playerHealthRegen = 0.0
@@ -24,7 +24,8 @@ weaponReloadSpeedMultiplier = 0.0
 weaponBulletCostMultiplier = 0.0
 
 [resource]
-script = ExtResource("3_a6d2a")
-itemName = "Silver Bullets"
-itemSprite = ExtResource("2_hg4gi")
+script = ExtResource("3_dpp26")
+itemName = "Sharp Bullets"
+itemSprite = ExtResource("2_531b1")
 changedStats = SubResource("Resource_6r1l7")
+itemCost = 5

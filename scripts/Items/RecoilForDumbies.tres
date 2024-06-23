@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://bsnk2v4dbsl24"]
+
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_f7rgf"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_ijill"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="2_1v8qc"]
+
+[sub_resource type="Resource" id="Resource_f17s6"]
+script = ExtResource("1_ijill")
+playerMaxHealth = 0.0
+playerSpeed = 0.0
+playerHealthRegen = 0.0
+playerArmor = 0.0
+playerStaminaDrain = 0.0
+playerStaminaRegen = 0.0
+zombieHealthMultiplier = 0.0
+zombieDamageMultiplier = 0.0
+zombieDropMultiplier = 0.0
+zombieSpeedMultiplier = 0.0
+bulletSpeedMultiplier = 0.0
+bulletDamageMultiplier = 0.0
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = 0.0
+weaponReloadSpeedMultiplier = 0.0
+weaponBulletCostMultiplier = 0.0
+weaponMagSizeMultiplier = 0.0
+weaponSpreadMultiplier = -0.1
+
+[resource]
+script = ExtResource("2_1v8qc")
+itemName = "Recoil For Dumbies"
+itemSprite = ExtResource("1_f7rgf")
+changedStats = SubResource("Resource_f17s6")
+itemCost = 5

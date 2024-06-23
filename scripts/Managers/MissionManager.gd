@@ -10,7 +10,7 @@ var tilemaps
 var missionNum = 0
 var currency = 100
 var missionData: MissionData
-var items: Array[BaseItemResource] = [preload("res://scripts/Items/Scavenger.tres")]
+var items: Array[BaseItemResource] = [preload("res://scripts/Items/RecoilForDumbies.tres")]
 var expeditionStats
 
 var zombies = Zombies.new()

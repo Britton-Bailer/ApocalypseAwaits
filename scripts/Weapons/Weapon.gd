@@ -36,6 +36,9 @@ func _ready():
 	
 	reloadSpeed *= expeditionStats.weaponReloadSpeedMultiplier
 	bullet.speed *= expeditionStats.bulletSpeedMultiplier
+	magSize = int(magSize * expeditionStats.weaponMagSizeMultiplier)
+	bullet.spread *= expeditionStats.weaponSpreadMultiplier
+	mag = magSize
 
 ## rotate gun to mouse
 func _process(delta):

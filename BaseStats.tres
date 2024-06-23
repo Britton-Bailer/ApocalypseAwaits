@@ -20,3 +20,5 @@ bulletMaxPierces = 0
 bulletPierceDamageMultiplier = 0.5
 weaponReloadSpeedMultiplier = 1.0
 weaponBulletCostMultiplier = 1.0
+weaponMagSizeMultiplier = 1.0
+weaponSpreadMultiplier = 1.0

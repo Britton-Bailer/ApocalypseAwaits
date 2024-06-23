@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://bqd1xn7qpm7yd"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_nwxcr"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_tfsn0"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="2_whnvm"]
+
+[sub_resource type="Resource" id="Resource_i7gx1"]
+script = ExtResource("1_nwxcr")
+playerMaxHealth = 0.0
+playerSpeed = 0.0
+playerHealthRegen = 0.0
+playerArmor = 0.0
+playerStaminaDrain = 0.0
+playerStaminaRegen = 0.0
+zombieHealthMultiplier = 0.0
+zombieDamageMultiplier = 0.0
+zombieDropMultiplier = 0.0
+zombieSpeedMultiplier = 0.0
+bulletSpeedMultiplier = 0.02
+bulletDamageMultiplier = -0.05
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = -0.03
+weaponReloadSpeedMultiplier = 0.0
+weaponBulletCostMultiplier = -0.1
+
+[resource]
+script = ExtResource("2_whnvm")
+itemName = "Plastic Bullets"
+itemSprite = ExtResource("1_tfsn0")
+changedStats = SubResource("Resource_i7gx1")
+itemCost = 5

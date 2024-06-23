@@ -458,10 +458,9 @@ script = ExtResource("1_td0ix")
 shape = SubResource("RectangleShape2D_ocqtk")
 
 [node name="CoinAnimation" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_whmru")
-animation = &"With Shadow"
-autoplay = "With Shadow"
-frame_progress = 0.380807
+animation = &"Bullet Coin Bronze"
+autoplay = "Bullet Coin Bronze"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
