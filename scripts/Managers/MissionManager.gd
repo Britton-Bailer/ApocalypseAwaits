@@ -10,7 +10,7 @@ var tilemaps
 var missionNum = 0
 var currency = 100
 var missionData: MissionData
-var items: Array[BaseItemResource] = [preload("res://scripts/Items/TestItem.tres"), preload("res://scripts/Items/TestItem.tres")]
+var items: Array[BaseItemResource] = [preload("res://scripts/Items/Scavenger.tres")]
 var expeditionStats
 
 var zombies = Zombies.new()
@@ -131,7 +131,7 @@ func set_tilemaps(tlmps):
 func set_weapon(weapon):
 	hudManager.set_weapon(weapon)
 
-func add_item(item: BaseItem):
+func add_item(item: BaseItemResource):
 	items.append(item)
 
 func apply_items():

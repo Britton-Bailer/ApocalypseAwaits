@@ -9,5 +9,4 @@ class_name BaseItemResource
 func apply_item(stats: ExpeditionStats):
 	for prop in changedStats.get_properties():
 		if(prop.value != 0):
-			print(prop.name)
 			stats[prop.varName] += prop.value
