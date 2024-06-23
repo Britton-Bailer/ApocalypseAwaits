@@ -15,3 +15,5 @@ func set_stats():
 	bullet.damage = 60
 	bullet.speed = 800
 	bullet.spread = 10
+	
+	maneuverability = 6

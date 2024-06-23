@@ -36,9 +36,9 @@ var weaponIndex = 0
 func _ready():
 	speed = expeditionStats.playerSpeed
 	maxHealth = expeditionStats.playerMaxHealth
-	healthRegen = expeditionStats.playerHealthRegen
-	staminaDrain = expeditionStats.playerStaminaDrain
-	staminaRegen = expeditionStats.playerStaminaRegen
+	healthRegen *= expeditionStats.playerHealthRegenMultiplier
+	staminaDrain *= expeditionStats.playerStaminaDrainMultiplier
+	staminaRegen *= expeditionStats.playerStaminaRegenMultiplier
 
 func _physics_process(delta):
 	movement()

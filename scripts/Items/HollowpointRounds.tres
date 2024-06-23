@@ -17,11 +17,15 @@ zombieDamageMultiplier = 0.0
 zombieDropMultiplier = 0.0
 zombieSpeedMultiplier = 0.0
 bulletSpeedMultiplier = 0.0
-bulletDamageMultiplier = 0.1
+bulletDamageMultiplier = 0.05
 bulletMaxPierces = 0
 bulletPierceDamageMultiplier = 0.0
 weaponReloadSpeedMultiplier = 0.0
-weaponBulletCostMultiplier = 0.1
+weaponBulletCostMultiplier = 0.05
+weaponMagSizeMultiplier = 0.0
+weaponSpreadMultiplier = 0.0
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = 0.0
 
 [resource]
 script = ExtResource("3_7pyyn")

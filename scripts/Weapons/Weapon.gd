@@ -22,6 +22,7 @@ var reloadSpeed = 1
 var reloading = false
 var magSize = 20
 var reloadTime = 150
+var maneuverability = 25
 
 var bullet = {
 	damage = 10,
@@ -37,8 +38,10 @@ func _ready():
 	reloadSpeed *= expeditionStats.weaponReloadSpeedMultiplier
 	bullet.speed *= expeditionStats.bulletSpeedMultiplier
 	magSize = int(magSize * expeditionStats.weaponMagSizeMultiplier)
-	bullet.spread *= expeditionStats.weaponSpreadMultiplier
 	mag = magSize
+	bullet.spread *= expeditionStats.weaponSpreadMultiplier
+	bullet.range *= expeditionStats.weaponRangeMultiplier
+	maneuverability = float(min(maneuverability * expeditionStats.weaponManeuverabilityMultiplier, 25))
 
 ## rotate gun to mouse
 func _process(delta):
@@ -52,7 +55,16 @@ func _process(delta):
 	if Input.is_action_pressed("reload"):
 		reload()
 	
-	look_at(get_global_mouse_position())
+	var mouse_position = get_global_mouse_position()
+	var direction = (mouse_position - global_position).normalized()
+	var target_angle = direction.angle()
+	var current_angle = rotation
+
+	# Calculate the new angle using lerp_angle
+	var new_angle = lerp_angle(current_angle, target_angle, deg_to_rad(maneuverability))
+
+	rotation = new_angle
+	
 	
 	#increase timer every frame
 	lastShotTimer += 1

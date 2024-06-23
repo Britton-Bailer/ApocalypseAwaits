@@ -22,9 +22,14 @@ bulletMaxPierces = 0
 bulletPierceDamageMultiplier = 0.1
 weaponReloadSpeedMultiplier = -0.03
 weaponBulletCostMultiplier = 0.0
+weaponMagSizeMultiplier = 0.0
+weaponSpreadMultiplier = 0.0
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = 0.03
 
 [resource]
 script = ExtResource("2_ickdx")
 itemName = "Advanced Rifling"
 itemSprite = ExtResource("1_7ixn6")
 changedStats = SubResource("Resource_pp1hp")
+itemCost = 5

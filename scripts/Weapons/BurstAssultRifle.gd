@@ -23,6 +23,8 @@ func set_stats():
 	bullet.damage = 50
 	bullet.speed = 800
 	bullet.spread = 5
+	
+	maneuverability = 7
 
 func shoot():
 	burst = true

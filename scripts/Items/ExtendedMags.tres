@@ -8,10 +8,10 @@
 script = ExtResource("1_fc17k")
 playerMaxHealth = 0.0
 playerSpeed = -5.0
-playerHealthRegen = 0.0
+playerHealthRegenMultiplier = 0.0
 playerArmor = 0.0
-playerStaminaDrain = 0.0
-playerStaminaRegen = 0.0
+playerStaminaDrainMultiplier = 0.0
+playerStaminaRegenMultiplier = 0.0
 zombieHealthMultiplier = 0.0
 zombieDamageMultiplier = 0.0
 zombieDropMultiplier = 0.0
@@ -20,13 +20,16 @@ bulletSpeedMultiplier = 0.0
 bulletDamageMultiplier = 0.0
 bulletMaxPierces = 0
 bulletPierceDamageMultiplier = 0.0
-weaponReloadSpeedMultiplier = -0.1
+weaponReloadSpeedMultiplier = -0.05
 weaponBulletCostMultiplier = 0.0
-weaponMagSizeMultiplier = 0.1
+weaponMagSizeMultiplier = 0.05
+weaponSpreadMultiplier = 0.0
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = 0.0
 
 [resource]
 script = ExtResource("2_ac1vb")
-itemName = "default"
+itemName = "Extended Mags"
 itemSprite = ExtResource("1_kf8be")
 changedStats = SubResource("Resource_ipax3")
 itemCost = 5

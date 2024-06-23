@@ -23,7 +23,9 @@ bulletPierceDamageMultiplier = 0.0
 weaponReloadSpeedMultiplier = 0.0
 weaponBulletCostMultiplier = 0.0
 weaponMagSizeMultiplier = 0.0
-weaponSpreadMultiplier = -0.1
+weaponSpreadMultiplier = -0.05
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = 0.0
 
 [resource]
 script = ExtResource("2_1v8qc")

@@ -22,3 +22,5 @@ weaponReloadSpeedMultiplier = 1.0
 weaponBulletCostMultiplier = 1.0
 weaponMagSizeMultiplier = 1.0
 weaponSpreadMultiplier = 1.0
+weaponManeuverabilityMultiplier = 1.0
+weaponRangeMultiplier = 1.0

@@ -22,6 +22,10 @@ bulletMaxPierces = 0
 bulletPierceDamageMultiplier = -0.03
 weaponReloadSpeedMultiplier = 0.0
 weaponBulletCostMultiplier = -0.1
+weaponMagSizeMultiplier = 0.0
+weaponSpreadMultiplier = 0.0
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = -0.05
 
 [resource]
 script = ExtResource("2_whnvm")

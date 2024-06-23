@@ -19,6 +19,8 @@ func set_stats():
 	bullet.speed = 700
 	bullet.spread = 10
 	
+	maneuverability = 4
+	
 
 ## Override shoot function to shoow spread of bullets
 func shoot():

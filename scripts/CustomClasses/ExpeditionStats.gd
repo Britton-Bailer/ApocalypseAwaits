@@ -4,10 +4,10 @@ class_name ExpeditionStats
 
 @export var playerMaxHealth = 0.0
 @export var playerSpeed = 0.0
-@export var playerHealthRegen = 0.0
+@export var playerHealthRegenMultiplier = 0.0
 @export var playerArmor = 0.0 #not implemented yet
-@export var playerStaminaDrain = 0.0
-@export var playerStaminaRegen = 0.0
+@export var playerStaminaDrainMultiplier = 0.0
+@export var playerStaminaRegenMultiplier = 0.0
 
 @export var zombieHealthMultiplier = 0.0
 @export var zombieDamageMultiplier = 0.0
@@ -23,15 +23,17 @@ class_name ExpeditionStats
 @export var weaponBulletCostMultiplier = 0.0
 @export var weaponMagSizeMultiplier = 0.0
 @export var weaponSpreadMultiplier = 0.0
+@export var weaponManeuverabilityMultiplier = 0.0
+@export var weaponRangeMultiplier = 0.0
 
 func get_properties():
 	var props = []
 	props.append({name = "max health", type = "default", value = playerMaxHealth, varName = "playerMaxHealth"})
 	props.append({name = "speed", type = "default", value = playerSpeed, varName = "playerSpeed"})
-	props.append({name = "health regen", type = "default", value = playerHealthRegen, varName = "playerHealthRegen"})
+	props.append({name = "health regen", type = "multiplier", value = playerHealthRegenMultiplier, varName = "playerHealthRegenMultiplier"})
 	props.append({name = "armor", type = "default", value = playerArmor, varName = "playerArmor"})
-	props.append({name = "stamina drain", type = "default", value = playerStaminaDrain, varName = "playerStaminaDrain"})
-	props.append({name = "stamina regen", type = "default", value = playerStaminaRegen, varName = "playerStaminaRegen"})
+	props.append({name = "stamina drain", type = "multiplier", value = playerStaminaDrainMultiplier, varName = "playerStaminaDrainMultiplier"})
+	props.append({name = "stamina regen", type = "multiplier", value = playerStaminaRegenMultiplier, varName = "playerStaminaRegenMultiplier"})
 	
 	props.append({name = "zombie health", type = "multiplier", value = zombieHealthMultiplier, varName = "zombieHealthMultiplier"})
 	props.append({name = "zombie damage", type = "multiplier", value = zombieDamageMultiplier, varName = "zombieDamageMultiplier"})
@@ -47,5 +49,7 @@ func get_properties():
 	props.append({name = "weapon bullet cost", type = "multiplier", value = weaponBulletCostMultiplier, varName = "weaponBulletCostMultiplier"})
 	props.append({name = "mag size", type = "multiplier", value = weaponMagSizeMultiplier, varName = "weaponMagSizeMultiplier"})
 	props.append({name = "bullet spread", type = "multiplier", value = weaponSpreadMultiplier, varName = "weaponSpreadMultiplier"})
+	props.append({name = "weapon maneuverability", type = "multiplier", value = weaponManeuverabilityMultiplier, varName = "weaponManeuverabilityMultiplier"})
+	props.append({name = "bullet range", type = "multiplier", value = weaponRangeMultiplier, varName = "weaponRangeMultiplier"})
 
 	return props

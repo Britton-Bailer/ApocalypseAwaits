@@ -10,7 +10,7 @@ playerMaxHealth = 0.0
 playerSpeed = 5.0
 playerHealthRegen = 0.0
 playerArmor = 0.0
-playerStaminaDrain = 0.15
+playerStaminaDrain = 0.05
 playerStaminaRegen = 0.0
 zombieHealthMultiplier = 0.0
 zombieDamageMultiplier = 0.0
@@ -22,9 +22,14 @@ bulletMaxPierces = 0
 bulletPierceDamageMultiplier = 0.0
 weaponReloadSpeedMultiplier = 0.0
 weaponBulletCostMultiplier = 0.0
+weaponMagSizeMultiplier = 0.0
+weaponSpreadMultiplier = 0.0
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = 0.0
 
 [resource]
 script = ExtResource("2_biiiw")
 itemName = "Coffee Mug"
 itemSprite = ExtResource("1_1i2d4")
 changedStats = SubResource("Resource_cpjwx")
+itemCost = 5
