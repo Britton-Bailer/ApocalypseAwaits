@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 var defaultHitParticles = preload("res://prefabs/particles/bullet_hit_particles.tscn")
 
@@ -63,5 +63,5 @@ func set_vars(spd, dmg, mxDst, friendly):
 	maxDist = mxDst
 	
 	#if friendly, dont collide with player
-	set_collision_mask_value(8, !friendly)
-	set_collision_mask_value(2, friendly)
+	 #set_collision_mask_value(8, !friendly)
+	#set_collision_mask_value(2, friendly)

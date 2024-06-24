@@ -70,7 +70,7 @@ func _process(delta):
 	lastShotTimer += 1
 	
 	#if mouse pressed and time between shots has elapsed, shoot
-	if(Input.is_action_pressed("shoot") && lastShotTimer > timeBetweenShots && reloading == false):
+	if(Input.is_action_pressed("") && lastShotTimer > timeBetweenShots && reloading == false): #turned off gun for now
 		#reset last shot timer
 		lastShotTimer = 0
 		

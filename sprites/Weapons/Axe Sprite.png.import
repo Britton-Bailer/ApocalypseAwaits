@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5hyrjekjuwsg"
-path="res://.godot/imported/TileMap.png-f8db801b08609a9849f8364f4ee51dc7.ctex"
+uid="uid://dv4pwulu4poif"
+path="res://.godot/imported/Axe Sprite.png-96f7deb907ecec07baf5bb5f225e608c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Tilesets/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-f8db801b08609a9849f8364f4ee51dc7.ctex"]
+source_file="res://sprites/Weapons/Axe Sprite.png"
+dest_files=["res://.godot/imported/Axe Sprite.png-96f7deb907ecec07baf5bb5f225e608c.ctex"]
 
 [params]
 

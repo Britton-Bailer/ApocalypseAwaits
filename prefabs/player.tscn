@@ -1,19 +1,88 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=24 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
 [ext_resource type="Script" path="res://scripts/Weapons/Shotgun.gd" id="3_4ebqj"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="4_igmwc"]
 [ext_resource type="Script" path="res://scripts/Weapons/Pistol.gd" id="5_6vgmc"]
+[ext_resource type="Script" path="res://scripts/Managers/AxeManager.tres.gd" id="6_2tp5r"]
 [ext_resource type="Texture2D" uid="uid://se023yrad5tj" path="res://sprites/cursor.png" id="6_ansia"]
+[ext_resource type="Texture2D" uid="uid://dv4pwulu4poif" path="res://sprites/Weapons/Axe Sprite.png" id="6_rdifl"]
+[ext_resource type="Texture2D" uid="uid://cspbeg7vksme2" path="res://sprites/Weapons/Axe swing animation.png" id="7_6bmh7"]
 [ext_resource type="Script" path="res://scripts/Cursor.gd" id="7_88osa"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
+[ext_resource type="Script" path="res://prefabs/AxeSprite.gd" id="9_ut6b1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_skbda"]
 radius = 8.06226
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bokkl"]
+atlas = ExtResource("7_6bmh7")
+region = Rect2(0, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t82x"]
+atlas = ExtResource("7_6bmh7")
+region = Rect2(47, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hihs"]
+atlas = ExtResource("7_6bmh7")
+region = Rect2(94, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fofib"]
+atlas = ExtResource("7_6bmh7")
+region = Rect2(0, 48, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41kpa"]
+atlas = ExtResource("7_6bmh7")
+region = Rect2(47, 48, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm5oo"]
+atlas = ExtResource("7_6bmh7")
+region = Rect2(94, 48, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnre1"]
+atlas = ExtResource("6_rdifl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0typ6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bokkl")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_4t82x")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_6hihs")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_fofib")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_41kpa")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vm5oo")
+}],
+"loop": true,
+"name": &"Swing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnre1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2gui"]
+size = Vector2(4, 8.5)
 
 [node name="player" type="RigidBody2D"]
 collision_layer = 128
@@ -38,6 +107,7 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="Primary" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 script = ExtResource("3_4ebqj")
 
@@ -64,6 +134,22 @@ z_index = 1
 position = Vector2(12, 8.47033e-22)
 scale = Vector2(0.655, 0.655)
 texture = ExtResource("4_igmwc")
+
+[node name="Axe" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("6_2tp5r")
+xAxis = 15
+
+[node name="AxeSprite" type="AnimatedSprite2D" parent="Axe"]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_0typ6")
+offset = Vector2(15, -13)
+script = ExtResource("9_ut6b1")
+
+[node name="AxeHead" type="CollisionShape2D" parent="Axe"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_r2gui")
 
 [node name="PauseScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -105,5 +191,9 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("6_ansia")
 script = ExtResource("7_88osa")
 
+[connection signal="body_entered" from="Axe" to="Axe" method="_on_body_entered"]
+[connection signal="animation_finished" from="Axe/AxeSprite" to="Axe/AxeSprite" method="_on_animation_finished"]
+[connection signal="animation_finished" from="Axe/AxeSprite" to="Axe" method="_on_axe_sprite_animation_finished"]
+[connection signal="frame_changed" from="Axe/AxeSprite" to="Axe/AxeSprite" method="_on_frame_changed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]

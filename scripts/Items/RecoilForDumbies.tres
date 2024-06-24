@@ -8,10 +8,10 @@
 script = ExtResource("1_ijill")
 playerMaxHealth = 0.0
 playerSpeed = 0.0
-playerHealthRegen = 0.0
+playerHealthRegenMultiplier = 0.0
 playerArmor = 0.0
-playerStaminaDrain = 0.0
-playerStaminaRegen = 0.0
+playerStaminaDrainMultiplier = 0.0
+playerStaminaRegenMultiplier = 0.0
 zombieHealthMultiplier = 0.0
 zombieDamageMultiplier = 0.0
 zombieDropMultiplier = 0.0
