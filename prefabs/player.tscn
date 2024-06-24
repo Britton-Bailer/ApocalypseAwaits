@@ -70,7 +70,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Swing",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -139,12 +139,11 @@ texture = ExtResource("4_igmwc")
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("6_2tp5r")
-xAxis = 15
 
 [node name="AxeSprite" type="AnimatedSprite2D" parent="Axe"]
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_0typ6")
-offset = Vector2(15, -13)
+offset = Vector2(5, -5)
 script = ExtResource("9_0ingu")
 
 [node name="AxeHead" type="CollisionShape2D" parent="Axe"]
