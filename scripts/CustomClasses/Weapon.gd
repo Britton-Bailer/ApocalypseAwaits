@@ -8,12 +8,10 @@ class_name Weapon
 @onready var hudManager = MissionManager.hudManager
 @onready var expeditionStats = MissionManager.expeditionStats
 
-@export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 @export var timeBetweenAttacks = 10
 @export var maneuverability = 25
 
 var lastAttackTimer = timeBetweenAttacks
-
 
 func _ready():
 	__ready()
@@ -43,11 +41,11 @@ func handle_weapon_rotation():
 	rotation = lerp_angle(rotation, ((get_global_mouse_position() - global_position).normalized()).angle(), deg_to_rad(maneuverability))
 
 func handle_input():
-	#if mouse pressed and time between shots has elapsed, shoot
+	#if mouse primary pressed and time between shots has elapsed, shoot primary
 	if(Input.is_action_pressed("weapon_primary") && lastAttackTimer > timeBetweenAttacks):
 		__primary_attack()
 	
-	#if mouse pressed and time between shots has elapsed, shoot
+	#if mouse secondary pressed and time between shots has elapsed, shoot secondary
 	if(Input.is_action_pressed("weapon_secondary") && lastAttackTimer > timeBetweenAttacks):
 		__secondary_attack()
 

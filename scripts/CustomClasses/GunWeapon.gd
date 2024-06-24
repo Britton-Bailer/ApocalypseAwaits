@@ -12,6 +12,7 @@ class_name GunWeapon
 	speed = 800,
 	spread = 20
 }
+@export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 @onready var bulletsManager = MissionManager.bulletsManager
 
 var reloading = false
