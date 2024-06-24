@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cspbeg7vksme2" path="res://sprites/Weapons/Axe swing animation.png" id="7_6bmh7"]
 [ext_resource type="Script" path="res://scripts/Cursor.gd" id="7_88osa"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
-[ext_resource type="Script" path="res://prefabs/AxeSprite.gd" id="9_ut6b1"]
+[ext_resource type="Script" path="res://scripts/Weapons/AxeSprite.gd" id="9_0ingu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
 friction = 0.0
@@ -145,7 +145,7 @@ xAxis = 15
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_0typ6")
 offset = Vector2(15, -13)
-script = ExtResource("9_ut6b1")
+script = ExtResource("9_0ingu")
 
 [node name="AxeHead" type="CollisionShape2D" parent="Axe"]
 scale = Vector2(0.5, 0.5)
@@ -192,8 +192,8 @@ texture = ExtResource("6_ansia")
 script = ExtResource("7_88osa")
 
 [connection signal="body_entered" from="Axe" to="Axe" method="_on_body_entered"]
-[connection signal="animation_finished" from="Axe/AxeSprite" to="Axe/AxeSprite" method="_on_animation_finished"]
 [connection signal="animation_finished" from="Axe/AxeSprite" to="Axe" method="_on_axe_sprite_animation_finished"]
+[connection signal="animation_finished" from="Axe/AxeSprite" to="Axe/AxeSprite" method="_on_animation_finished"]
 [connection signal="frame_changed" from="Axe/AxeSprite" to="Axe/AxeSprite" method="_on_frame_changed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Main Menu" to="PauseScreen" method="_on_main_menu_pressed"]
