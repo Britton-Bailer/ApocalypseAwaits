@@ -21,7 +21,7 @@ func ready():
 
 ## Override can_attack function to trigger charge attack ##
 func can_attack():
-	return position.distance_to(target.position) <= preferredRange+20 && canCharge
+	return position.distance_to(target.position) <= preferredRange+20 && canCharge && can_see_target()
 
 ## Override attack function to handle charge attack ##
 func attack(delta):
@@ -68,7 +68,7 @@ func set_charge_direction():
 func move_to_maintain_range(delta):
 	var distance_to_target = position.distance_to(target.position)
 
-	if distance_to_target > preferredRange + 10:
+	if distance_to_target > preferredRange + 10 || !can_see_target():
 		currentState = Zombies.zombieState.CHASING
 		speed = chasingSpeed
 		update_targeting()

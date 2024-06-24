@@ -70,6 +70,7 @@ func _process(delta):
 	if currentState != Zombies.zombieState.ATTACK:
 		navigation(delta)
 	do_touch_damage()
+	lineOfSightRay.target_position = target.global_position - global_position
 
 ## Perform touch damage to overlapping bodies ##
 func do_touch_damage():
@@ -82,8 +83,6 @@ func do_touch_damage():
 
 ## Update targeting based on sight and navigation conditions ##
 func update_targeting():
-	lineOfSightRay.target_position = target.global_position - global_position
-
 	if(canUpdateTargeting):
 		if can_see_target():
 			speed = chasingSpeed

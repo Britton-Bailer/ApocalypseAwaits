@@ -34,7 +34,6 @@ target_desired_distance = 3.0
 path_metadata_flags = 0
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
-collision_mask = 3
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2

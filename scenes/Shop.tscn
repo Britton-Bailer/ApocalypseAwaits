@@ -59,6 +59,14 @@ fit_content = true
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanel/Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/LeftPanel/Stats/StatsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -68,7 +76,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ShopLabel" type="RichTextLabel" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme = SubResource("Theme_nvj0d")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -84,7 +92,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
-[node name="idk" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Equipped stuff?" type="HBoxContainer" parent="HBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
