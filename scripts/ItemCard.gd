@@ -24,6 +24,6 @@ func set_vars(itm: BaseItemResource):
 
 func _on_buy_button_pressed():
 	if(MissionManager.currency >= item.itemCost):
-		MissionManager.item_bought(item)
+		MissionManager.add_item(item)
 		buyButton.disabled = true
 		buyButton.text = "Sold"

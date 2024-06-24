@@ -12,12 +12,14 @@ extends BaseManager
 @onready var staminaIndicator = $GameUI/StaminaIndicator
 @onready var minimap = $GameUI/Minimap
 @onready var currencyLabel = $GameUI/CurrencyLabel
+@onready var timerText = $GameUI/TimerText
+
 
 func set_vars(plr, tlmps, mssnNum, mssnName, mssnInfo):
 	healthIndicator.set_player(plr)
 	staminaIndicator.set_player(plr)
 	minimap.set_vars(plr, tlmps)
-	missionTypeText.set_vars(mssnNum, mssnName, mssnInfo)
+	missionTypeText.text = "[center] Mission " + str(mssnNum) + ": " + str(mssnName) + " (" + str(mssnInfo) + ")[/center]"
 	flash_text("Mission: " + str(mssnNum) + " " + str(mssnName), str(mssnInfo))
 
 func update_money(amt):
@@ -32,3 +34,6 @@ func flash_text(mainMessage, subMessage, fadeSpeed = 0.2):
 func set_weapon(wpn):
 	ammoText.set_weapon(wpn)
 	ammoIndicator.set_weapon(wpn)
+
+func set_timer(tmr):
+	timerText.set_timer(tmr)

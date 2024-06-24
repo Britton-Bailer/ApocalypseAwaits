@@ -8,6 +8,8 @@ class_name MissionData
 @export var damageMultipler = 1
 @export var requiresExtract = false
 @export var spawnWeights: SpawnWeights
+@export var missionFailTime = 180
+@export var missionExtractTime = 60
 
 @export_category("Spawners")
 @export var numSpawners = 2

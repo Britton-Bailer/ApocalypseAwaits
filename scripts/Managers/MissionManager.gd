@@ -1,6 +1,9 @@
 extends BaseManager
 
-@onready var timer = $Timer
+@onready var survival_timer = $SurvivalTimer
+@onready var extract_timer = $ExtractTimer
+@onready var mission_fail_timer = $MissionFailTimer
+
 @onready var ENUMS = enums.new()
 var missionsList = preload("res://MissionsList.tres")
 var playerPrefab = preload("res://prefabs/player.tscn")
@@ -8,7 +11,7 @@ var player
 var tilemaps
 
 var missionNum = 0
-var currency = 100
+var currency = 1000
 var missionData: MissionData
 var items: Array[BaseItemResource] = [preload("res://scripts/Items/RecoilForDumbies.tres")]
 var expeditionStats
@@ -24,10 +27,7 @@ func zombie_killed(type: Zombies.type, isMoreZombies: bool):
 		missionData.killCount += 1
 	
 	if(missionData.missionType == enums.missionType.bounty && missionData.killCount >= missionData.killGoal):
-		if(missionData.requiresExtract):
-			missionData.canExtract = true
-		else:
-			round_win()
+		mission_finished()
 
 ## piggyBank
 func money_picked_up(worth):
@@ -37,10 +37,7 @@ func money_picked_up(worth):
 	hudManager.update_money(currency)
 
 	if(missionData.missionType == enums.missionType.piggyBank && missionData.moneyEarned >= missionData.moneyGoal):
-		if(missionData.requiresExtract):
-			missionData.canExtract = true
-		else:
-			round_win()
+		mission_finished()
 
 func shot_fired(shotCost):
 	currency -= shotCost
@@ -54,29 +51,31 @@ func spawner_destroyed():
 
 func check_eradicate_win_condition():
 	if(spawnersManager.get_child_count() == 0 && zombiesManager.get_child_count() <= 1) || (spawnersManager.get_child_count() <= 1 && zombiesManager.get_child_count() == 0):
-		if(missionData.requiresExtract):
-			missionData.canExtract = true
-		else:
-			round_win()
+		mission_finished()
 
 func extract_attempt():
 	if(missionData.canExtract):
-		round_win()
+		mission_extract()
 
-func round_win():
+func mission_extract():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	missionNum += 1
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/Shop.tscn")
 
-func round_loss():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	pass
-
-func _on_timer_timeout():
+func mission_finished():
+	mission_fail_timer.stop()
 	if(missionData.requiresExtract):
 		missionData.canExtract = true
+		extract_timer.start(missionData.missionExtractTime)
+		hudManager.set_timer(extract_timer)
+		hudManager.flash_text("Mission finished, get to extract!", str(missionData.missionExtractTime) + " seconds left!", 0.05)
 	else:
-		round_win()
+		mission_extract()
+
+func mission_failed():
+	missionNum = 0
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func get_mission_name():
 	return ENUMS.mission_name(missionData.missionType)
@@ -124,6 +123,9 @@ func start_next_round(rndMngr):
 	hudManager.set_vars(player, tilemaps, missionNum+1, get_mission_name(), get_mission_info())
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
+	
+	mission_fail_timer.start(missionData.missionFailTime)
+	hudManager.set_timer(mission_fail_timer)
 
 func set_tilemaps(tlmps):
 	tilemaps = tlmps
@@ -138,6 +140,11 @@ func apply_items():
 	for item in items:
 		item.apply_item(expeditionStats)
 
-func item_bought(item):
-	currency -= item.itemCost
-	items.append(item)
+func _on_survival_timer_timeout():
+	mission_finished()
+
+func _on_extract_timer_timeout():
+	mission_failed()
+
+func _on_mission_fail_timer_timeout():
+	mission_failed()

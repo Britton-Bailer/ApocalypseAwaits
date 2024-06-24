@@ -6,9 +6,9 @@ func _process(_delta):
 		return
 	
 	if(weapon.reloading):
-		text = (str(round(weapon.magSize * (float(weapon.reloadTimer)/float(weapon.reloadTime)))) + "/" + str(weapon.magSize))
+		text = "[center]" + (str(round(weapon.magSize * (float(weapon.reloadTimer)/float(weapon.reloadTime)))) + "/" + str(weapon.magSize)) + "[/center]"
 	else:
-		text = str(weapon.mag) + "/" + str(weapon.magSize)
+		text = "[center]" + str(weapon.mag) + "/" + str(weapon.magSize) + "[/center]"
 	
 func set_weapon(wpn):
 	weapon = wpn

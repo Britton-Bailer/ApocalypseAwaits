@@ -14,6 +14,7 @@ collision_layer = 2
 collision_mask = 24
 motion_mode = 1
 script = ExtResource("1_hrkla")
+chargeDamageMultiplier = 3
 type = 5
 roamingSpeedRange = Vector2(50, 80)
 chasingSpeedRange = Vector2(100, 150)

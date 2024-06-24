@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://scripts/HUDScripts/AmmoText.gd" id="2_81ubk"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/AmmoIndicator.gd" id="3_yc5s2"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/FPSindicator.gd" id="4_fnvej"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/MissionTypeIndicator.gd" id="5_vinxj"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/HealthIndicator.gd" id="6_1t3so"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/StaminaIndicator.gd" id="7_hy8ej"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/TimerText.gd" id="8_eqmck"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/Minimap.gd" id="8_gi2ab"]
 
 [node name="Hud" type="Node2D"]
@@ -21,10 +21,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -87.0
-offset_right = -30.0
-offset_bottom = -34.0
+offset_left = -109.0
+offset_top = -91.0
+offset_right = -56.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
 bbcode_enabled = true
@@ -106,7 +106,17 @@ bbcode_enabled = true
 text = "Mission: "
 fit_content = true
 scroll_following = true
-script = ExtResource("5_vinxj")
+
+[node name="TimerText" type="RichTextLabel" parent="GameUI"]
+offset_left = -2.0
+offset_top = 16.0
+offset_right = 1150.0
+offset_bottom = 39.0
+size_flags_vertical = 4
+bbcode_enabled = true
+fit_content = true
+scroll_following = true
+script = ExtResource("8_eqmck")
 
 [node name="CurrencyLabel" type="RichTextLabel" parent="GameUI"]
 custom_minimum_size = Vector2(200, 0)

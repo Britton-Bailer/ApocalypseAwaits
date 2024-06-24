@@ -98,7 +98,7 @@ func take_damage(dmg):
 	health -= dmg * MissionManager.missionData.damageMultipler * expeditionStats.zombieDamageMultiplier
 	
 	if(health <= 0):
-		MissionManager.round_loss()
+		MissionManager.mission_failed()
 
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")
