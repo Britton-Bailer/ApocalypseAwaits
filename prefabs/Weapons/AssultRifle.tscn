@@ -8,7 +8,6 @@ z_index = 1
 script = ExtResource("1_k7egp")
 magSize = 25
 reloadTime = 100
-shotCost = 2
 bullet = {
 "damage": 50,
 "range": 400,

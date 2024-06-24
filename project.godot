@@ -13,7 +13,10 @@ config_version=5
 config/name="ApocalypseAwaits"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.298039, 0.105882, 0.105882, 1)
+boot_splash/image="res://sprites/Bootscreen.png"
 config/icon="res://sprites/icon.svg"
+boot_splash/minimum_display_time=1500
 
 [autoload]
 
