@@ -40,6 +40,7 @@ z_index = 1
 [node name="Secondary" type="Node2D" parent="."]
 unique_name_in_owner = true
 process_mode = 4
+visible = false
 z_index = 1
 
 [node name="PauseScreen" type="CanvasLayer" parent="."]

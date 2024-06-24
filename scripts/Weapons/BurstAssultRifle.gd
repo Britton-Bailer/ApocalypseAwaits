@@ -1,36 +1,19 @@
-## Extends WeaponBase class, so this AssultRifle class contains everything found in the WeaponBase.gd file
-extends Weapon
+extends GunWeapon
 
-var burstBullets: int = 3
+#variables exclusive to burst rifles
+@export var burstBullets: int = 3
+@export var timeBetweenBursts = 20
+@export var timeBetweenBurstShots = 5
+
 var burstBulletCounter = 0
-var timeBetweenBursts = 20
-var timeBetweenBurstShots = 5
-
 var burst = false
 var burstTimer = timeBetweenBurstShots
 
 ## Override variables for this new weapon
-func set_stats():
-	WEAPON_SPRITE = preload("res://sprites/Weapons/assault_rifle.png")
-	
-	timeBetweenShots = timeBetweenBursts + burstBullets * timeBetweenBurstShots
-	lastShotTimer = timeBetweenShots
-	magSize = 30
-	mag = magSize
-	reloadTime = 100
-	
-	bullet.range = 600
-	bullet.damage = 50
-	bullet.speed = 800
-	bullet.spread = 5
-	
-	maneuverability = 7
+func ___ready():
+	timeBetweenAttacks = timeBetweenBursts + burstBullets * timeBetweenBurstShots
 
-func shoot():
-	burst = true
-	mag -= burstBullets - 1
-
-func process(delta):
+func ___process(delta):
 	if(burst):
 		#wait timeBetweenShots time before next bullet in burst shoots
 		if(burstTimer >= timeBetweenBurstShots):
@@ -44,3 +27,7 @@ func process(delta):
 		if(burstBulletCounter == burstBullets):
 			burst = false
 			burstBulletCounter = 0
+
+func ___primary_attack():
+	burst = true
+	mag -= burstBullets - 1

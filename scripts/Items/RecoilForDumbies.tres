@@ -31,6 +31,5 @@ weaponRangeMultiplier = 0.0
 script = ExtResource("2_1v8qc")
 itemName = "Recoil For Dumbies"
 itemSprite = ExtResource("1_f7rgf")
-changedStats = SubResource("Resource_f17s6")
 affectedStats = SubResource("Resource_f17s6")
 itemCost = 5

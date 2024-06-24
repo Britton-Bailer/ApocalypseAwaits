@@ -13,9 +13,7 @@ extends BaseManager
 @onready var minimap = $GameUI/Minimap
 @onready var currencyLabel = $GameUI/CurrencyLabel
 
-func set_vars(plr, wpn, tlmps, mssnNum, mssnName, mssnInfo):
-	ammoText.set_weapon(wpn)
-	ammoIndicator.set_weapon(wpn)
+func set_vars(plr, tlmps, mssnNum, mssnName, mssnInfo):
 	healthIndicator.set_player(plr)
 	staminaIndicator.set_player(plr)
 	minimap.set_vars(plr, tlmps)

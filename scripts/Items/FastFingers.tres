@@ -31,6 +31,5 @@ weaponRangeMultiplier = 0.0
 script = ExtResource("3_l4jsg")
 itemName = "Fast Fingers"
 itemSprite = ExtResource("2_ykl21")
-changedStats = SubResource("Resource_u4v46")
 affectedStats = SubResource("Resource_u4v46")
 itemCost = 5

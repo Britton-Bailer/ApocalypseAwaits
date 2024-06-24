@@ -1,9 +1,11 @@
 extends RigidBody2D
 
-@onready var weapon = get_equipped_weapon()
 @onready var expeditionStats = MissionManager.expeditionStats
 @onready var hudManager = MissionManager.hudManager
+@onready var primary = %Primary
+@onready var secondary = %Secondary
 
+var weapon
 var sprintSpeed = 0
 var maxSprintSpeed = 50
 var maxStamina = 500
@@ -21,19 +23,26 @@ var healthRegen = 2
 
 var swapWeaponTimer = 0
 var swapWeaponInterval = 10
-var is_primary = true
+var isPrimary = true
 
-var assultRifleScript = preload("res://scripts/Weapons/AssultRifle.gd")
-var smgScript = preload("res://scripts/Weapons/SMG.gd")
-var sniperScript = preload("res://scripts/Weapons/Sniper.gd")
-var shotgunScript = preload("res://scripts/Weapons/Shotgun.gd")
-var burstScript = preload("res://scripts/Weapons/BurstAssultRifle.gd")
-var sprayerScript = preload("res://scripts/Weapons/TheSprayer.gd")
-
-var weapons = [burstScript, smgScript, sniperScript, shotgunScript, assultRifleScript , sprayerScript]
+var weapons = [
+	preload("res://prefabs/Weapons/AssultRifle.tscn"),
+	preload("res://prefabs/Weapons/SMG.tscn"),
+	preload("res://prefabs/Weapons/Sniper.tscn"),
+	preload("res://prefabs/Weapons/Shotgun.tscn"),
+	preload("res://prefabs/Weapons/BurstRifle.tscn"),
+]
 var weaponIndex = 0
 
+var primaryWeaponPrefab
+var secondaryWeaponPrefab
+
 func _ready():
+	primaryWeaponPrefab = weapons[0]
+	secondaryWeaponPrefab = preload("res://prefabs/Weapons/Pistol.tscn")
+	set_primary_weapon(primaryWeaponPrefab)
+	set_secondary_weapon(secondaryWeaponPrefab)
+	weapon = get_equipped_weapon()
 	speed = expeditionStats.playerSpeed
 	maxHealth = expeditionStats.playerMaxHealth
 	healthRegen *= expeditionStats.playerHealthRegenMultiplier
@@ -94,25 +103,40 @@ func take_damage(dmg):
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")
 	if(changeWeapon):
-		weapon.set_script(weapons[weaponIndex])
-		weapon._ready()
+		primaryWeaponPrefab = weapons[weaponIndex]
+		set_primary_weapon(primaryWeaponPrefab)
 		
 		if(weaponIndex + 1 > weapons.size()-1):
 			weaponIndex = 0
 		else:
-			weaponIndex += 1 #index = index + 1
+			weaponIndex += 1
 	
 	var swapWeapon = Input.is_action_just_released("SwapWeapon")
 	if(swapWeapon && swapWeaponTimer > swapWeaponInterval):
 		swapWeaponTimer = 0
 		get_equipped_weapon().process_mode = Node.PROCESS_MODE_DISABLED
 		get_equipped_weapon().visible = false
-		is_primary = !is_primary
+		isPrimary = !isPrimary
 		get_equipped_weapon().process_mode = Node.PROCESS_MODE_ALWAYS
 		get_equipped_weapon().visible = true
 		MissionManager.set_weapon(get_equipped_weapon())
 	
 	swapWeaponTimer += 1
+
+func set_primary_weapon(wpnPrefab):
+	if(primary.get_child_count() > 0):
+		primary.get_child(0).free()
+	
+	var primaryWeapon = wpnPrefab.instantiate()
+	primary.add_child(primaryWeapon)
+	MissionManager.set_weapon(get_equipped_weapon())
+
+func set_secondary_weapon(wpnPrefab):
+	if(secondary.get_child_count() > 0):
+		secondary.get_child(0).free()
+	
+	var primaryWeapon = wpnPrefab.instantiate()
+	secondary.add_child(primaryWeapon)
 
 func handle_pausing():
 	var pause = Input.is_action_just_pressed("pause")
@@ -128,7 +152,7 @@ func health_regen(delta):
 		health += healthRegen * delta
 
 func get_equipped_weapon():
-	if(is_primary):
-		return %Primary
+	if(isPrimary):
+		return primary.get_child(0)
 	else:
-		return %Secondary
+		return secondary.get_child(0)
