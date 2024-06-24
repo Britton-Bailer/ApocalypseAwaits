@@ -32,4 +32,5 @@ script = ExtResource("2_ac1vb")
 itemName = "Extended Mags"
 itemSprite = ExtResource("1_kf8be")
 changedStats = SubResource("Resource_ipax3")
+affectedStats = SubResource("Resource_ipax3")
 itemCost = 5

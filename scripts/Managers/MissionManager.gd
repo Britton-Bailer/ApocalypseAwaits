@@ -137,3 +137,7 @@ func add_item(item: BaseItemResource):
 func apply_items():
 	for item in items:
 		item.apply_item(expeditionStats)
+
+func item_bought(item):
+	currency -= item.itemCost
+	items.append(item)

@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw1jrhlxmvhi7"]
+
+[ext_resource type="Script" path="res://scripts/ItemCard.gd" id="1_1scvi"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_3u43o"]
+
+[sub_resource type="Theme" id="Theme_4puit"]
+default_font_size = 20
+
+[sub_resource type="Theme" id="Theme_lkiv7"]
+default_font_size = 14
+
+[node name="ItemCard" type="Control"]
+custom_minimum_size = Vector2(200, 370)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -952.0
+offset_bottom = -278.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1scvi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.282353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 9.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemSprite" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("1_3u43o")
+stretch_mode = 5
+
+[node name="ItemName" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = SubResource("Theme_4puit")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+
+[node name="ItemStats" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+theme = SubResource("Theme_lkiv7")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+fit_content = true
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuyButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy me please"
+
+[connection signal="pressed" from="VBoxContainer/ButtonsContainer/BuyButton" to="." method="_on_buy_button_pressed"]
