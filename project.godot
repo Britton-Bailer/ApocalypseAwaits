@@ -20,7 +20,7 @@ boot_splash/minimum_display_time=1500
 
 [autoload]
 
-MissionManager="*res://prefabs/Managers/MissionManager.tscn"
+ExpeditionManager="*res://prefabs/Managers/ExpeditionManager.tscn"
 ParticlesContainer="*res://particles_container.gd"
 
 [display]

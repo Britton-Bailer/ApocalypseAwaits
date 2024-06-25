@@ -1,6 +1,7 @@
 extends Control
 
 var map = preload("res://scenes/main.tscn")
+var missionSelect = preload("res://scenes/MissionSelection.tscn")
 
 func _on_play_pressed():
 	get_tree().change_scene_to_packed(map)

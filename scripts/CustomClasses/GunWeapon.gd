@@ -13,7 +13,7 @@ class_name GunWeapon
 	spread = 20
 }
 @export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
-@onready var bulletsManager = MissionManager.bulletsManager
+@onready var bulletsManager = ExpeditionManager.bulletsManager
 
 var reloading = false
 var reloadSpeed = 1
@@ -40,9 +40,9 @@ func __primary_attack():
 		#reset last shot timer
 		lastAttackTimer = 0
 		
-		if(MissionManager.currency >= shotCost):
+		if(ExpeditionManager.currency >= shotCost):
 			___primary_attack()
-			MissionManager.shot_fired(shotCost)
+			ExpeditionManager.shot_fired(shotCost)
 			
 			mag -= 1
 		else:

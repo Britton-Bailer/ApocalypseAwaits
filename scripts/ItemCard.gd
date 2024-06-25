@@ -23,7 +23,7 @@ func set_vars(itm: BaseItemResource):
 	itemName.text = "[center]" + str(item.itemName) + "[/center]"
 
 func _on_buy_button_pressed():
-	if(MissionManager.currency >= item.itemCost):
-		MissionManager.add_item(item)
+	if(ExpeditionManager.currency >= item.itemCost):
+		ExpeditionManager.add_item(item)
 		buyButton.disabled = true
 		buyButton.text = "Sold"

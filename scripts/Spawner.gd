@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var navAgentPlacement = MissionManager.navAgentPlacement
-@onready var zombiesManager = MissionManager.zombiesManager
+@onready var navAgentPlacement = ExpeditionManager.navAgentPlacement
+@onready var zombiesManager = ExpeditionManager.zombiesManager
 
 var timer = 0
 @export var spawnInterval = 400
@@ -17,7 +17,7 @@ var zombies = Zombies.new()
 
 func _ready():
 	calculate_cumulative_weights()
-	spawnRateRange = MissionManager.missionData.spawnRateRange
+	spawnRateRange = ExpeditionManager.missionData.spawnRateRange
 	spawnInterval = randi_range(spawnRateRange.x, spawnRateRange.y)
 
 func _process(_delta):
@@ -44,7 +44,7 @@ func take_damage(amt):
 		
 		#if health is at or below 0, delete zombie
 		if(health <= 0):
-			MissionManager.spawner_destroyed()
+			ExpeditionManager.spawner_destroyed()
 			queue_free()
 
 # Function to calculate cumulative weights
@@ -52,8 +52,8 @@ func calculate_cumulative_weights():
 	total_weight = 0
 	cumulative_weights.clear()
 	
-	for key in MissionManager.missionData.spawnWeights.weights.keys():
-		total_weight += MissionManager.missionData.spawnWeights.weights[key]
+	for key in ExpeditionManager.missionData.spawnWeights.weights.keys():
+		total_weight += ExpeditionManager.missionData.spawnWeights.weights[key]
 		cumulative_weights.append({"type": key, "cumulative_weight": total_weight})
 
 # Function to select a zombie based on weights

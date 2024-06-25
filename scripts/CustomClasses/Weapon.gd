@@ -5,8 +5,8 @@ class_name Weapon
 #varibles on every weapon
 @onready var weapon_direction: Node2D = get_child(0)
 @onready var weapon_sprite: Sprite2D = get_child(0).get_child(0)
-@onready var hudManager = MissionManager.hudManager
-@onready var expeditionStats = MissionManager.expeditionStats
+@onready var hudManager = ExpeditionManager.hudManager
+@onready var expeditionStats = ExpeditionManager.expeditionStats
 
 @export var timeBetweenAttacks = 10
 @export var maneuverability = 25

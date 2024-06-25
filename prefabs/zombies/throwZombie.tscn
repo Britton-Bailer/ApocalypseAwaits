@@ -29,6 +29,7 @@ shape = SubResource("RectangleShape2D_7srti")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 3.0
+navigation_layers = 2
 path_metadata_flags = 0
 avoidance_layers = 0
 

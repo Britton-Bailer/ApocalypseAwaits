@@ -32,11 +32,11 @@ var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
 @onready var damageArea = $DamageArea
 @onready var zombiesContainer = get_parent()
 @onready var spriteDirection = $SpriteDirection
-@onready var zombiesManager = MissionManager.zombiesManager
-@onready var bulletsManager = MissionManager.bulletsManager
-@onready var coinsManager = MissionManager.coinsManager
-@onready var target = MissionManager.player
-@onready var expeditionStats = MissionManager.expeditionStats
+@onready var zombiesManager = ExpeditionManager.zombiesManager
+@onready var bulletsManager = ExpeditionManager.bulletsManager
+@onready var coinsManager = ExpeditionManager.coinsManager
+@onready var target = ExpeditionManager.player
+@onready var expeditionStats = ExpeditionManager.expeditionStats
 
 ## Initialization ##
 func _ready():
@@ -135,7 +135,7 @@ func take_damage(amt):
 		health -= amt * expeditionStats.bulletDamageMultiplier
 		if health <= 0:
 			coinsManager.add_coins(global_position, coinWorth)
-			MissionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
+			ExpeditionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
 			die()
 
 func die():

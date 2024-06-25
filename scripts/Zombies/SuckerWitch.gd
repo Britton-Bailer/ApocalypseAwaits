@@ -2,7 +2,7 @@ extends ZombieController
 
 @export var spawnInterval = 400
 @export var spawnRange = 100
-@onready var navAgentPlacement = MissionManager.navAgentPlacement
+@onready var navAgentPlacement = ExpeditionManager.navAgentPlacement
 
 var spawnTimer = 0
 

@@ -4,6 +4,7 @@ class_name enums
 
 ## mission type
 enum missionType {
+	missionSelect,
 	defense,
 	eradicate,
 	extraction,
@@ -12,6 +13,7 @@ enum missionType {
 	piggyBank,
 }
 var missionTypeNames = [
+	"Mission Selection",
 	"Defense",
 	"Eradicate",
 	"Extraction",
@@ -19,5 +21,9 @@ var missionTypeNames = [
 	"Bounty",
 	"Piggy Bank",
 ]
+
 func mission_name(type):
+	if(type == missionType.missionSelect):
+		return "Mission Selection"
+	
 	return missionTypeNames[type]

@@ -16,7 +16,7 @@ weights = {
 
 [resource]
 script = ExtResource("1_1pm4m")
-missionType = 1
+missionType = 2
 maxZombies = 250
 damageMultipler = 1
 requiresExtract = false

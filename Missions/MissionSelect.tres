@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MissionData" load_steps=2 format=3 uid="uid://djdp31i1dk8na"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/MissionData.gd" id="1_a18um"]
+
+[resource]
+script = ExtResource("1_a18um")
+missionType = 0
+maxZombies = 0
+damageMultipler = 0
+requiresExtract = false
+missionFailTime = 0
+missionExtractTime = 0
+numSpawners = 0
+spawnersRadius = 1000
+spawnRateRange = Vector2(300, 500)
+ambientSpawn = false
+ambientSpawnQueue = Array[int]([])
+ambientSpawnRateRange = Vector2(500, 1000)
+bountyTarget = 0
+killGoal = 0
+moneyGoal = 0

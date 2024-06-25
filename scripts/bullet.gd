@@ -11,7 +11,7 @@ var pierceDamageMultiplier = 0.5
 
 var dist = 0
 
-@onready var expeditionStats = MissionManager.expeditionStats
+@onready var expeditionStats = ExpeditionManager.expeditionStats
 
 func _ready():
 	pierceDamageMultiplier = expeditionStats.bulletPierceDamageMultiplier

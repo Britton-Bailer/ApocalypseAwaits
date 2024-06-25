@@ -29,6 +29,7 @@ navigation_layers = 2
 path_metadata_flags = 0
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
+collision_mask = 4
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2

@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-@onready var expeditionStats = MissionManager.expeditionStats
-@onready var hudManager = MissionManager.hudManager
+@onready var expeditionStats = ExpeditionManager.expeditionStats
+@onready var hudManager = ExpeditionManager.hudManager
 @onready var primary = %Primary
 @onready var secondary = %Secondary
 
@@ -95,10 +95,10 @@ func sprint_exhaustion():
 		
 
 func take_damage(dmg):
-	health -= dmg * MissionManager.missionData.damageMultipler * expeditionStats.zombieDamageMultiplier
+	health -= dmg * ExpeditionManager.missionData.damageMultipler * expeditionStats.zombieDamageMultiplier
 	
 	if(health <= 0):
-		MissionManager.mission_failed()
+		ExpeditionManager.mission_failed()
 
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")
@@ -119,7 +119,7 @@ func cycle_weapons():
 		isPrimary = !isPrimary
 		get_equipped_weapon().process_mode = Node.PROCESS_MODE_ALWAYS
 		get_equipped_weapon().visible = true
-		MissionManager.set_weapon(get_equipped_weapon())
+		ExpeditionManager.set_weapon(get_equipped_weapon())
 	
 	swapWeaponTimer += 1
 
@@ -129,7 +129,7 @@ func set_primary_weapon(wpnPrefab):
 	
 	var primaryWeapon = wpnPrefab.instantiate()
 	primary.add_child(primaryWeapon)
-	MissionManager.set_weapon(get_equipped_weapon())
+	ExpeditionManager.set_weapon(get_equipped_weapon())
 
 func set_secondary_weapon(wpnPrefab):
 	if(secondary.get_child_count() > 0):
