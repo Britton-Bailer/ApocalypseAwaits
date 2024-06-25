@@ -15,6 +15,7 @@ class_name ZombieController
 @export var reactToBroadcast = true
 @export var separationForceFactor = 650  ## Adjust the strength of separation force
 @export var coinWorth = 3
+var predictionTime = randf_range(0, 2)
 
 var canUpdateTargeting = true
 
@@ -88,8 +89,8 @@ func update_targeting():
 			speed = chasingSpeed
 			if currentState != Zombies.zombieState.CHASING:
 				currentState = Zombies.zombieState.CHASING
-			lastSeenTarget = target.global_position
-			#broadcast_position(lastSeenTarget)
+			lastSeenTarget = predict_player_position()
+			broadcast_position(lastSeenTarget)
 		elif needs_new_point():
 			if currentState != Zombies.zombieState.ROAMING:
 				speed = roamingSpeed
@@ -101,6 +102,11 @@ func update_targeting():
 	# Add separation behavior
 	var separationForce = calculateSeparationForce()
 	navAgent.target_position += separationForce
+
+## Predict the player's future position based on their velocity ##
+func predict_player_position():
+	var player_velocity = target.get_linear_velocity()
+	return target.global_position + (player_velocity * predictionTime)
 
 ## Navigate towards the next path position ##
 func navigation(delta):
