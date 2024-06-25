@@ -82,7 +82,7 @@ func get_mission_name():
 func get_mission_info():
 	var extraInfo = ""
 	if(missionData.missionType == enums.missionType.bounty):
-		extraInfo = "Kill " + str(missionData.killGoal) + " " + zombies.zombie_name(missionData.bountyTarget) + "s"
+		extraInfo = "Kill " + str(missionData.killGoal) + " " + zombies.zombie_name(missionData.bountyTarget) + " zombies"
 	elif(missionData.missionType == enums.missionType.piggyBank):
 		extraInfo = "Collect " + str(missionData.moneyGoal) + " coins"
 	elif(missionData.missionType == enums.missionType.eradicate):
@@ -139,7 +139,7 @@ func start_mission_selection(rndMngr):
 	
 	ambientSpawner.set_vars(missionData.ambientSpawnQueue, false, missionData.ambientSpawnRateRange)
 	spawnersManager.set_vars(0, missionData.spawnersRadius)
-	hudManager.set_vars(player, tilemaps, missionNum+1, get_mission_name(), get_mission_info())
+	hudManager.set_vars(player, tilemaps, "", get_mission_name(), get_mission_info())
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
 

@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/CustomClasses/MissionData.gd" id="1_1pm4m"]
 [ext_resource type="Script" path="res://scripts/CustomClasses/SpawnWeights.gd" id="2_acwtc"]
 
-[sub_resource type="Resource" id="Resource_6xm57"]
+[sub_resource type="Resource" id="Resource_lcic4"]
 script = ExtResource("2_acwtc")
 weights = {
-"Baby Zombie": 0,
+"Baby": 0,
 "Base": 2,
 "Charger": 0,
 "Sucker": 0,
@@ -20,11 +20,11 @@ missionType = 2
 maxZombies = 250
 damageMultipler = 1
 requiresExtract = false
-spawnWeights = SubResource("Resource_6xm57")
+spawnWeights = SubResource("Resource_lcic4")
 missionFailTime = 120
 missionExtractTime = 60
-numSpawners = 15
-spawnersRadius = 1000
+numSpawners = 2
+spawnersRadius = 400
 spawnRateRange = Vector2(200, 400)
 ambientSpawn = false
 ambientSpawnQueue = Array[int]([])

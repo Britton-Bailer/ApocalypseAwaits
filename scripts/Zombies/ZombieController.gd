@@ -15,7 +15,7 @@ class_name ZombieController
 @export var reactToBroadcast = true
 @export var separationForceFactor = 650  ## Adjust the strength of separation force
 @export var coinWorth = 3
-var predictionTime = randf_range(0, 2)
+var predictionTime = max(randf_range(-1, 3), 0)
 
 var canUpdateTargeting = true
 
@@ -105,8 +105,11 @@ func update_targeting():
 
 ## Predict the player's future position based on their velocity ##
 func predict_player_position():
-	var player_velocity = target.get_linear_velocity()
-	return target.global_position + (player_velocity * predictionTime)
+	var pos = target.global_position
+	if(position.distance_to(pos) > 100):
+		var player_velocity = target.get_linear_velocity()
+		pos += (player_velocity * predictionTime)
+	return pos
 
 ## Navigate towards the next path position ##
 func navigation(delta):

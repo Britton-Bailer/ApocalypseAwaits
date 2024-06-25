@@ -6,12 +6,12 @@
 [sub_resource type="Resource" id="Resource_6xm57"]
 script = ExtResource("2_5osmf")
 weights = {
-"Baby Zombie": 2,
-"Base": 1,
-"Charger": 1,
+"Baby": 5,
+"Base": 4,
+"Charger": 2,
 "Sucker": 0,
 "Sucker Witch": 1,
-"Thrower": 2
+"Thrower": 4
 }
 
 [resource]

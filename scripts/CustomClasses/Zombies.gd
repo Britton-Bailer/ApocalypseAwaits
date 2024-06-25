@@ -14,7 +14,7 @@ enum type {
 var nameToEnum = {
 	"Base": type.base,
 	"Thrower": type.throw,
-	"Baby Zombie": type.baby,
+	"Baby": type.baby,
 	"Sucker": type.sucker,
 	"Sucker Witch": type.suckerWitch,
 	"Charger": type.charger,
@@ -23,7 +23,7 @@ var nameToEnum = {
 var enumToNames = [
 	"Base",
 	"Thrower",
-	"Baby Zombie",
+	"Baby",
 	"Sucker",
 	"Sucker Witch",
 	"Charger",
