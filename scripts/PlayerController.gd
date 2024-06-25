@@ -97,8 +97,8 @@ func sprint_exhaustion():
 func take_damage(dmg):
 	health -= dmg * ExpeditionManager.missionData.damageMultipler * expeditionStats.zombieDamageMultiplier
 	
-	if(health <= 0):
-		ExpeditionManager.mission_failed()
+	#if(health <= 0):
+		#ExpeditionManager.mission_failed()
 
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")

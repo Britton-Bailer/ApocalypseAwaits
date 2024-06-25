@@ -1,6 +1,7 @@
 extends BaseManager
 
-var max_zombies = 100
+var max_zombies = 250
+
 var player: RigidBody2D
 var zombies = Zombies.new()
 
