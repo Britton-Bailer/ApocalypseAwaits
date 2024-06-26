@@ -17,7 +17,7 @@ var zombies = Zombies.new()
 
 func _ready():
 	calculate_cumulative_weights()
-	spawnRateRange = ExpeditionManager.missionData.spawnRateRange
+	spawnRateRange = ExpeditionManager.currentMission.spawnRateRange
 	spawnInterval = randi_range(spawnRateRange.x, spawnRateRange.y)
 
 func _process(_delta):
@@ -52,8 +52,8 @@ func calculate_cumulative_weights():
 	total_weight = 0
 	cumulative_weights.clear()
 	
-	for key in ExpeditionManager.missionData.spawnWeights.weights.keys():
-		total_weight += ExpeditionManager.missionData.spawnWeights.weights[key]
+	for key in ExpeditionManager.currentMission.spawnWeights.weights.keys():
+		total_weight += ExpeditionManager.currentMission.spawnWeights.weights[key]
 		cumulative_weights.append({"type": key, "cumulative_weight": total_weight})
 
 # Function to select a zombie based on weights

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="MissionData" load_steps=4 format=3 uid="uid://be3ftlfy5or0e"]
+[gd_resource type="Resource" script_class="MissionData" load_steps=5 format=3 uid="uid://be3ftlfy5or0e"]
 
 [ext_resource type="Script" path="res://scripts/CustomClasses/MissionData.gd" id="1_a8gsa"]
+[ext_resource type="PackedScene" uid="uid://d4h11hg4hjwdq" path="res://prefabs/Maps/TestMap1.tscn" id="1_yydyd"]
 [ext_resource type="Script" path="res://scripts/CustomClasses/SpawnWeights.gd" id="2_iagbt"]
 
 [sub_resource type="Resource" id="Resource_6xm57"]
@@ -23,12 +24,13 @@ requiresExtract = false
 spawnWeights = SubResource("Resource_6xm57")
 missionFailTime = 180
 missionExtractTime = 60
-numSpawners = 7
-spawnersRadius = 500
+possibleMaps = Array[PackedScene]([ExtResource("1_yydyd")])
+numSpawners = 2
+spawnersRadius = 1000
 spawnRateRange = Vector2(300, 500)
 ambientSpawn = false
 ambientSpawnQueue = Array[int]([0, 1, 4, 5, 2, 0, 0, 1, 4, 1])
 ambientSpawnRateRange = Vector2(200, 400)
-bountyTarget = 4
-killGoal = 10
-moneyGoal = 10
+bountyTarget = 0
+killGoal = 0
+moneyGoal = 0

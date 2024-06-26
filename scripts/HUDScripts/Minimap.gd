@@ -27,7 +27,7 @@ func _draw():
 		#draw player
 		draw_rect(Rect2((Vector2(player.position/16.0) - (Vector2.ONE * playerSize/2)) * blockSize, Vector2(playerSize, playerSize)), Color.PURPLE)
 
-func _process(delta):
+func _process(_delta):
 	if(tilemaps == null):
 		return
 	

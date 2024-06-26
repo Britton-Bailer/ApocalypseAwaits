@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="MissionData" load_steps=4 format=3 uid="uid://dd0axbadh7t67"]
+[gd_resource type="Resource" script_class="MissionData" load_steps=5 format=3 uid="uid://dd0axbadh7t67"]
 
+[ext_resource type="PackedScene" uid="uid://d4h11hg4hjwdq" path="res://prefabs/Maps/TestMap1.tscn" id="1_uclq7"]
 [ext_resource type="Script" path="res://scripts/CustomClasses/MissionData.gd" id="1_yi1oc"]
 [ext_resource type="Script" path="res://scripts/CustomClasses/SpawnWeights.gd" id="2_7hk1q"]
 
@@ -16,19 +17,18 @@ weights = {
 
 [resource]
 script = ExtResource("1_yi1oc")
-missionType = 5
+missionTypeOptions = Array[int]([6, 5])
 maxZombies = 250
 damageMultipler = 1
-requiresExtract = true
 spawnWeights = SubResource("Resource_6xm57")
 missionFailTime = 180
 missionExtractTime = 60
-numSpawners = 4
-spawnersRadius = 500
-spawnRateRange = Vector2(300, 400)
-ambientSpawn = true
+possibleMaps = Array[PackedScene]([ExtResource("1_uclq7")])
+numSpawners = 2
+spawnersRadius = 1000
+spawnRateRange = Vector2(300, 500)
 ambientSpawnQueue = Array[int]([0, 2, 2, 1, 0, 5, 1])
 ambientSpawnRateRange = Vector2(300, 500)
-bountyTarget = 2
-killGoal = 10
-moneyGoal = 0
+bountyTarget = 1
+killGoal = 6
+moneyGoal = 15

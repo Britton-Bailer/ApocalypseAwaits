@@ -3,7 +3,7 @@ extends RichTextLabel
 var timer: Timer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(timer == null):
 		return
 	

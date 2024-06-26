@@ -106,7 +106,7 @@ func update_targeting():
 ## Predict the player's future position based on their velocity ##
 func predict_player_position():
 	var pos = target.global_position
-	if(position.distance_to(pos) > 100):
+	if(position.distance_to(pos) > 150):
 		var player_velocity = target.get_linear_velocity()
 		pos += (player_velocity * predictionTime)
 	return pos
@@ -144,7 +144,7 @@ func take_damage(amt):
 		health -= amt * expeditionStats.bulletDamageMultiplier
 		if health <= 0:
 			coinsManager.add_coins(global_position, coinWorth)
-			ExpeditionManager.zombie_killed(type, zombiesContainer.get_child_count() > 1)
+			ExpeditionManager.zombie_killed(type)
 			die()
 
 func die():

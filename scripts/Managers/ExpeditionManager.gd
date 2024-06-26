@@ -10,33 +10,38 @@ var playerPrefab = preload("res://prefabs/player.tscn")
 var player
 var tilemaps
 
-var missionNum = -1
+var missionNum = 0
 var currency = 1000
-var missionData: MissionData
+var currentMission: MissionData
 var items: Array[BaseItemResource] = [preload("res://scripts/Items/RecoilForDumbies.tres")]
 var expeditionStats
+var missionsRequiringExtract = [enums.missionType.bounty, enums.missionType.piggyBank]
+var missionsWithAmbientSpawn = [enums.missionType.bounty, enums.missionType.piggyBank, enums.missionType.defense, enums.missionType.extraction]
+var missionType = enums.missionType.eradicate
 
 var zombies = Zombies.new()
 
 ## bounty
-func zombie_killed(type: Zombies.type, isMoreZombies: bool):
-	if(missionData.missionType == enums.missionType.eradicate):
+func zombie_killed(type: Zombies.type):
+	if(missionType == enums.missionType.eradicate):
 		check_eradicate_win_condition()
 	
-	if(type == missionData.bountyTarget):
-		missionData.killCount += 1
+	if(type == currentMission.bountyTarget):
+		currentMission.killCount += 1
+		if(currentMission.killGoal - currentMission.killCount > 0):
+			hudManager.flash_text("", "Target down, " + str(currentMission.killGoal - currentMission.killCount) + " to go.", 0.6)
 	
-	if(missionData.missionType == enums.missionType.bounty && missionData.killCount >= missionData.killGoal):
+	if(missionType == enums.missionType.bounty && currentMission.killCount >= currentMission.killGoal):
 		mission_finished()
 
 ## piggyBank
 func money_picked_up(worth):
-	missionData.moneyEarned += worth
+	currentMission.moneyEarned += worth
 	currency += worth
 
 	hudManager.update_money(currency)
 
-	if(missionData.missionType == enums.missionType.piggyBank && missionData.moneyEarned >= missionData.moneyGoal):
+	if(missionType == enums.missionType.piggyBank && currentMission.moneyEarned >= currentMission.moneyGoal):
 		mission_finished()
 
 func shot_fired(shotCost):
@@ -44,9 +49,9 @@ func shot_fired(shotCost):
 	hudManager.update_money(currency)
 
 func spawner_destroyed():
-	missionData.numSpawners -= 1
+	currentMission.numSpawners -= 1
 		
-	if(missionData.missionType == enums.missionType.eradicate):
+	if(missionType == enums.missionType.eradicate):
 		check_eradicate_win_condition()
 
 func check_eradicate_win_condition():
@@ -54,20 +59,21 @@ func check_eradicate_win_condition():
 		mission_finished()
 
 func extract_attempt():
-	if(missionData.canExtract):
+	if(currentMission.canExtract):
 		mission_extract()
 
 func mission_extract():
+	missionNum += 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/MissionSelection.tscn")
 
 func mission_finished():
 	mission_fail_timer.stop()
-	if(missionData.requiresExtract):
-		missionData.canExtract = true
-		extract_timer.start(missionData.missionExtractTime)
+	if(requires_extract()):
+		currentMission.canExtract = true
+		extract_timer.start(currentMission.missionExtractTime)
 		hudManager.set_timer(extract_timer)
-		hudManager.flash_text("Mission finished, get to extract!", str(missionData.missionExtractTime) + " seconds left!", 0.05)
+		hudManager.flash_text("Mission finished, get to extract!", str(currentMission.missionExtractTime) + " seconds left!", 0.05)
 	else:
 		mission_extract()
 
@@ -77,21 +83,27 @@ func mission_failed():
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func get_mission_name():
-	return ENUMS.mission_name(missionData.missionType)
+	return ENUMS.mission_name(missionType)
 
 func get_mission_info():
 	var extraInfo = ""
-	if(missionData.missionType == enums.missionType.bounty):
-		extraInfo = "Kill " + str(missionData.killGoal) + " " + zombies.zombie_name(missionData.bountyTarget) + " zombies"
-	elif(missionData.missionType == enums.missionType.piggyBank):
-		extraInfo = "Collect " + str(missionData.moneyGoal) + " coins"
-	elif(missionData.missionType == enums.missionType.eradicate):
-		extraInfo = "Destroy all Spawners (" + str(missionData.numSpawners) + ") and Zombies"
+	if(missionType == enums.missionType.bounty):
+		extraInfo = "Kill " + str(currentMission.killGoal) + " " + zombies.zombie_name(currentMission.bountyTarget) + " zombies"
+	elif(missionType == enums.missionType.piggyBank):
+		extraInfo = "Collect " + str(currentMission.moneyGoal) + " coins"
+	elif(missionType == enums.missionType.eradicate):
+		extraInfo = "Destroy all Spawners (" + str(currentMission.numSpawners) + ") and Zombies"
 	
-	if(missionData.requiresExtract):
+	if(requires_extract()):
 		extraInfo += " and extract"
 	
 	return extraInfo
+
+func requires_extract():
+	return missionsRequiringExtract.has(missionType)
+
+func has_ambient_spawn():
+	return missionsWithAmbientSpawn.has(missionType)
 
 func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr):
 	ambientSpawner = ambSpwnr
@@ -108,40 +120,45 @@ func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlc
 	bulletsManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
 
 func start_next_round(rndMngr):
-	missionNum += 1
 	expeditionStats = preload("res://BaseStats.tres")
 	apply_items()
 	
-	missionData = missionsList.get_list(missionNum)
+	currentMission = missionsList.get_list(missionNum)
+	var newMap = currentMission.possibleMaps.pick_random().instantiate()
+	rndMngr.add_child(newMap)
+	
 	var newPlayer = playerPrefab.instantiate()
 	newPlayer.position = Vector2.ZERO
 	rndMngr.add_child(newPlayer)
 	player = newPlayer
 	
-	ambientSpawner.set_vars(missionData.ambientSpawnQueue, missionData.ambientSpawn, missionData.ambientSpawnRateRange)
-	spawnersManager.set_vars(missionData.numSpawners, missionData.spawnersRadius)
+	ambientSpawner.set_vars(currentMission.ambientSpawnQueue, has_ambient_spawn(), currentMission.ambientSpawnRateRange)
+	spawnersManager.set_vars(currentMission.numSpawners, currentMission.spawnersRadius)
 	hudManager.set_vars(player, tilemaps, missionNum+1, get_mission_name(), get_mission_info())
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
 	
-	mission_fail_timer.start(missionData.missionFailTime)
+	mission_fail_timer.start(currentMission.missionFailTime)
 	hudManager.set_timer(mission_fail_timer)
 
 func start_mission_selection(rndMngr):
 	expeditionStats = preload("res://BaseStats.tres")
 	apply_items()
 	
-	missionData = preload("res://Missions/MissionSelect.tres")
+	currentMission = preload("res://Missions/MissionSelect.tres")
 	var newPlayer = playerPrefab.instantiate()
 	newPlayer.position = Vector2.ZERO
 	rndMngr.add_child(newPlayer)
 	player = newPlayer
 	
-	ambientSpawner.set_vars(missionData.ambientSpawnQueue, false, missionData.ambientSpawnRateRange)
-	spawnersManager.set_vars(0, missionData.spawnersRadius)
-	hudManager.set_vars(player, tilemaps, "", get_mission_name(), get_mission_info())
+	ambientSpawner.set_vars(currentMission.ambientSpawnQueue, false, currentMission.ambientSpawnRateRange)
+	spawnersManager.set_vars(0, currentMission.spawnersRadius)
+	hudManager.set_vars(player, tilemaps, "", "Mission Select", "Select your next mission.")
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
+
+func set_mission_type(type):
+	missionType = type
 
 func set_tilemaps(tlmps):
 	tilemaps = tlmps

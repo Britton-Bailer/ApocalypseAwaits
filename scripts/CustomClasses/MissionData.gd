@@ -3,13 +3,13 @@ extends Resource
 class_name MissionData
 
 #variables
-@export var missionType = enums.missionType.eradicate
+@export var missionTypeOptions: Array[enums.missionType]
 @export var maxZombies = 250
 @export var damageMultipler = 1
-@export var requiresExtract = false
 @export var spawnWeights: SpawnWeights
 @export var missionFailTime = 180
 @export var missionExtractTime = 60
+@export var possibleMaps: Array[PackedScene]
 
 @export_category("Spawners")
 @export var numSpawners = 2
@@ -17,7 +17,6 @@ class_name MissionData
 @export var spawnRateRange = Vector2(300, 500)
 
 @export_category("Ambient Spawner")
-@export var ambientSpawn = false
 @export var ambientSpawnQueue: Array[Zombies.type]
 @export var ambientSpawnRateRange = Vector2(500, 1000)
 

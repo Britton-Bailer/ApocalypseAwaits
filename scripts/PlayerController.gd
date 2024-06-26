@@ -95,7 +95,7 @@ func sprint_exhaustion():
 		
 
 func take_damage(dmg):
-	health -= dmg * ExpeditionManager.missionData.damageMultipler * expeditionStats.zombieDamageMultiplier
+	health -= dmg * ExpeditionManager.currentMission.damageMultipler * expeditionStats.zombieDamageMultiplier
 	
 	#if(health <= 0):
 		#ExpeditionManager.mission_failed()
