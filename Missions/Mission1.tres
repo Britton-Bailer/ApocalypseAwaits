@@ -8,7 +8,7 @@
 script = ExtResource("2_7hk1q")
 weights = {
 "Baby": 2,
-"Base": 4,
+"Base": 3,
 "Charger": 1,
 "Sucker": 0,
 "Sucker Witch": 0,
@@ -24,11 +24,11 @@ spawnWeights = SubResource("Resource_6xm57")
 missionFailTime = 180
 missionExtractTime = 60
 possibleMaps = Array[PackedScene]([ExtResource("1_uclq7")])
-numSpawners = 2
-spawnersRadius = 1000
+numSpawners = 4
+spawnersRadius = 800
 spawnRateRange = Vector2(300, 500)
-ambientSpawnQueue = Array[int]([0, 2, 2, 1, 0, 5, 1])
-ambientSpawnRateRange = Vector2(300, 500)
+ambientSpawnQueue = Array[int]([1, 2, 2, 1, 0, 5, 1])
+ambientSpawnRateRange = Vector2(200, 600)
 bountyTarget = 1
 killGoal = 6
-moneyGoal = 15
+moneyGoal = 25

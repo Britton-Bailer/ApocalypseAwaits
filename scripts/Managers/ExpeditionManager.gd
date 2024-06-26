@@ -28,11 +28,12 @@ func zombie_killed(type: Zombies.type):
 	
 	if(type == currentMission.bountyTarget):
 		currentMission.killCount += 1
-		if(currentMission.killGoal - currentMission.killCount > 0):
-			hudManager.flash_text("", "Target down, " + str(currentMission.killGoal - currentMission.killCount) + " to go.", 0.6)
-	
-	if(missionType == enums.missionType.bounty && currentMission.killCount >= currentMission.killGoal):
-		mission_finished()
+		
+		if(currentMission.killCount >= currentMission.killGoal):
+			mission_finished()
+			return
+			
+		hudManager.flash_text("", "Target down, " + str(currentMission.killGoal - currentMission.killCount) + " to go.", 0.6)
 
 ## piggyBank
 func money_picked_up(worth):
@@ -41,8 +42,12 @@ func money_picked_up(worth):
 
 	hudManager.update_money(currency)
 
-	if(missionType == enums.missionType.piggyBank && currentMission.moneyEarned >= currentMission.moneyGoal):
-		mission_finished()
+	if(missionType == enums.missionType.piggyBank):
+		if(currentMission.moneyEarned >= currentMission.moneyGoal):
+			mission_finished()
+			return
+	
+		hudManager.flash_text("", str(currentMission.moneyGoal - currentMission.moneyEarned) + " coins to go.", 0.8)
 
 func shot_fired(shotCost):
 	currency -= shotCost
