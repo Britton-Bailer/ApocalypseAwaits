@@ -9,4 +9,5 @@ class_name SpawnWeights
 	"Sucker": 1,
 	"Sucker Witch": 1,
 	"Charger": 1,
+	"Frag Thrower": 1, 
 }

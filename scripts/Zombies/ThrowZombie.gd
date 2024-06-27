@@ -1,14 +1,16 @@
 extends ZombieController
 
 ## Variables specific to throwZombie ##
-var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")  ## Prefab for enemy bullet
+@export var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")  ## Prefab for enemy bullet
 var preferredRange = randi_range(120, 200)  ## Preferred range to maintain from the player
 
-var reloadRange = Vector2(150, 250)
+@export var reloadRange = Vector2(150, 250)
 var reloadTime  ## Time between each bullet reload
 var reloadTimer = 0  ## Timer to track reload time
-var spread = 15  ## Spread of bullet shot angle
-var damage = 15  ## Damage inflicted by bullets
+@export var spread = 15  ## Spread of bullet shot angle
+@export var throwDamage = 15  ## Damage inflicted by bullets
+@export var throwSpeed = 200
+@export var throwRange = 300
 
 func ready():
 	reloadTime = randi_range(reloadRange.x, reloadRange.y)
@@ -25,7 +27,7 @@ func attack(delta):
 		
 		reloadTimer += 1
 		if reloadTimer >= reloadTime:
-			shoot_bullet()
+			throw()
 			reloadTimer = 0
 			
 	move_to_maintain_range(delta)
@@ -48,9 +50,9 @@ func move_to_maintain_range(delta):
 		velocity = Vector2.ZERO
 
 ## Spawn a bullet and shoot it towards the player ##
-func shoot_bullet():
+func throw():
 	var bulletRotation = get_angle_to(target.position + (target.linear_velocity * randf_range(0.25, 1)))
-	projectilesManager.new_bullet(200, damage, position, bulletRotation, 300, false, THROWABLE_PREFAB)
+	projectilesManager.new_projectile(throwSpeed, throwDamage, position, bulletRotation, throwRange, false, THROWABLE_PREFAB)
 	
 	#choose random time before next shot
 	reloadTime = randi_range(reloadRange.x, reloadRange.y)

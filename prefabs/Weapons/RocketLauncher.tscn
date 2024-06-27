@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://crdvfrnhbrlqu"]
+[gd_scene load_steps=4 format=3 uid="uid://crdvfrnhbrlqu"]
 
 [ext_resource type="Script" path="res://scripts/Weapons/RocketLauncher.gd" id="1_epmek"]
+[ext_resource type="PackedScene" uid="uid://mfw64bgiddid" path="res://prefabs/AOEThrowables/Grenade.tscn" id="2_hhnyo"]
 [ext_resource type="Texture2D" uid="uid://d0l4n0yqtwltf" path="res://sprites/Weapons/pistol.png" id="2_hy4gj"]
 
 [node name="RocketLauncher" type="Node2D"]
@@ -8,13 +9,14 @@ z_index = 1
 script = ExtResource("1_epmek")
 magSize = 1
 reloadTime = 100
-shotCost = 5
+shotCost = 10
 bullet = {
 "damage": 0,
-"range": 400,
+"range": 100,
 "speed": 800,
 "spread": 5
 }
+BULLET_PREFAB = ExtResource("2_hhnyo")
 maneuverability = 4
 
 [node name="WeaponDirection" type="Node2D" parent="."]

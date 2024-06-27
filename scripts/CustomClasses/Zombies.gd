@@ -9,6 +9,7 @@ enum type {
 	sucker,
 	suckerWitch,
 	charger,
+	fragThrower,
 }
 
 var nameToEnum = {
@@ -18,6 +19,7 @@ var nameToEnum = {
 	"Sucker": type.sucker,
 	"Sucker Witch": type.suckerWitch,
 	"Charger": type.charger,
+	"Frag Thrower": type.fragThrower,
 }
 
 var enumToNames = [
@@ -27,6 +29,7 @@ var enumToNames = [
 	"Sucker",
 	"Sucker Witch",
 	"Charger",
+	"Frag Thrower",
 ]
 func zombie_name(type):
 	return enumToNames[type]
@@ -43,5 +46,6 @@ var zombiePrefabs: Dictionary = {
 	type.sucker: preload("res://prefabs/zombies/suckerZombie.tscn"),
 	type.suckerWitch: preload("res://prefabs/zombies/suckerWitch.tscn"),
 	type.charger: preload("res://prefabs/zombies/charger.tscn"),
-	type.baby: preload("res://prefabs/zombies/babyZombie.tscn")
+	type.baby: preload("res://prefabs/zombies/babyZombie.tscn"),
+	type.fragThrower: preload("res://prefabs/zombies/fragThrower.tscn"),
 }

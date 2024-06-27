@@ -1,7 +1,11 @@
 extends Projectile
 
-var aoePrefab
-var projectileManager
+class_name AOEThrowable
+
+@onready var aoe = $AOE
+@onready var aoeSprite = $AOESprite
+@onready var projectileSprite = $ProjectileSprite
+
 
 func setup():
 	pass
@@ -26,23 +30,18 @@ func hit_body(body):
 	parts.emitting = true
 	ParticlesContainer.add_child(parts)
 	
-	print("explode_aoe()")
 	explode_aoe()
 
 func explode_aoe():
-	print("creating new aoe")
-	var newAoe = aoePrefab.instantiate()
-	newAoe.position = position
-	projectileManager.add_child(newAoe)
 	queue_free()
 
-func set_vars(spd, dmg, mxDst, friendly, aoePrfb, prjctlMngr):
+func set_vars(spd, dmg, mxDst, friendly):
 	speed = spd
 	hitDamage = dmg
 	maxDist = mxDst
-	aoePrefab = aoePrfb
-	projectileManager = prjctlMngr
 	
 	#if friendly, dont collide with player
 	set_collision_mask_value(8, !friendly)
 	set_collision_mask_value(2, friendly)
+	$AOE.set_collision_mask_value(8, !friendly)
+	$AOE.set_collision_mask_value(2, friendly)

@@ -17,10 +17,9 @@ weights = {
 
 [resource]
 script = ExtResource("1_a8gsa")
-missionType = 4
+missionTypeOptions = Array[int]([])
 maxZombies = 200
 damageMultipler = 1
-requiresExtract = false
 spawnWeights = SubResource("Resource_6xm57")
 missionFailTime = 180
 missionExtractTime = 60
@@ -28,7 +27,6 @@ possibleMaps = Array[PackedScene]([ExtResource("1_yydyd")])
 numSpawners = 2
 spawnersRadius = 1000
 spawnRateRange = Vector2(300, 500)
-ambientSpawn = false
 ambientSpawnQueue = Array[int]([0, 1, 4, 5, 2, 0, 0, 1, 4, 1])
 ambientSpawnRateRange = Vector2(200, 400)
 bountyTarget = 0

@@ -17,7 +17,7 @@ func ___process(delta):
 	if(burst):
 		#wait timeBetweenShots time before next bullet in burst shoots
 		if(burstTimer >= timeBetweenBurstShots):
-			projectilesManager.new_bullet(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, true, BULLET_PREFAB)
+			projectilesManager.new_projectile(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, true, BULLET_PREFAB)
 			burstTimer = 0
 			burstBulletCounter += 1
 

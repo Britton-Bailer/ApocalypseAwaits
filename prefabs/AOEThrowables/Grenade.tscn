@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://mfw64bgiddid"]
+
+[ext_resource type="Script" path="res://scripts/Projectiles/Frag.gd" id="1_ucb0r"]
+[ext_resource type="Texture2D" uid="uid://bqbwbxd0hg17t" path="res://sprites/FragSprite.png" id="2_3cr52"]
+[ext_resource type="Texture2D" uid="uid://drmnl4i7fqcto" path="res://sprites/boom.png" id="3_y7m1f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfx7w"]
+size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_erp84"]
+radius = 40.0
+
+[node name="Grenade" type="Area2D"]
+collision_layer = 8
+collision_mask = 147
+script = ExtResource("1_ucb0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nfx7w")
+
+[node name="AOE" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 147
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
+shape = SubResource("CircleShape2D_erp84")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3cr52")
+
+[node name="AOESprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_y7m1f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -8,16 +8,17 @@
 script = ExtResource("2_acwtc")
 weights = {
 "Baby": 0,
-"Base": 2,
+"Base": 0,
 "Charger": 0,
+"Frag Thrower": 1,
 "Sucker": 0,
 "Sucker Witch": 0,
-"Thrower": 1
+"Thrower": 0
 }
 
 [resource]
 script = ExtResource("1_1pm4m")
-missionType = 2
+missionTypeOptions = Array[int]([])
 maxZombies = 250
 damageMultipler = 1
 spawnWeights = SubResource("Resource_lcic4")
@@ -27,7 +28,6 @@ possibleMaps = Array[PackedScene]([ExtResource("1_ajihu")])
 numSpawners = 2
 spawnersRadius = 500
 spawnRateRange = Vector2(300, 500)
-ambientSpawn = true
 ambientSpawnQueue = Array[int]([1, 0])
 ambientSpawnRateRange = Vector2(500, 1000)
 bountyTarget = 0
