@@ -50,12 +50,7 @@ func move_to_maintain_range(delta):
 ## Spawn a bullet and shoot it towards the player ##
 func shoot_bullet():
 	var bulletRotation = get_angle_to(target.position + (target.linear_velocity * randf_range(0.25, 1)))
-	var newBullet = THROWABLE_PREFAB.instantiate()
-	newBullet.set_vars(200, damage, 300, false)
-	newBullet.position = position
-	newBullet.rotation = bulletRotation
-	
-	bulletsManager.add_child(newBullet)
+	projectilesManager.new_bullet(200, damage, position, bulletRotation, 300, false, THROWABLE_PREFAB)
 	
 	#choose random time before next shot
 	reloadTime = randi_range(reloadRange.x, reloadRange.y)

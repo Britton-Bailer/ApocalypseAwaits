@@ -6,15 +6,15 @@ var ambientSpawner
 var zombiesManager
 var coinsManager
 var spawnersManager
-var bulletsManager
+var projectilesManager
 var navAgentPlacement
 var hudManager
 
-func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr):
+func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr):
 	ambientSpawner = ambSpwnr
 	zombiesManager = zmbsMngr
 	coinsManager = cnsMngr
 	spawnersManager = spwnrsMngr
-	bulletsManager = bltsMngr
+	projectilesManager = prjctlsMngr
 	navAgentPlacement = navAgentPlcmnt
 	hudManager = hudMngr

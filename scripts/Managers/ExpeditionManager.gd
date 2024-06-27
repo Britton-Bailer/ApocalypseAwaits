@@ -26,7 +26,7 @@ func zombie_killed(type: Zombies.type):
 	if(missionType == enums.missionType.eradicate):
 		check_eradicate_win_condition()
 	
-	if(type == currentMission.bountyTarget):
+	if(type == currentMission.bountyTarget && missionType == enums.missionType.bounty):
 		currentMission.killCount += 1
 		
 		if(currentMission.killCount >= currentMission.killGoal):
@@ -110,19 +110,19 @@ func requires_extract():
 func has_ambient_spawn():
 	return missionsWithAmbientSpawn.has(missionType)
 
-func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr):
+func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr):
 	ambientSpawner = ambSpwnr
 	zombiesManager = zmbsMngr
 	coinsManager = cnsMngr
 	spawnersManager = spwnrsMngr
-	bulletsManager = bltsMngr
+	projectilesManager = prjctlsMngr
 	navAgentPlacement = navAgentPlcmnt
 	hudManager = hudMngr
 	
-	ambientSpawner.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
-	zombiesManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
-	spawnersManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
-	bulletsManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, bltsMngr, navAgentPlcmnt, hudMngr)
+	ambientSpawner.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr)
+	zombiesManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr)
+	spawnersManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr)
+	projectilesManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr)
 
 func start_next_round(rndMngr):
 	expeditionStats = preload("res://BaseStats.tres")

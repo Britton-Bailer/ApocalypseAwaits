@@ -13,7 +13,7 @@ class_name GunWeapon
 	spread = 20
 }
 @export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
-@onready var bulletsManager = ExpeditionManager.bulletsManager
+@onready var projectilesManager = ExpeditionManager.projectilesManager
 
 var reloading = false
 var reloadSpeed = 1
@@ -70,7 +70,7 @@ func __handle_input():
 
 func ___primary_attack():
 	#instantiate new bullet at gun with gun rotation
-	bulletsManager.new_bullet(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, BULLET_PREFAB)
+	projectilesManager.new_bullet(bullet.speed, bullet.damage, global_position, rotation  + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), bullet.range, true, BULLET_PREFAB)
 
 func ___ready():
 	pass

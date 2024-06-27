@@ -1,14 +1,14 @@
 extends Projectile
 
-var maxPierces = 0
-var pierces = 0
-var pierceDamageMultiplier = 0.5
+var aoePrefab
+var projectileManager
 
 func setup():
-	pierceDamageMultiplier = expeditionStats.bulletPierceDamageMultiplier
-	maxPierces = expeditionStats.bulletMaxPierces
+	pass
 
-## bullet hit something
+func max_dist_reached():
+	explode_aoe()
+
 func hit_body(body):
 	#if thing hit can take damage, make it take bullets damage
 	if(body.has_method("take_damage")):
@@ -26,17 +26,22 @@ func hit_body(body):
 	parts.emitting = true
 	ParticlesContainer.add_child(parts)
 	
-	if(pierces >= maxPierces):
-		#delete bullet
-		queue_free()
-		
-	pierces += 1
-	hitDamage *= pierceDamageMultiplier
+	print("explode_aoe()")
+	explode_aoe()
 
-func set_vars(spd, dmg, mxDst, friendly):
+func explode_aoe():
+	print("creating new aoe")
+	var newAoe = aoePrefab.instantiate()
+	newAoe.position = position
+	projectileManager.add_child(newAoe)
+	queue_free()
+
+func set_vars(spd, dmg, mxDst, friendly, aoePrfb, prjctlMngr):
 	speed = spd
 	hitDamage = dmg
 	maxDist = mxDst
+	aoePrefab = aoePrfb
+	projectileManager = prjctlMngr
 	
 	#if friendly, dont collide with player
 	set_collision_mask_value(8, !friendly)

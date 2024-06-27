@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://crdvfrnhbrlqu"]
+
+[ext_resource type="Script" path="res://scripts/Weapons/RocketLauncher.gd" id="1_epmek"]
+[ext_resource type="Texture2D" uid="uid://d0l4n0yqtwltf" path="res://sprites/Weapons/pistol.png" id="2_hy4gj"]
+
+[node name="RocketLauncher" type="Node2D"]
+z_index = 1
+script = ExtResource("1_epmek")
+magSize = 1
+reloadTime = 100
+shotCost = 5
+bullet = {
+"damage": 0,
+"range": 400,
+"speed": 800,
+"spread": 5
+}
+maneuverability = 4
+
+[node name="WeaponDirection" type="Node2D" parent="."]
+
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponDirection"]
+z_index = 1
+position = Vector2(4, 1.19209e-07)
+scale = Vector2(0.655, 0.655)
+texture = ExtResource("2_hy4gj")

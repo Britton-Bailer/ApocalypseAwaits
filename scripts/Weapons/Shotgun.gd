@@ -7,10 +7,11 @@ var numBullets = 8
 func ___primary_attack():
 	#instantiate new bullet at gun with gun rotation
 	for i in range(numBullets):
-		bulletsManager.new_bullet(
+		projectilesManager.new_bullet(
 			bullet.speed + randf_range(-200, 200), 
 			bullet.damage, global_position, 
 			rotation + deg_to_rad(randf_range(-bullet.spread, bullet.spread)), 
-			bullet.range + randf_range(-50, 50), 
+			bullet.range + randf_range(-50, 50),
+			true, 
 			BULLET_PREFAB
 		)

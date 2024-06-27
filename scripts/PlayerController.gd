@@ -31,6 +31,7 @@ var weapons = [
 	preload("res://prefabs/Weapons/Sniper.tscn"),
 	preload("res://prefabs/Weapons/Shotgun.tscn"),
 	preload("res://prefabs/Weapons/BurstRifle.tscn"),
+	preload("res://prefabs/Weapons/RocketLauncher.tscn")
 ]
 var weaponIndex = 0
 

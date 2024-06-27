@@ -6,7 +6,7 @@ var ambientSpawnerPrefab = preload("res://prefabs/AmbientSpawner.tscn")
 var zombiesManagerPrefab = preload("res://prefabs/Managers/ZombiesManager.tscn")
 var coinsManagerPrefab = preload("res://prefabs/Managers/CoinsManager.tscn")
 var spawnersManagerPrefab = preload("res://prefabs/Managers/SpawnersManager.tscn")
-var bulletsManagerPrefab = preload("res://prefabs/Managers/BulletsManager.tscn")
+var projectilesManagerPrefab = preload("res://prefabs/Managers/ProjectilesManager.tscn")
 var navAgentPlacementPrefab = preload("res://prefabs/Managers/NavAgentPlacement.tscn")
 var hudManagerPrefab = preload("res://prefabs/Managers/HUDManager.tscn")
 
@@ -14,7 +14,7 @@ var ambientSpawner
 var zombiesManager
 var coinsManager
 var spawnersManager
-var bulletsManager
+var projectilesManager
 var navAgentPlacement
 var hudManager
 
@@ -23,7 +23,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	create_and_set_managers()
 	
-	ExpeditionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, bulletsManager, navAgentPlacement, hudManager)
+	ExpeditionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, projectilesManager, navAgentPlacement, hudManager)
 	ExpeditionManager.start_next_round(self)
 
 func create_and_set_managers():
@@ -39,8 +39,8 @@ func create_and_set_managers():
 	spawnersManager = spawnersManagerPrefab.instantiate()
 	add_child(spawnersManager)
 	
-	bulletsManager = bulletsManagerPrefab.instantiate()
-	add_child(bulletsManager)
+	projectilesManager = projectilesManagerPrefab.instantiate()
+	add_child(projectilesManager)
 	
 	navAgentPlacement = navAgentPlacementPrefab.instantiate()
 	add_child(navAgentPlacement)

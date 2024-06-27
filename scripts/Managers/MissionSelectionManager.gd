@@ -16,7 +16,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	create_and_set_managers()
 	
-	ExpeditionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, bulletsManager, navAgentPlacement, hudManager)
+	ExpeditionManager.set_managers(ambientSpawner, zombiesManager, coinsManager, spawnersManager, projectilesManager, navAgentPlacement, hudManager)
 	ExpeditionManager.start_mission_selection(self)
 
 func create_and_set_managers():
