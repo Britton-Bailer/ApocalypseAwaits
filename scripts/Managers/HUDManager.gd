@@ -15,10 +15,10 @@ extends BaseManager
 @onready var timerText = $GameUI/TimerText
 
 
-func set_vars(plr, tlmps, mssnNum, mssnName, mssnInfo):
+func set_vars(plr, tlmps, mssnNum, mssnName, mssnInfo, tlmpsCntnr):
 	healthIndicator.set_player(plr)
 	staminaIndicator.set_player(plr)
-	minimap.set_vars(plr, tlmps)
+	minimap.set_vars(plr, tlmps, tlmpsCntnr)
 	missionTypeText.text = "[center] Mission " + str(mssnNum) + ": " + str(mssnName) + " (" + str(mssnInfo) + ")[/center]"
 	flash_text("Mission: " + str(mssnNum) + " " + str(mssnName), str(mssnInfo))
 

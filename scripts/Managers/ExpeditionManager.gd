@@ -9,6 +9,7 @@ var missionsList = preload("res://MissionsList.tres")
 var playerPrefab = preload("res://prefabs/player.tscn")
 var player
 var tilemaps
+var tilemapsContainer
 
 var missionNum = 0
 var currency = 1000
@@ -136,13 +137,13 @@ func start_next_round(rndMngr):
 	rndMngr.add_child(newMap)
 	
 	var newPlayer = playerPrefab.instantiate()
-	newPlayer.position = Vector2.ZERO
+	newPlayer.position = newMap.get_player_spawn()
 	rndMngr.add_child(newPlayer)
 	player = newPlayer
 	
 	ambientSpawner.set_vars(currentMission.ambientSpawnQueue, has_ambient_spawn(), currentMission.ambientSpawnRateRange)
 	spawnersManager.set_vars(currentMission.numSpawners, currentMission.spawnersRadius)
-	hudManager.set_vars(player, tilemaps, missionNum+1, get_mission_name(), get_mission_info())
+	hudManager.set_vars(player, tilemaps, missionNum+1, get_mission_name(), get_mission_info(), tilemapsContainer)
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
 	
@@ -168,8 +169,9 @@ func start_mission_selection(rndMngr):
 func set_mission_type(type):
 	missionType = type
 
-func set_tilemaps(tlmps):
+func set_tilemaps(tlmps, tlmpsCntnr):
 	tilemaps = tlmps
+	tilemapsContainer = tlmpsCntnr
 
 func set_weapon(weapon):
 	hudManager.set_weapon(weapon)

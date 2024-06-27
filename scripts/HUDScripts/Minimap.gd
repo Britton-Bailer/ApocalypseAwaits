@@ -6,10 +6,11 @@ var playerSize = 3
 
 var player
 
+var tilemapsContainer
 var tilemaps: Array[Node]
 var cell_colors = [Color.TRANSPARENT, Color.TRANSPARENT, Color.BLACK]
 
-var playerDrawOffset = Vector2(blockSize*0.5/2.0, blockSize*0.8/2.0)
+var offcenterOffset = Vector2(-blockSize*6/2.0, -blockSize*6/2.0)
 
 func get_cells(tilemap: TileMap, id):
 	return tilemap.get_used_cells_by_id(id)
@@ -22,17 +23,17 @@ func _draw():
 		var cells = get_cells(tilemaps[id], 0)
 		for cell in cells:
 			#draw tileset cells
-			draw_rect(Rect2((Vector2(cell) + playerDrawOffset) * blockSize, Vector2(blockSize, blockSize)), color)
+			draw_rect(Rect2((Vector2(cell)) * blockSize, Vector2(blockSize, blockSize)), color)
 				
 		#draw player
-		draw_rect(Rect2((Vector2(player.position/16.0) - (Vector2.ONE * playerSize/2)) * blockSize, Vector2(playerSize, playerSize)), Color.PURPLE)
-
+		draw_rect(Rect2(((Vector2.ONE * playerSize/2) - (tilemapsContainer.global_position - player.global_position)/16.0 + offcenterOffset) * blockSize, Vector2(playerSize, playerSize)), Color.PURPLE)
 func _process(_delta):
 	if(tilemaps == null):
 		return
 	
 	queue_redraw()
 
-func set_vars(plr, tlmps):
+func set_vars(plr, tlmps, tlmpsCntnr):
 	player = plr
 	tilemaps = tlmps
+	tilemapsContainer = tlmpsCntnr
