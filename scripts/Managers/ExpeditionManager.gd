@@ -69,6 +69,9 @@ func extract_attempt():
 
 func mission_extract():
 	missionNum += 1
+	mission_fail_timer.stop()
+	extract_timer.stop()
+	survival_timer.stop()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/MissionSelection.tscn")
 

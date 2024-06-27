@@ -7,28 +7,29 @@
 [sub_resource type="Resource" id="Resource_6xm57"]
 script = ExtResource("2_iagbt")
 weights = {
-"Baby Zombie": 1,
+"Baby": 1,
 "Base": 2,
 "Charger": 1,
+"Frag Thrower": 1,
 "Sucker": 0,
-"Sucker Witch": 1,
-"Thrower": 2
+"Sucker Witch": 0,
+"Thrower": 1
 }
 
 [resource]
 script = ExtResource("1_a8gsa")
-missionTypeOptions = Array[int]([])
+missionTypeOptions = Array[int]([2, 5])
 maxZombies = 200
 damageMultipler = 1
 spawnWeights = SubResource("Resource_6xm57")
 missionFailTime = 180
 missionExtractTime = 60
 possibleMaps = Array[PackedScene]([ExtResource("1_yydyd")])
-numSpawners = 2
+numSpawners = 5
 spawnersRadius = 1000
 spawnRateRange = Vector2(300, 500)
 ambientSpawnQueue = Array[int]([0, 1, 4, 5, 2, 0, 0, 1, 4, 1])
 ambientSpawnRateRange = Vector2(200, 400)
-bountyTarget = 0
-killGoal = 0
+bountyTarget = 1
+killGoal = 15
 moneyGoal = 0
