@@ -12,6 +12,9 @@ class_name Weapon
 @export var maneuverability = 25
 
 var lastAttackTimer = timeBetweenAttacks
+var targetPosition = Vector2.ZERO
+var targetMouse = true
+var controlledByPlayer = true
 
 func _ready():
 	__ready()
@@ -19,9 +22,12 @@ func _ready():
 
 ## rotate gun to mouse
 func _process(delta):
+	if(targetMouse):
+		targetPosition = get_global_mouse_position()
 	__process(delta)
 	handle_weapon_rotation()
-	handle_input()
+	if(controlledByPlayer):
+		handle_input()
 	
 	#increase timer every frame
 	lastAttackTimer += 1
@@ -32,13 +38,13 @@ func update_with_expedition_stats():
 
 func handle_weapon_rotation():
 	#keep weapon facing the right direction
-	if (get_global_mouse_position().x < global_position.x):
+	if (targetPosition.x < global_position.x):
 		weapon_direction.scale.y = -1
 	else:
 		weapon_direction.scale.y = 1
 		
 	# lerp to mouse direction using maneuverability as speed
-	rotation = lerp_angle(rotation, ((get_global_mouse_position() - global_position).normalized()).angle(), deg_to_rad(maneuverability))
+	rotation = lerp_angle(rotation, ((targetPosition - global_position).normalized()).angle(), deg_to_rad(maneuverability))
 
 func handle_input():
 	#if mouse primary pressed and time between shots has elapsed, shoot primary

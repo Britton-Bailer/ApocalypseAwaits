@@ -36,13 +36,13 @@ func __update_with_expedition_stats():
 	bullet.range *= expeditionStats.weaponRangeMultiplier
 
 func __primary_attack():
-	if(reloading == false):
-		#reset last shot timer
-		lastAttackTimer = 0
-		
+	if(reloading == false):		
 		if(ExpeditionManager.currency >= shotCost):
-			___primary_attack()
-			ExpeditionManager.shot_fired(shotCost)
+			if(lastAttackTimer > timeBetweenAttacks):
+				#reset last shot timer
+				lastAttackTimer = 0
+				___primary_attack()
+				ExpeditionManager.shot_fired(shotCost)
 			
 			mag -= 1
 		else:

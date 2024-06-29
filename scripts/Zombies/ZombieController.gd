@@ -13,7 +13,7 @@ class_name ZombieController
 @export var touchDamage: float = 10
 @export var touchDamageInterval = 100
 @export var reactToBroadcast = true
-@export var separationForceFactor = 650  ## Adjust the strength of separation force
+@export var separationForceFactor = 650
 @export var coinWorth = 3
 var predictionTime = max(randf_range(-1, 3), 0)
 
@@ -25,9 +25,10 @@ var roamingSpeed
 var chasingSpeed
 var touchDamageTimer = 0
 var lastSeenTarget
-var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
+var currentState = Zombies.zombieState.ROAMING
 
 ## References to other nodes ##
+@onready var targetSenseArea = $TargetSenseArea
 @onready var navAgent = $NavigationAgent2D
 @onready var lineOfSightRay = $RayCastToPlayer
 @onready var damageArea = $DamageArea
@@ -36,17 +37,16 @@ var currentState = Zombies.zombieState.CHASING  ## Default state is CHASING
 @onready var zombiesManager = ExpeditionManager.zombiesManager
 @onready var projectilesManager = ExpeditionManager.projectilesManager
 @onready var coinsManager = ExpeditionManager.coinsManager
-@onready var target = ExpeditionManager.player
 @onready var expeditionStats = ExpeditionManager.expeditionStats
+@onready var target = null
 
 ## Initialization ##
 func _ready():
-	## Initialize speeds randomly within specified ranges
 	roamingSpeed = randf_range(roamingSpeedRange.x, roamingSpeedRange.y)
 	chasingSpeed = randf_range(chasingSpeedRange.x, chasingSpeedRange.y)
 	speed = roamingSpeed
 	lastSeenTarget = position
-	
+	targetSenseArea.get_child(0).shape.radius = sightRange
 	ready()
 	
 	health *= expeditionStats.zombieHealthMultiplier
@@ -54,14 +54,12 @@ func _ready():
 
 ## Main update loop ##
 func _process(delta):
-	if (velocity.x < 0):
+	if velocity.x < 0:
 		spriteDirection.scale.x = -1
 	else:
 		spriteDirection.scale.x = 1
 	
-	if can_see_target() or needs_new_point():
-		update_targeting()
-
+	update_targeting()
 	process(delta)
 	if can_attack():
 		currentState = Zombies.zombieState.ATTACK
@@ -71,7 +69,8 @@ func _process(delta):
 	if currentState != Zombies.zombieState.ATTACK:
 		navigation(delta)
 	do_touch_damage()
-	lineOfSightRay.target_position = target.global_position - global_position
+	if target:
+		lineOfSightRay.target_position = target.global_position - global_position
 
 ## Perform touch damage to overlapping bodies ##
 func do_touch_damage():
@@ -84,32 +83,49 @@ func do_touch_damage():
 
 ## Update targeting based on sight and navigation conditions ##
 func update_targeting():
-	if(canUpdateTargeting):
-		if can_see_target():
-			speed = chasingSpeed
-			if currentState != Zombies.zombieState.CHASING:
+	if canUpdateTargeting:
+		if target:
+			if can_see_target():
+				lastSeenTarget = target.global_position
+				broadcast_position(lastSeenTarget)
+			elif global_position.distance_to(lastSeenTarget) < 10:
+				target = null
+		else:
+			var players_in_sight = get_players_in_sight()
+			if players_in_sight.size() > 0:
+				target = players_in_sight[0]
+				speed = chasingSpeed
+				lastSeenTarget = target.global_position
 				currentState = Zombies.zombieState.CHASING
-			lastSeenTarget = predict_player_position()
-			broadcast_position(lastSeenTarget)
-		elif needs_new_point():
-			if currentState != Zombies.zombieState.ROAMING:
-				speed = roamingSpeed
-				currentState = Zombies.zombieState.ROAMING
-			lastSeenTarget = global_position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
+			else:
+				if currentState != Zombies.zombieState.ROAMING:
+					speed = roamingSpeed
+					currentState = Zombies.zombieState.ROAMING
+				if global_position.distance_to(lastSeenTarget) < 10:
+					lastSeenTarget = get_new_point_on_map()
 	
 	navAgent.target_position = lastSeenTarget
 	
-	# Add separation behavior
 	var separationForce = calculateSeparationForce()
 	navAgent.target_position += separationForce
 
-## Predict the player's future position based on their velocity ##
-func predict_player_position():
-	var pos = target.global_position
-	if(position.distance_to(pos) > 150):
-		var player_velocity = target.get_linear_velocity()
-		pos += (player_velocity * predictionTime)
+func get_new_point_on_map():
+	var pos = global_position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
+	navAgent.target_position = pos
+	while(!navAgent.is_target_reachable()):
+		pos = global_position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
+		navAgent.target_position = pos
+	
 	return pos
+
+## Get players in sight with line of sight ##
+func get_players_in_sight():
+	var players = []
+	for player in targetSenseArea.get_overlapping_bodies():
+		lineOfSightRay.target_position = player.global_position - global_position
+		if not lineOfSightRay.is_colliding():
+			players.append(player)
+	return players
 
 ## Navigate towards the next path position ##
 func navigation(delta):
@@ -118,7 +134,7 @@ func navigation(delta):
 
 ## Set a new target position ##
 func set_target(newPosition):
-	if reactToBroadcast:
+	if reactToBroadcast && not target:
 		currentState = Zombies.zombieState.CHASING
 		speed = chasingSpeed
 		lastSeenTarget = newPosition
@@ -132,15 +148,11 @@ func broadcast_position(newPosition):
 
 ## Check if the zombie can see the target within sight range ##
 func can_see_target():
-	return transform.origin.distance_to(target.global_position) < sightRange and not lineOfSightRay.is_colliding()
-
-## Check if the zombie needs to find a new navigation point ##
-func needs_new_point():
-	return global_position.distance_to(lastSeenTarget) < 10 || navAgent.get_next_path_position().distance_to(navAgent.get_parent().position) < 1
+	return target and not lineOfSightRay.is_colliding()
 
 ## Handle damage taken by the zombie ##
 func take_damage(amt):
-	if(health > 0):
+	if health > 0:
 		health -= amt * expeditionStats.bulletDamageMultiplier
 		if health <= 0:
 			coinsManager.add_coins(global_position, coinWorth)

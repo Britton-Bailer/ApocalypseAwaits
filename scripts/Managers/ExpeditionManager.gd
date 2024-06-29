@@ -149,6 +149,10 @@ func start_next_round(rndMngr):
 	
 	mission_fail_timer.start(currentMission.missionFailTime)
 	hudManager.set_timer(mission_fail_timer)
+	
+	var newCompanion = preload("res://prefabs/companion.tscn").instantiate()
+	newCompanion.position = newMap.get_player_spawn() + Vector2(700, 0)
+	rndMngr.add_child(newCompanion)
 
 func start_mission_selection(rndMngr):
 	expeditionStats = preload("res://BaseStats.tres")

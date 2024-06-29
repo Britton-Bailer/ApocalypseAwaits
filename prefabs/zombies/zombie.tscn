@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2tj0srsyc5c6"]
+[gd_scene load_steps=6 format=3 uid="uid://c2tj0srsyc5c6"]
 
 [ext_resource type="Script" path="res://scripts/Zombies/ZombieController.gd" id="1_x5gid"]
 [ext_resource type="Texture2D" uid="uid://cc20tm4k26yg2" path="res://sprites/CharacterSprites/Jon Zombie Sprite.png" id="2_knlor"]
@@ -9,6 +9,9 @@ size = Vector2(15, 15)
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bvkgi"]
+radius = 400.0
+
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 152
@@ -16,7 +19,7 @@ motion_mode = 1
 script = ExtResource("1_x5gid")
 roamingSpeedRange = Vector2(30, 60)
 chasingSpeedRange = Vector2(80, 120)
-broadcastRange = 200
+broadcastRange = 500
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l77dx")
@@ -25,6 +28,7 @@ shape = SubResource("RectangleShape2D_l77dx")
 target_desired_distance = 3.0
 navigation_layers = 2
 path_metadata_flags = 0
+debug_enabled = true
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
 collision_mask = 3
@@ -42,5 +46,12 @@ shape = SubResource("CircleShape2D_o7745")
 position = Vector2(2, -1)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_knlor")
+
+[node name="TargetSenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
+shape = SubResource("CircleShape2D_bvkgi")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

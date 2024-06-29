@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbipfv278esn8"]
+
+[ext_resource type="Script" path="res://scripts/CompanionController.gd" id="1_xl7fi"]
+[ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_61u4q"]
+[ext_resource type="PackedScene" uid="uid://dlxqybysnlluk" path="res://prefabs/Weapons/AssultRifle.tscn" id="3_gbw21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l77dx"]
+size = Vector2(15, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8mau"]
+radius = 400.0
+
+[node name="Companion" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 152
+motion_mode = 1
+script = ExtResource("1_xl7fi")
+
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l77dx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 3.0
+navigation_layers = 2
+path_metadata_flags = 0
+
+[node name="RayCastToPlayer" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="SpriteDirection" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
+position = Vector2(2, -1)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_61u4q")
+
+[node name="Weapon" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AssultRifle" parent="Weapon" instance=ExtResource("3_gbw21")]
+
+[node name="ZombieDetectionArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieDetectionArea"]
+shape = SubResource("CircleShape2D_l8mau")
