@@ -31,6 +31,5 @@ weaponRangeMultiplier = 0.0
 script = ExtResource("2_dis24")
 itemName = "Health Charm"
 itemSprite = ExtResource("1_btido")
-changedStats = SubResource("Resource_am5sv")
 affectedStats = SubResource("Resource_am5sv")
 itemCost = 5

@@ -7,11 +7,11 @@
 [sub_resource type="Resource" id="Resource_0fitb"]
 script = ExtResource("1_a5fua")
 playerMaxHealth = 0.0
-playerSpeed = 0.0
+playerSpeed = 1.0
 playerHealthRegenMultiplier = 0.0
 playerArmor = 0.0
 playerStaminaDrainMultiplier = 0.0
-playerStaminaRegenMultiplier = 0.0
+playerStaminaRegenMultiplier = 0.01
 zombieHealthMultiplier = 0.0
 zombieDamageMultiplier = 0.0
 zombieDropMultiplier = 0.0
@@ -31,6 +31,5 @@ weaponRangeMultiplier = 0.0
 script = ExtResource("2_rp1ne")
 itemName = "Sweat Band"
 itemSprite = ExtResource("1_xwu25")
-changedStats = SubResource("Resource_0fitb")
 affectedStats = SubResource("Resource_0fitb")
 itemCost = 5

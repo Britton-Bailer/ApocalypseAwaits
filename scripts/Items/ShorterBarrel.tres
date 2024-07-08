@@ -31,6 +31,5 @@ weaponRangeMultiplier = -0.05
 script = ExtResource("2_3woy2")
 itemName = "Shorter Barrel"
 itemSprite = ExtResource("1_qsm3e")
-changedStats = SubResource("Resource_ofbjg")
 affectedStats = SubResource("Resource_ofbjg")
 itemCost = 5

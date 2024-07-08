@@ -9,7 +9,7 @@
 script = ExtResource("2_acwtc")
 weights = {
 "Baby": 0,
-"Base": 0,
+"Base": 1,
 "Charger": 0,
 "Frag Thrower": 0,
 "Sucker": 0,

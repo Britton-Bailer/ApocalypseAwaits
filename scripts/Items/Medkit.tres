@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://cw8s5mgw7vj4l"]
+
+[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_7oswq"]
+[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_qnqu0"]
+[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="2_sjgpd"]
+
+[sub_resource type="Resource" id="Resource_qc0bs"]
+script = ExtResource("1_7oswq")
+playerMaxHealth = 5.0
+playerSpeed = 0.0
+playerHealthRegenMultiplier = 0.0
+playerArmor = 0.0
+playerStaminaDrainMultiplier = 0.0
+playerStaminaRegenMultiplier = 0.0
+zombieHealthMultiplier = 0.0
+zombieDamageMultiplier = 0.0
+zombieDropMultiplier = 0.0
+zombieSpeedMultiplier = 0.0
+bulletSpeedMultiplier = 0.0
+bulletDamageMultiplier = 0.0
+bulletMaxPierces = 0
+bulletPierceDamageMultiplier = 0.0
+weaponReloadSpeedMultiplier = 0.0
+weaponBulletCostMultiplier = 0.0
+weaponMagSizeMultiplier = 0.0
+weaponSpreadMultiplier = 0.0
+weaponManeuverabilityMultiplier = 0.0
+weaponRangeMultiplier = 0.0
+
+[resource]
+script = ExtResource("2_sjgpd")
+itemName = "Medkit"
+itemSprite = ExtResource("1_qnqu0")
+affectedStats = SubResource("Resource_qc0bs")
+itemCost = 5

@@ -6,10 +6,10 @@
 script = ExtResource("1_0yt1r")
 playerMaxHealth = 50.0
 playerSpeed = 150.0
-playerHealthRegen = 1.0
+playerHealthRegenMultiplier = 1.0
 playerArmor = 0.0
-playerStaminaDrain = 1.0
-playerStaminaRegen = 1.0
+playerStaminaDrainMultiplier = 1.0
+playerStaminaRegenMultiplier = 1.0
 zombieHealthMultiplier = 1.0
 zombieDamageMultiplier = 1.0
 zombieDropMultiplier = 1.0
