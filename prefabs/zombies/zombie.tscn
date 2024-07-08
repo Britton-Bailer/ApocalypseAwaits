@@ -19,7 +19,7 @@ motion_mode = 1
 script = ExtResource("1_x5gid")
 roamingSpeedRange = Vector2(30, 60)
 chasingSpeedRange = Vector2(80, 120)
-broadcastRange = 500
+sightRange = 350
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l77dx")

@@ -38,6 +38,7 @@ enum zombieState {
 	ROAMING,
 	CHASING,
 	ATTACK,
+	IDLE,
 }
 
 var zombiePrefabs: Dictionary = {

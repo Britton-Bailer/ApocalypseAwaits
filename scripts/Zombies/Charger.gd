@@ -32,12 +32,11 @@ func attack(delta):
 		originalSpeed = speed  ## Store original speed
 		originalTouchDamage = touchDamage
 		touchDamage = touchDamage * chargeDamageMultiplier
-		speed = chasingSpeed * chargeSpeedMultiplier  ## Increase speed for charge
+		speed *= chargeSpeedMultiplier  ## Increase speed for charge
 		canUpdateTargeting = false #turn off targeting while charging (charge in straight line)
 		set_charge_direction()
 	else:
 		currentState = Zombies.zombieState.ROAMING
-		speed = roamingSpeed  # Ensure speed is reset to roamingSpeed if not charging
 
 	navigation(delta)
 
@@ -45,7 +44,7 @@ func process(delta):
 	if(isCharging):
 		lastSeenTarget = global_position + chargeDir * 30
 		update_targeting()
-		speed = chasingSpeed * chargeSpeedMultiplier
+		speed *= chargeSpeedMultiplier
 		await get_tree().create_timer(1.0).timeout
 		canUpdateTargeting = true #turn targeting back on
 		chargingCooldownTimer = 0
@@ -70,7 +69,6 @@ func move_to_maintain_range(delta):
 
 	if distance_to_target > preferredRange + 10 || !can_see_target():
 		currentState = Zombies.zombieState.CHASING
-		speed = chasingSpeed
 		update_targeting()
 	elif distance_to_target < preferredRange - 10:
 		currentState = Zombies.zombieState.ROAMING

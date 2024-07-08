@@ -12,6 +12,7 @@ class_name ZombieController
 @export var health = 100
 @export var touchDamage: float = 10
 @export var touchDamageInterval = 100
+@export var idleWaitTime = 100
 @export var reactToBroadcast = true
 @export var separationForceFactor = 650
 @export var coinWorth = 3
@@ -25,7 +26,8 @@ var roamingSpeed
 var chasingSpeed
 var touchDamageTimer = 0
 var lastSeenTarget
-var currentState = Zombies.zombieState.ROAMING
+var currentState = Zombies.zombieState.IDLE
+var idleTimer = idleWaitTime
 
 ## References to other nodes ##
 @onready var targetSenseArea = $TargetSenseArea
@@ -54,21 +56,37 @@ func _ready():
 
 ## Main update loop ##
 func _process(delta):
-	if velocity.x < 0:
-		spriteDirection.scale.x = -1
-	else:
-		spriteDirection.scale.x = 1
+	get_players_in_sight()
 	
-	update_targeting()
-	process(delta)
-	if can_attack():
-		currentState = Zombies.zombieState.ATTACK
-		attack(delta)
-
-	move_and_slide()
-	if currentState != Zombies.zombieState.ATTACK:
+	match currentState:
+		Zombies.zombieState.ROAMING:
+			speed = roamingSpeed
+		Zombies.zombieState.CHASING:
+			speed = chasingSpeed
+	
+	if(currentState != Zombies.zombieState.IDLE):
+		if velocity.x < 0:
+			spriteDirection.scale.x = -1
+		else:
+			spriteDirection.scale.x = 1
+		
+		update_targeting()
+		process(delta)
+		
+		if can_attack():
+			attack(delta)
+		
+		move_and_slide()
 		navigation(delta)
-	do_touch_damage()
+		do_touch_damage()
+		
+	else:
+		idleTimer += 1
+		if(idleTimer >= idleWaitTime):
+			currentState = Zombies.zombieState.ROAMING
+			idleTimer = 0
+			update_targeting()
+	
 	if target:
 		lineOfSightRay.target_position = target.global_position - global_position
 
@@ -85,24 +103,19 @@ func do_touch_damage():
 func update_targeting():
 	if canUpdateTargeting:
 		if target:
+			currentState = Zombies.zombieState.CHASING
 			if can_see_target():
 				lastSeenTarget = target.global_position
 				broadcast_position(lastSeenTarget)
 			elif global_position.distance_to(lastSeenTarget) < 10:
 				target = null
 		else:
-			var players_in_sight = get_players_in_sight()
-			if players_in_sight.size() > 0:
-				target = players_in_sight[0]
-				speed = chasingSpeed
+			if target:
 				lastSeenTarget = target.global_position
 				currentState = Zombies.zombieState.CHASING
-			else:
-				if currentState != Zombies.zombieState.ROAMING:
-					speed = roamingSpeed
-					currentState = Zombies.zombieState.ROAMING
-				if global_position.distance_to(lastSeenTarget) < 10:
-					lastSeenTarget = get_new_point_on_map()
+			elif global_position.distance_to(lastSeenTarget) < 10:
+				currentState = Zombies.zombieState.IDLE
+				lastSeenTarget = get_new_point_on_map()
 	
 	navAgent.target_position = lastSeenTarget
 	
@@ -125,6 +138,10 @@ func get_players_in_sight():
 		lineOfSightRay.target_position = player.global_position - global_position
 		if not lineOfSightRay.is_colliding():
 			players.append(player)
+	if(players.size() == 0):
+		target = null
+	else:
+		target = players[0]
 	return players
 
 ## Navigate towards the next path position ##
@@ -136,7 +153,6 @@ func navigation(delta):
 func set_target(newPosition):
 	if reactToBroadcast && not target:
 		currentState = Zombies.zombieState.CHASING
-		speed = chasingSpeed
 		lastSeenTarget = newPosition
 
 ## Broadcast the target position to other zombies within range ##

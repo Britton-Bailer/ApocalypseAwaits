@@ -153,9 +153,9 @@ func start_next_round(rndMngr):
 	mission_fail_timer.start(currentMission.missionFailTime)
 	hudManager.set_timer(mission_fail_timer)
 	
-	var newCompanion = preload("res://prefabs/companion.tscn").instantiate()
-	newCompanion.position = newMap.get_player_spawn() + Vector2(700, 0)
-	rndMngr.add_child(newCompanion)
+	#var newCompanion = preload("res://prefabs/companion.tscn").instantiate()
+	#newCompanion.position = newMap.get_player_spawn() + Vector2(700, 0)
+	#rndMngr.add_child(newCompanion)
 
 func start_mission_selection(rndMngr):
 	expeditionStats = preload("res://BaseStats.tres")
@@ -169,7 +169,7 @@ func start_mission_selection(rndMngr):
 	
 	ambientSpawner.set_vars(currentMission.ambientSpawnQueue, false, currentMission.ambientSpawnRateRange)
 	spawnersManager.set_vars(0, currentMission.spawnersRadius)
-	hudManager.set_vars(player, tilemaps, "", "Mission Select", "Select your next mission.")
+	hudManager.set_vars(player, tilemaps, "", "Mission Select", "Select your next mission.", tilemapsContainer)
 	zombiesManager.set_vars(player)
 	hudManager.update_money(currency)
 

@@ -9,7 +9,7 @@
 script = ExtResource("2_acwtc")
 weights = {
 "Baby": 0,
-"Base": 2,
+"Base": 0,
 "Charger": 0,
 "Frag Thrower": 0,
 "Sucker": 0,
@@ -19,7 +19,7 @@ weights = {
 
 [resource]
 script = ExtResource("1_1pm4m")
-missionTypeOptions = Array[int]([])
+missionTypeOptions = Array[int]([2])
 maxZombies = 250
 damageMultipler = 1
 spawnWeights = SubResource("Resource_lcic4")
