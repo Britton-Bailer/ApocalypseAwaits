@@ -28,6 +28,7 @@ var touchDamageTimer = 0
 var lastSeenTarget
 var currentState = Zombies.zombieState.IDLE
 var idleTimer = idleWaitTime
+var player
 
 ## References to other nodes ##
 @onready var targetSenseArea = $TargetSenseArea
@@ -49,6 +50,7 @@ func _ready():
 	speed = roamingSpeed
 	lastSeenTarget = position
 	targetSenseArea.get_child(0).shape.radius = sightRange
+	player = ExpeditionManager.player
 	ready()
 	
 	health *= expeditionStats.zombieHealthMultiplier
@@ -168,6 +170,7 @@ func can_see_target():
 
 ## Handle damage taken by the zombie ##
 func take_damage(amt):
+	player.apply_shake()
 	if health > 0:
 		health -= amt * expeditionStats.bulletDamageMultiplier
 		if health <= 0:

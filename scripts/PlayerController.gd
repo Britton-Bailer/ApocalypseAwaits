@@ -4,6 +4,8 @@ extends RigidBody2D
 @onready var hudManager = ExpeditionManager.hudManager
 @onready var primary = %Primary
 @onready var secondary = %Secondary
+@onready var camera2d = $Camera2D
+@onready var hitScreen = $HitScreen
 
 var weapon
 var sprintSpeed = 0
@@ -19,7 +21,7 @@ var exhaustedSpeedPentalty = -50
 var speed = 150.0
 var maxHealth = 100
 var health = maxHealth
-var healthRegen = 2
+var healthRegen = 0.1
 
 var swapWeaponTimer = 0
 var swapWeaponInterval = 10
@@ -96,10 +98,15 @@ func sprint_exhaustion():
 		
 
 func take_damage(dmg):
+	apply_shake(dmg)
+	hitScreen.reset()
 	health -= dmg * ExpeditionManager.currentMission.damageMultipler * expeditionStats.zombieDamageMultiplier
 	
-	#if(health <= 0):
-		#ExpeditionManager.mission_failed()
+	if(health <= 0):
+		ExpeditionManager.mission_failed()
+
+func apply_shake(dmg: float = 3.0):
+	camera2d.apply_shake(dmg)
 
 func cycle_weapons():
 	var changeWeapon = Input.is_action_just_released("changeWeapon")
