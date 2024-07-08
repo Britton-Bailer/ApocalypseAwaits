@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgsks1tug8v7p"]
+[gd_scene load_steps=7 format=3 uid="uid://bgsks1tug8v7p"]
 
 [ext_resource type="Script" path="res://scripts/Zombies/ThrowZombie.gd" id="1_8srb6"]
 [ext_resource type="PackedScene" uid="uid://mfw64bgiddid" path="res://prefabs/AOEThrowables/Grenade.tscn" id="2_itk87"]
@@ -9,6 +9,9 @@ size = Vector2(18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8e8t"]
+radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
 position = Vector2(-1, 0)
@@ -52,3 +55,10 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("4_whojy")
+
+[node name="TargetSenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
+shape = SubResource("CircleShape2D_j8e8t")

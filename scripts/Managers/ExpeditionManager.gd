@@ -56,7 +56,10 @@ func shot_fired(shotCost):
 
 func spawner_destroyed():
 	currentMission.numSpawners -= 1
-		
+	
+	if(currentMission.numSpawners > 0):
+		hudManager.flash_text("", str(currentMission.numSpawners) + " spawners to go.", 0.8)
+	
 	if(missionType == enums.missionType.eradicate):
 		check_eradicate_win_condition()
 

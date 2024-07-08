@@ -14,7 +14,7 @@ weights = {
 "Frag Thrower": 0,
 "Sucker": 0,
 "Sucker Witch": 0,
-"Thrower": 0
+"Thrower": 1
 }
 
 [resource]
@@ -26,8 +26,8 @@ spawnWeights = SubResource("Resource_lcic4")
 missionFailTime = 180
 missionExtractTime = 60
 possibleMaps = Array[PackedScene]([ExtResource("1_ajihu"), ExtResource("2_d3eky")])
-numSpawners = 10
-spawnersRadius = 800
+numSpawners = 2
+spawnersRadius = 600
 spawnRateRange = Vector2(300, 500)
 ambientSpawnQueue = Array[int]([0, 0])
 ambientSpawnRateRange = Vector2(500, 1000)

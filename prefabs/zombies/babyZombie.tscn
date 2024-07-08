@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc64nxdsphsap"]
+[gd_scene load_steps=6 format=3 uid="uid://dc64nxdsphsap"]
 
 [ext_resource type="Script" path="res://scripts/Zombies/ZombieController.gd" id="1_fhxu0"]
 [ext_resource type="Texture2D" uid="uid://bhmnm4qniwkk8" path="res://sprites/CharacterSprites/Jon Baby Zombie Sprite.png" id="2_iap57"]
@@ -8,6 +8,9 @@ size = Vector2(13, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k387p"]
+radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -44,5 +47,12 @@ shape = SubResource("CircleShape2D_o7745")
 position = Vector2(0, -4)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_iap57")
+
+[node name="TargetSenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
+shape = SubResource("CircleShape2D_k387p")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

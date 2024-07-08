@@ -21,7 +21,7 @@ func ready():
 
 ## Override can_attack function to trigger charge attack ##
 func can_attack():
-	return position.distance_to(target.position) <= preferredRange+20 && canCharge && can_see_target()
+	return target && position.distance_to(target.position) <= preferredRange+20 && canCharge && can_see_target()
 
 ## Override attack function to handle charge attack ##
 func attack(delta):
@@ -53,7 +53,7 @@ func process(delta):
 		speed = originalSpeed  # Restore original speed after charge
 		touchDamage = originalTouchDamage
 		chargeCooldownTime = randi_range(cooldownRange.x, cooldownRange.y) # choose random time before next charge
-	else:
+	elif target:
 		move_to_maintain_range(delta)
 
 	if(chargingCooldownTimer <= chargeCooldownTime):

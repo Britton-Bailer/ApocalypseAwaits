@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg4txesnbkn4u"]
+[gd_scene load_steps=6 format=3 uid="uid://bg4txesnbkn4u"]
 
 [ext_resource type="Script" path="res://scripts/Zombies/Charger.gd" id="1_hrkla"]
 [ext_resource type="Texture2D" uid="uid://x6lsdve4rh82" path="res://sprites/CharacterSprites/Jon Charger Sprite.png" id="2_n87kd"]
@@ -8,6 +8,9 @@ size = Vector2(15, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa2ds"]
+radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -46,5 +49,12 @@ scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_n87kd")
 region_enabled = true
 region_rect = Rect2(0.720528, -0.0646615, 31.1156, 35.2523)
+
+[node name="TargetSenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
+shape = SubResource("CircleShape2D_wa2ds")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

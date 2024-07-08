@@ -37,7 +37,6 @@ func max_dist_reached():
 
 ## bullet hit something
 func _on_body_entered(body):
-	print("calling hit body")
 	hit_body(body)
 
 func hit_body(body):

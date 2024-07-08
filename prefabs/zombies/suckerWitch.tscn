@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3mvfa5he1q33"]
+[gd_scene load_steps=6 format=3 uid="uid://c3mvfa5he1q33"]
 
 [ext_resource type="Script" path="res://scripts/Zombies/SuckerWitch.gd" id="1_77hrn"]
 [ext_resource type="Texture2D" uid="uid://3c1eb0vvxksm" path="res://sprites/CharacterSprites/Jon Sucker Witch Sprite.png" id="2_jq6sy"]
@@ -8,6 +8,9 @@ size = Vector2(18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qktvn"]
+radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -50,3 +53,10 @@ scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_jq6sy")
 region_enabled = true
 region_rect = Rect2(-0.327332, 0, 31.3273, 31.1623)
+
+[node name="TargetSenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
+shape = SubResource("CircleShape2D_qktvn")

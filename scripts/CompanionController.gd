@@ -67,7 +67,7 @@ func _process(delta):
 			recalculateRouteTimer = 0
 			if(zombiesInArea.size() > 0 || navAgent.is_navigation_finished()):
 				navigate_away_from_zombies()
-		followingPlayer = position.distance_to(player.position) < 1
+		followingPlayer = position.distance_to(player.position) < 100
 	else:
 		navAgent.target_position = player.position
 
