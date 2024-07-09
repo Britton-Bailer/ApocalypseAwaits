@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5qj4134r7hb2"]
+[gd_scene load_steps=11 format=3 uid="uid://c5qj4134r7hb2"]
 
 [ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_0swwp"]
 [ext_resource type="Texture2D" uid="uid://se023yrad5tj" path="res://sprites/cursor.png" id="6_ansia"]
 [ext_resource type="Script" path="res://scripts/Cursor.gd" id="7_88osa"]
+[ext_resource type="Texture2D" uid="uid://bm8ma4mqdpco6" path="res://sprites/BloodSplatterOverlay.png" id="7_bvs65"]
 [ext_resource type="Script" path="res://scripts/HitScreen.gd" id="7_gm2qi"]
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
 
@@ -85,19 +86,13 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("6_ansia")
 script = ExtResource("7_88osa")
 
-[node name="HitScreen" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
+[node name="HitScreen" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 0.498039)
+texture = ExtResource("7_bvs65")
 script = ExtResource("7_gm2qi")
 
 [connection signal="pressed" from="PauseScreen/MarginContainer/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]

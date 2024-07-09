@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 @export var fadeSpeed = 1.5
 
