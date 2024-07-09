@@ -9,7 +9,7 @@ func apply_shake(strength: float):
 	shake_strength = strength
 
 # Called when the node enters the scene tree for the first time.
-func _process(delta):
+func _process(delta):	
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
 		

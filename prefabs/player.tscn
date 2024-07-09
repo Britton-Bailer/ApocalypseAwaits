@@ -35,6 +35,8 @@ texture = ExtResource("2_w6c1n")
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.54164, 1)
 zoom = Vector2(1.2, 1.2)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 script = ExtResource("3_0swwp")
 
 [node name="Primary" type="Node2D" parent="."]

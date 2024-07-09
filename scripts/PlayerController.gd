@@ -18,10 +18,13 @@ var exhausted = false
 var exhaustedSpeed = 0
 var exhaustedSpeedPentalty = -50
 
-var speed = 150.0
+var baseMaxSpeed = 150
+var maxSpeed
+var acceleration = 150
 var maxHealth = 100
 var health = maxHealth
 var healthRegen = 0.1
+var targetVelocity = Vector2.ZERO
 
 var swapWeaponTimer = 0
 var swapWeaponInterval = 10
@@ -46,36 +49,20 @@ func _ready():
 	set_primary_weapon(primaryWeaponPrefab)
 	set_secondary_weapon(secondaryWeaponPrefab)
 	weapon = get_equipped_weapon()
-	speed = expeditionStats.playerSpeed
+	maxSpeed = expeditionStats.playerSpeed
 	maxHealth = expeditionStats.playerMaxHealth
 	healthRegen *= expeditionStats.playerHealthRegenMultiplier
 	staminaDrain *= expeditionStats.playerStaminaDrainMultiplier
 	staminaRegen *= expeditionStats.playerStaminaRegenMultiplier
 
 func _physics_process(delta):
-	movement()
+	movement(delta)
 	cycle_weapons()
 	handle_pausing()
 	health_regen(delta)
 	sprint_exhaustion()
 
-func movement():
-	var left = Input.is_action_pressed("left")
-	if left:
-		linear_velocity.x = -(speed + sprintSpeed + exhaustedSpeed)
-		
-	var right = Input.is_action_pressed("right")
-	if right:
-		linear_velocity.x = speed + sprintSpeed + exhaustedSpeed
-	
-	var up = Input.is_action_pressed("up")
-	if up:
-		linear_velocity.y = -(speed + sprintSpeed + exhaustedSpeed)
-		
-	var down = Input.is_action_pressed("down")
-	if down:
-		linear_velocity.y = speed + sprintSpeed + exhaustedSpeed
-	
+func movement(delta):
 	var sprint = Input.is_action_pressed("sprint")
 	if sprint && not exhausted:
 		sprintSpeed = maxSprintSpeed
@@ -83,7 +70,27 @@ func movement():
 	else:
 		stamina += staminaRegen
 		sprintSpeed = 0
-
+		
+	var left = Input.is_action_pressed("left")
+	if left:
+		linear_velocity.x += -acceleration
+		
+	var right = Input.is_action_pressed("right")
+	if right:
+		linear_velocity.x += acceleration
+	
+	var up = Input.is_action_pressed("up")
+	if up:
+		linear_velocity.y += -acceleration
+		
+	var down = Input.is_action_pressed("down")
+	if down:
+		linear_velocity.y += acceleration
+	
+	maxSpeed = baseMaxSpeed + sprintSpeed + exhaustedSpeed
+	
+	if(linear_velocity.length() > maxSpeed):
+		linear_velocity = linear_velocity.normalized() * maxSpeed
 
 func sprint_exhaustion():
 	if (stamina >= maxStamina):
