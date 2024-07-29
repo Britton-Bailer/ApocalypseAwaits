@@ -30,5 +30,5 @@ spawnRateRange = Vector2(300, 500)
 ambientSpawnQueue = Array[int]([2, 4, 0, 1, 1, 5, 2])
 ambientSpawnRateRange = Vector2(300, 900)
 bountyTarget = 2
-killGoal = 15
+killGoal = 10
 moneyGoal = 30

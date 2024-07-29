@@ -128,12 +128,14 @@ func cycle_weapons():
 	
 	var swapWeapon = Input.is_action_just_released("SwapWeapon")
 	if(swapWeapon && swapWeaponTimer > swapWeaponInterval):
+		print("turn off primary")
 		swapWeaponTimer = 0
-		get_equipped_weapon().process_mode = Node.PROCESS_MODE_DISABLED
-		get_equipped_weapon().visible = false
+		get_equipped_weapon().get_parent().process_mode = Node.PROCESS_MODE_DISABLED
+		get_equipped_weapon().get_parent().visible = false
 		isPrimary = !isPrimary
-		get_equipped_weapon().process_mode = Node.PROCESS_MODE_ALWAYS
-		get_equipped_weapon().visible = true
+		print("turn on secondary")
+		get_equipped_weapon().get_parent().process_mode = Node.PROCESS_MODE_ALWAYS
+		get_equipped_weapon().get_parent().visible = true
 		ExpeditionManager.set_weapon(get_equipped_weapon())
 	
 	swapWeaponTimer += 1

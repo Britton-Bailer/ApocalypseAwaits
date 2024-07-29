@@ -27,7 +27,7 @@ func zombie_killed(type: Zombies.type):
 	if(missionType == enums.missionType.eradicate):
 		check_eradicate_win_condition()
 	
-	if(type == currentMission.bountyTarget && missionType == enums.missionType.bounty):
+	if(type == currentMission.bountyTarget && missionType == enums.missionType.bounty && !currentMission.canExtract):
 		currentMission.killCount += 1
 		
 		if(currentMission.killCount >= currentMission.killGoal):
@@ -43,7 +43,7 @@ func money_picked_up(worth):
 
 	hudManager.update_money(currency)
 
-	if(missionType == enums.missionType.piggyBank):
+	if(missionType == enums.missionType.piggyBank && !currentMission.canExtract):
 		if(currentMission.moneyEarned >= currentMission.moneyGoal):
 			mission_finished()
 			return
