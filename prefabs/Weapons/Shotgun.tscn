@@ -8,12 +8,14 @@ z_index = 1
 script = ExtResource("1_m6621")
 magSize = 2
 reloadTime = 90
+shotCost = 3
 bullet = {
 "damage": 15,
 "range": 150,
 "speed": 700,
 "spread": 15
 }
+kickback = 2.0
 timeBetweenAttacks = 50
 maneuverability = 4
 

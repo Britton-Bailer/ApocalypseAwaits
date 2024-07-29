@@ -15,6 +15,7 @@ bullet = {
 "speed": 900,
 "spread": 5
 }
+kickback = 0.5
 timeBetweenAttacks = 40
 
 [node name="WeaponDirection" type="Node2D" parent="."]

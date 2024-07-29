@@ -170,7 +170,7 @@ func can_see_target():
 
 ## Handle damage taken by the zombie ##
 func take_damage(amt):
-	player.apply_shake()
+	#player.apply_shake()
 	if health > 0:
 		health -= amt * expeditionStats.bulletDamageMultiplier
 		if health <= 0:

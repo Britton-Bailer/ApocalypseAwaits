@@ -16,6 +16,7 @@ bullet = {
 "speed": 800,
 "spread": 5
 }
+kickback = 3.0
 BULLET_PREFAB = ExtResource("2_hhnyo")
 maneuverability = 4
 

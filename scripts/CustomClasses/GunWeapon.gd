@@ -12,6 +12,7 @@ class_name GunWeapon
 	speed = 800,
 	spread = 20
 }
+@export var kickback: float = 1
 @export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
 @onready var projectilesManager = ExpeditionManager.projectilesManager
 
@@ -19,9 +20,10 @@ var reloading = false
 var reloadSpeed = 1
 var reloadTimer = 0
 var mag
+var player
 
 func _draw():
-	draw_circle_arc_poly(Vector2.ZERO, 1000, 89-bullet.spread, 91+bullet.spread, Color(1,1,1,0.2))
+	draw_circle_arc_poly(Vector2.ZERO, bullet.range, 89-bullet.spread, 91+bullet.spread, Color(1,1,1,0.2))
 
 func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 	var nb_points = 32
@@ -35,6 +37,7 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 	draw_polygon(points_arc, colors)
 
 func __ready():
+	player = get_parent().get_parent()
 	___ready()
 	
 func __process(delta):
@@ -51,10 +54,11 @@ func __update_with_expedition_stats():
 	bullet.range *= expeditionStats.weaponRangeMultiplier
 
 func __primary_attack():
-	if(reloading == false):		
+	if(reloading == false):
 		if(ExpeditionManager.currency >= shotCost):
 			if(lastAttackTimer > timeBetweenAttacks):
 				#reset last shot timer
+				apply_shake()
 				lastAttackTimer = 0
 				___primary_attack()
 				ExpeditionManager.shot_fired(shotCost)
@@ -78,6 +82,9 @@ func handle_reloading():
 		mag = magSize
 		reloadTimer = 0
 		reloading = false
+
+func apply_shake():
+	player.apply_shake(kickback)
 
 func __handle_input():
 	if Input.is_action_pressed("reload"):
