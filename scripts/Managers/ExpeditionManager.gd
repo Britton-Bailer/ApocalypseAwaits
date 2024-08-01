@@ -21,7 +21,6 @@ var missionsWithAmbientSpawn = [enums.missionType.bounty, enums.missionType.pigg
 var missionType = enums.missionType.eradicate
 
 var zombies = Zombies.new()
-
 ## bounty
 func zombie_killed(type: Zombies.type):
 	if(missionType == enums.missionType.eradicate):

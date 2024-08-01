@@ -97,11 +97,15 @@ func sprint_exhaustion():
 		exhaustedSpeed = 0 
 		stamina = maxStamina
 		exhausted = false
+		#trying to call out the variable "exhaustion" in the primary weapons code
+		primaryWeaponPrefab.exhaustion == false
 
 	if (stamina <= 0):
 		hudManager.flash_text("", "You're exhausted. Get rekt.", 0.4)
 		exhausted = true
 		exhaustedSpeed = exhaustedSpeedPentalty
+		#here too
+		primaryWeaponPrefab.exhaustion == true
 		
 
 func take_damage(dmg):

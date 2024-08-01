@@ -10,7 +10,7 @@ class_name GunWeapon
 	damage = 10,
 	range = 200,
 	speed = 800,
-	spread = 20
+	spread = 2
 }
 @export var kickback: float = 1
 @export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
@@ -21,20 +21,22 @@ var reloadSpeed = 1
 var reloadTimer = 0
 var mag
 var player
+var exhausted = false
 
-func _draw():
-	draw_circle_arc_poly(Vector2.ZERO, bullet.range, 89-bullet.spread, 91+bullet.spread, Color(1,1,1,0.2))
 
-func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
-	var nb_points = 32
-	var points_arc = PackedVector2Array()
-	points_arc.push_back(center)
-	var colors = PackedColorArray([color])
-
-	for i in range(nb_points + 1):
-		var angle_point = deg_to_rad(angle_from + i * (angle_to - angle_from) / nb_points - 90)
-		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
-	draw_polygon(points_arc, colors)
+#func _draw():
+	#draw_circle_arc_poly(Vector2.ZERO, bullet.range, 89-bullet.spread, 91+bullet.spread, Color(1,1,1,0.2))
+#
+#func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
+	#var nb_points = 32
+	#var points_arc = PackedVector2Array()
+	#points_arc.push_back(center)
+	#var colors = PackedColorArray([color])
+#
+	#for i in range(nb_points + 1):
+		#var angle_point = deg_to_rad(angle_from + i * (angle_to - angle_from) / nb_points - 90)
+		#points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
+	#draw_polygon(points_arc, colors)
 
 func __ready():
 	player = get_parent().get_parent()
@@ -44,6 +46,7 @@ func __process(delta):
 	___process(delta)
 	queue_redraw()
 	handle_reloading()
+	handle_exhaustion()
 
 func __update_with_expedition_stats():
 	reloadSpeed *= expeditionStats.weaponReloadSpeedMultiplier
@@ -66,7 +69,11 @@ func __primary_attack():
 			mag -= 1
 		else:
 			hudManager.flash_text("", "Not enough ammo. Switch to your secondary!", 0.8)
-
+func __secondary_attack():
+	var mouse_velocity = Input.get_last_mouse_velocity()
+	var slowed_velocity = mouse_velocity * 0.5
+	mouse_velocity = slowed_velocity
+	
 func reload():
 	reloading = true
 
@@ -83,6 +90,13 @@ func handle_reloading():
 		reloadTimer = 0
 		reloading = false
 
+
+func handle_exhaustion():
+	if(exhausted):
+		bullet[3] == 30
+	else:
+		bullet[3] == 2
+	
 func apply_shake():
 	player.apply_shake(kickback)
 

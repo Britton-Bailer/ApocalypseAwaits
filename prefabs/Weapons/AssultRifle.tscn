@@ -9,12 +9,12 @@ script = ExtResource("1_k7egp")
 magSize = 25
 reloadTime = 100
 bullet = {
-"damage": 50,
+"damage": 25,
 "range": 400,
 "speed": 800,
-"spread": 10
+"spread": 2
 }
-maneuverability = 6
+maneuverability = 1000
 
 [node name="WeaponDirection" type="Node2D" parent="."]
 

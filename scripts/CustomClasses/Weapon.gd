@@ -9,7 +9,7 @@ class_name Weapon
 @onready var expeditionStats = ExpeditionManager.expeditionStats
 
 @export var timeBetweenAttacks = 10
-@export var maneuverability = 25
+@export var maneuverability = 100
 
 var lastAttackTimer = timeBetweenAttacks
 var targetPosition = Vector2.ZERO
@@ -52,7 +52,7 @@ func handle_input():
 		__primary_attack()
 	
 	#if mouse secondary pressed and time between shots has elapsed, shoot secondary
-	if(Input.is_action_pressed("weapon_secondary") && lastAttackTimer > timeBetweenAttacks):
+	if(Input.is_action_pressed("weapon_secondary")):
 		__secondary_attack()
 
 	__handle_input()
