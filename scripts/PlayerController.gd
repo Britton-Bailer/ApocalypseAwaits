@@ -29,6 +29,8 @@ var targetVelocity = Vector2.ZERO
 var swapWeaponTimer = 0
 var swapWeaponInterval = 10
 var isPrimary = true
+var primaryWeapon
+var secondaryWeapon
 
 var weapons = [
 	preload("res://prefabs/Weapons/AssultRifle.tscn"),
@@ -98,14 +100,14 @@ func sprint_exhaustion():
 		stamina = maxStamina
 		exhausted = false
 		#trying to call out the variable "exhaustion" in the primary weapons code
-		primaryWeaponPrefab.exhaustion == false
+		primaryWeapon.exhausted == false
 
 	if (stamina <= 0):
 		hudManager.flash_text("", "You're exhausted. Get rekt.", 0.4)
 		exhausted = true
 		exhaustedSpeed = exhaustedSpeedPentalty
 		#here too
-		primaryWeaponPrefab.exhaustion == true
+		primaryWeapon.exhausted == true
 		
 
 func take_damage(dmg):
@@ -148,7 +150,7 @@ func set_primary_weapon(wpnPrefab):
 	if(primary.get_child_count() > 0):
 		primary.get_child(0).free()
 	
-	var primaryWeapon = wpnPrefab.instantiate()
+	primaryWeapon = wpnPrefab.instantiate()
 	primary.add_child(primaryWeapon)
 	ExpeditionManager.set_weapon(get_equipped_weapon())
 
@@ -156,7 +158,7 @@ func set_secondary_weapon(wpnPrefab):
 	if(secondary.get_child_count() > 0):
 		secondary.get_child(0).free()
 	
-	var primaryWeapon = wpnPrefab.instantiate()
+	primaryWeapon = wpnPrefab.instantiate()
 	secondary.add_child(primaryWeapon)
 
 func handle_pausing():

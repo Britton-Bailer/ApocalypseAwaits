@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://d4h11hg4hjwdq"]
+[gd_scene load_steps=26 format=3 uid="uid://d4h11hg4hjwdq"]
 
 [ext_resource type="Script" path="res://scripts/Tilemaps.gd" id="1_513do"]
 [ext_resource type="Script" path="res://scripts/Map.gd" id="1_n7dmy"]
-[ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/TileMap.png" id="2_vmwww"]
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="3_vktfa"]
 [ext_resource type="Texture2D" uid="uid://dli0u8ggmfdbj" path="res://sprites/Tilesets/Grass.png" id="4_xmruk"]
 [ext_resource type="Texture2D" uid="uid://dphj77sghqxup" path="res://sprites/Tilesets/Hills.png" id="5_joi15"]
@@ -34,7 +33,6 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 23.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p63qe"]
-texture = ExtResource("2_vmwww")
 0:0/0 = 0
 0:0/0/terrain_set = 1
 0:0/0/terrain = 0

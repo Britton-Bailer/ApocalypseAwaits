@@ -92,10 +92,11 @@ func handle_reloading():
 
 
 func handle_exhaustion():
-	if(exhausted):
-		bullet[3] == 30
-	else:
-		bullet[3] == 2
+	pass
+	#if(exhausted):
+		#bullet[3] == 30
+	#else:
+		#bullet[3] == 2
 	
 func apply_shake():
 	player.apply_shake(kickback)
