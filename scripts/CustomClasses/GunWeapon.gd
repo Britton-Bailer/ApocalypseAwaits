@@ -21,8 +21,6 @@ var reloadSpeed = 1
 var reloadTimer = 0
 var mag
 var player
-var exhausted = false
-
 
 #func _draw():
 	#draw_circle_arc_poly(Vector2.ZERO, bullet.range, 89-bullet.spread, 91+bullet.spread, Color(1,1,1,0.2))
@@ -90,13 +88,11 @@ func handle_reloading():
 		reloadTimer = 0
 		reloading = false
 
-
 func handle_exhaustion():
-	pass
-	if(exhausted):
-		bullet.spread == 30
+	if(player.exhausted):
+		bullet.spread = 30
 	else:
-		bullet.spread == 2
+		bullet.spread = 2
 	
 func apply_shake():
 	player.apply_shake(kickback)

@@ -136,10 +136,10 @@ func get_new_point_on_map():
 ## Get players in sight with line of sight ##
 func get_players_in_sight():
 	var players = []
-	for player in targetSenseArea.get_overlapping_bodies():
-		lineOfSightRay.target_position = player.global_position - global_position
+	for targets in targetSenseArea.get_overlapping_bodies():
+		lineOfSightRay.target_position = targets.global_position - global_position
 		if not lineOfSightRay.is_colliding():
-			players.append(player)
+			players.append(targets)
 	if(players.size() == 0):
 		target = null
 	else:
