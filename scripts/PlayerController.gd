@@ -6,6 +6,7 @@ extends RigidBody2D
 @onready var secondary = %Secondary
 @onready var camera2d = $Camera2D
 @onready var hitScreen = $HitScreen
+@onready var animatedSprite = $AnimatedSprite2D
 
 var weapon
 var sprintSpeed = 0
@@ -18,12 +19,17 @@ var exhausted = false
 var exhaustedSpeed = 0
 var exhaustedSpeedPentalty = -50
 
+var running = false
+var walking = false
+var idle = false
+var last_direction = ""
+
 var baseMaxSpeed = 150
 var maxSpeed
 var acceleration = 150
 var maxHealth = 100
 var health = maxHealth
-var healthRegen = 0.1
+var healthRegen = 100
 var targetVelocity = Vector2.ZERO
 
 var swapWeaponTimer = 0
@@ -57,12 +63,159 @@ func _ready():
 	staminaDrain *= expeditionStats.playerStaminaDrainMultiplier
 	staminaRegen *= expeditionStats.playerStaminaRegenMultiplier
 
+func _process(delta):
+	animation(delta)
+
+	
 func _physics_process(delta):
 	movement(delta)
 	cycle_weapons()
 	handle_pausing()
 	health_regen(delta)
 	sprint_exhaustion()
+
+func animation(delta):
+	var sprint = Input.is_action_pressed("sprint")
+	var left = Input.is_action_pressed("left")
+	var right = Input.is_action_pressed("right")
+	var up = Input.is_action_pressed("up")
+	var down = Input.is_action_pressed("down")
+ 
+	if left && up:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = true
+				animatedSprite.play ("Run Side")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = true
+				animatedSprite.play("Walk Three Fourths Back")
+				
+		last_direction = "lup"
+
+	elif right && up:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = false
+				animatedSprite.play ("Run Side")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = false
+				animatedSprite.play("Walk Three Fourths Back")
+				
+		last_direction = "rup"
+
+	elif left && down:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = true
+				animatedSprite.play ("Run Side")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = true
+				animatedSprite.play("Walk Three Fourths Front")
+				
+		last_direction = "ldown"
+
+	elif right && down:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = false
+				animatedSprite.play ("Run Side")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = false
+				animatedSprite.play("Walk Three Fourths Front")
+				
+		last_direction = "rdown"
+
+	elif left:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = true
+				animatedSprite.play ("Run Side")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = true
+				animatedSprite.play("Walk Side")
+				
+		last_direction = "left"
+
+	elif right:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = false
+				animatedSprite.play ("Run Side")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = false
+				animatedSprite.play("Walk Side")
+				
+		last_direction = "right"
+
+	elif up:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = false
+				animatedSprite.play ("Run Back")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = false
+				animatedSprite.play("Walk Back")
+				
+		last_direction = "up"
+
+	elif down:
+		if sprint && not exhausted:
+			if not running:
+				animatedSprite.flip_h = false
+				animatedSprite.play ("Run Front")
+				
+		else:
+			if not walking:
+				animatedSprite.flip_h = false
+				animatedSprite.play("Walk Front")
+				
+		last_direction = "down"
+
+	else:
+		if walking or running:
+			running = false
+			walking = false
+
+		if not up && not down && not right && not left:
+			if last_direction == "lup":
+				animatedSprite.play("Idle Three Fourths Back")
+				animatedSprite.flip_h = true
+			if last_direction == "rup":
+				animatedSprite.play("Idle Three Fourths Back")
+				animatedSprite.flip_h = false
+			if last_direction == "ldown":
+				animatedSprite.play("Idle Three Fourths Front")
+				animatedSprite.flip_h = true
+			if last_direction == "rdown":
+				animatedSprite.play("Idle Three Fourths Front")
+				animatedSprite.flip_h = false
+			if last_direction == "left":
+				animatedSprite.play("Idle Side")
+				animatedSprite.flip_h = true
+			if last_direction == "right":
+				animatedSprite.play("Idle Side")
+				animatedSprite.flip_h = false
+			if last_direction == "up":
+				animatedSprite.play("Idle Back")
+			if last_direction == "down":
+				animatedSprite.play("Idle Front")
+
+
+
 
 func movement(delta):
 	var sprint = Input.is_action_pressed("sprint")
@@ -76,18 +229,26 @@ func movement(delta):
 	var left = Input.is_action_pressed("left")
 	if left:
 		linear_velocity.x += -acceleration
+		#animatedSprite.flip_h = true 
+		#animatedSprite.play ("Walk Side")
+		#if running:
+			#animatedSprite.play ("Run Side")
 		
 	var right = Input.is_action_pressed("right")
 	if right:
 		linear_velocity.x += acceleration
+		#animatedSprite.flip_h = false 
+		#animatedSprite.play ("Walk Side")
 	
 	var up = Input.is_action_pressed("up")
 	if up:
 		linear_velocity.y += -acceleration
+		#animatedSprite.play ("Walk Back")
 		
 	var down = Input.is_action_pressed("down")
 	if down:
 		linear_velocity.y += acceleration
+		#animatedSprite.play ("Walk Front")
 	
 	maxSpeed = baseMaxSpeed + sprintSpeed + exhaustedSpeed
 	
