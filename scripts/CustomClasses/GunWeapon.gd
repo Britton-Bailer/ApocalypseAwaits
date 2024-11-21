@@ -24,6 +24,7 @@ var player
 
 func _draw():
 	draw_circle_arc_poly(Vector2.ZERO, bullet.range, 89-bullet.spread, 91+bullet.spread, Color(1,1,1,0.2))
+	print(bullet.spread)
 
 func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 	var nb_points = 32
@@ -89,10 +90,11 @@ func handle_reloading():
 		reloading = false
 
 func handle_exhaustion():
-	if(player.exhausted):
-		bullet.spread = 30
-	else:
-		bullet.spread = 2
+	pass
+	#if(player.exhausted):
+		#bullet.spread = 30
+	#else:
+		#bullet.spread = 2
 	
 func apply_shake():
 	player.apply_shake(kickback)
