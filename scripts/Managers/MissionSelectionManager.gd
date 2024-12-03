@@ -1,6 +1,6 @@
 extends MissionManager
 
-var missionScene = preload("res://scenes/Mission.tscn")
+var missionScene = preload("res://scenes/mission.tscn")
 
 var missionTypeOption1
 var missionTypeOption2

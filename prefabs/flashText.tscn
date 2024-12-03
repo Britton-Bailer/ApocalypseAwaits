@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8ii0gvrp8gbg"]
 
-[ext_resource type="Script" path="res://scripts/HUDScripts/FlashTextFade.gd" id="1_nqnv4"]
+[ext_resource type="Script" path="res://scripts/HUDScripts/flash-text-fade.gd" id="1_nqnv4"]
 
 [sub_resource type="Theme" id="Theme_v8deh"]
 default_font_size = 40

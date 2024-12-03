@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/CustomClasses/expedition-stats.gd" id="1_etbas"]
 [ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="2_ykl21"]
-[ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="3_l4jsg"]
+[ext_resource type="Script" path="res://scripts/Items/base-item-resource.gd" id="3_l4jsg"]
 
 [sub_resource type="Resource" id="Resource_u4v46"]
 script = ExtResource("1_etbas")

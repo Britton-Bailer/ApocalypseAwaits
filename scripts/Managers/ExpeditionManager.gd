@@ -5,7 +5,7 @@ extends BaseManager
 @onready var mission_fail_timer = $MissionFailTimer
 
 @onready var ENUMS = enums.new()
-var missionsList = preload("res://MissionsList.tres")
+var missionsList = preload("res://missions-list.tres")
 var playerPrefab = preload("res://prefabs/player.tscn")
 var player
 var tilemaps
@@ -14,7 +14,7 @@ var tilemapsContainer
 var missionNum = 0
 var currency = 1000
 var currentMission: MissionData
-var items: Array[BaseItemResource] = [preload("res://scripts/Items/RecoilForDumbies.tres")]
+var items: Array[BaseItemResource] = [preload("res://scripts/Items/recoil-for-dumbies.tres")]
 var expeditionStats
 var missionsRequiringExtract = [enums.missionType.bounty, enums.missionType.piggyBank]
 var missionsWithAmbientSpawn = [enums.missionType.bounty, enums.missionType.piggyBank, enums.missionType.defense, enums.missionType.extraction]

@@ -31,8 +31,8 @@ var enumToNames = [
 	"Charger",
 	"Frag Thrower",
 ]
-func zombie_name(type):
-	return enumToNames[type]
+func zombie_name(zombie_type):
+	return enumToNames[zombie_type]
 
 enum zombieState {
 	ROAMING,

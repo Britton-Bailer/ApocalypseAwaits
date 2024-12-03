@@ -4,16 +4,15 @@
 
 [resource]
 script = ExtResource("1_a18um")
-missionType = 0
+missionTypeOptions = Array[int]([])
 maxZombies = 0
 damageMultipler = 0
-requiresExtract = false
 missionFailTime = 0
 missionExtractTime = 0
+possibleMaps = Array[PackedScene]([])
 numSpawners = 0
 spawnersRadius = 1000
 spawnRateRange = Vector2(300, 500)
-ambientSpawn = false
 ambientSpawnQueue = Array[int]([])
 ambientSpawnRateRange = Vector2(500, 1000)
 bountyTarget = 0
