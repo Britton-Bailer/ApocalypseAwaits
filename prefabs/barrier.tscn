@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhh5bbg0isb2o"]
 
-[ext_resource type="Script" path="res://scripts/Barrier.gd" id="1_xpws5"]
+[ext_resource type="Script" path="res://scripts/barrier.gd" id="1_xpws5"]
 [ext_resource type="Texture2D" uid="uid://nm3ptxi1302k" path="res://sprites/Barrier.png" id="2_t6jpa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoa54"]
