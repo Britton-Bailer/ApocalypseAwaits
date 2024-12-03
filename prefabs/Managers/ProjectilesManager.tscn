@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://n0y637e6mhst"]
 
-[ext_resource type="Script" path="res://scripts/Managers/ProjectileManager.gd" id="1_qcq8e"]
+[ext_resource type="Script" path="res://scripts/Managers/projectile-manager.gd" id="1_qcq8e"]
 
 [node name="BulletsManager" type="Node2D"]
 z_index = 2

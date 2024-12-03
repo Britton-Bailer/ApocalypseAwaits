@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ct4rthoqkdwur"]
 
-[ext_resource type="Script" path="res://scripts/Managers/HUDManager.gd" id="1_cxpsa"]
+[ext_resource type="Script" path="res://scripts/Managers/hud-manager.gd" id="1_cxpsa"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/ammo-text.gd" id="2_81ubk"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/ammo-indicator.gd" id="3_yc5s2"]
 [ext_resource type="Script" path="res://scripts/HUDScripts/fps-indicator.gd" id="4_fnvej"]

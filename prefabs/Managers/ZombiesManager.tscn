@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dx87ijtsb2v1i"]
 
-[ext_resource type="Script" path="res://scripts/Managers/ZombiesManager.gd" id="1_40ovb"]
+[ext_resource type="Script" path="res://scripts/Managers/zombies-manager.gd" id="1_40ovb"]
 
 [node name="ZombiesManager" type="Node2D"]
 script = ExtResource("1_40ovb")
