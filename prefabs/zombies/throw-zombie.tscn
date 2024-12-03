@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqjyj6y1g43pd"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/ThrowZombie.gd" id="1_dekml"]
+[ext_resource type="Script" path="res://scripts/Zombies/throw-zombie.gd" id="1_dekml"]
 [ext_resource type="Texture2D" uid="uid://bnb4uour8f8yx" path="res://sprites/CharacterSprites/Jon Zombie Thrower Sprite.png" id="2_a2w7s"]
 [ext_resource type="PackedScene" uid="uid://b0t4td127vcra" path="res://prefabs/AOEThrowables/AOEThrowable.tscn" id="2_ibhxs"]
 

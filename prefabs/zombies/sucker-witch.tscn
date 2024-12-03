@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3mvfa5he1q33"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/SuckerWitch.gd" id="1_77hrn"]
+[ext_resource type="Script" path="res://scripts/Zombies/sucker-witch.gd" id="1_77hrn"]
 [ext_resource type="Texture2D" uid="uid://3c1eb0vvxksm" path="res://sprites/CharacterSprites/Jon Sucker Witch Sprite.png" id="2_jq6sy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04e0a"]

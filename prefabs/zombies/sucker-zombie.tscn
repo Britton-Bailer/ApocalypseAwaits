@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgijsj2hvu5sp"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/ZombieController.gd" id="1_ponyi"]
+[ext_resource type="Script" path="res://scripts/Zombies/zombie-controller.gd" id="1_ponyi"]
 [ext_resource type="Texture2D" uid="uid://bsnks2h43swep" path="res://sprites/CharacterSprites/Jon Sucker Sprite.png" id="2_2s5d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrouf"]

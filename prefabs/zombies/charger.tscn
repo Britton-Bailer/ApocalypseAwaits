@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bg4txesnbkn4u"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/Charger.gd" id="1_hrkla"]
+[ext_resource type="Script" path="res://scripts/Zombies/charger.gd" id="1_hrkla"]
 [ext_resource type="Texture2D" uid="uid://x6lsdve4rh82" path="res://sprites/CharacterSprites/Jon Charger Sprite.png" id="2_n87kd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxqa"]

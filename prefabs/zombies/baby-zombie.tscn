@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dc64nxdsphsap"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/ZombieController.gd" id="1_fhxu0"]
+[ext_resource type="Script" path="res://scripts/Zombies/zombie-controller.gd" id="1_fhxu0"]
 [ext_resource type="Texture2D" uid="uid://bhmnm4qniwkk8" path="res://sprites/CharacterSprites/Jon Baby Zombie Sprite.png" id="2_iap57"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyn48"]
