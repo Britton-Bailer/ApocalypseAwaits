@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://di26evx5dmust"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/BurstAssultRifle.gd" id="1_gfn7t"]
+[ext_resource type="Script" path="res://scripts/Weapons/burst-assult-rifle.gd" id="1_gfn7t"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="2_x8osu"]
 
 [node name="BurstRifle" type="Node2D"]
