@@ -1,6 +1,6 @@
 [gd_scene load_steps=66 format=3 uid="uid://cng85nbiimysx"]
 
-[ext_resource type="Script" path="res://scripts/Coin.gd" id="1_td0ix"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_td0ix"]
 [ext_resource type="Texture2D" uid="uid://c2albsqphmhux" path="res://sprites/Bullet animation sprite sheet.png" id="2_4xhk8"]
 [ext_resource type="Texture2D" uid="uid://cmuqr0352osig" path="res://sprites/Coin animation frames.png" id="2_21bni"]
 [ext_resource type="Texture2D" uid="uid://cnea1fxyld6q4" path="res://sprites/Coin with shadow sprite map.png" id="3_tk46q"]

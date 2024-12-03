@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn30q6lio4d1f"]
 
-[ext_resource type="Script" path="res://scripts/Shop.gd" id="1_6gns3"]
+[ext_resource type="Script" path="res://scripts/shop.gd" id="1_6gns3"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="1_lmd17"]
 [ext_resource type="Texture2D" uid="uid://bub3xb7p8a8ex" path="res://sprites/ShopBackgroundImage.png" id="2_ht5t0"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://ckwg10y1f05l0"]
 
 [ext_resource type="Script" path="res://scripts/Managers/mission-selection-manager.gd" id="1_3hu57"]
-[ext_resource type="Script" path="res://scripts/Tilemaps.gd" id="1_ahal7"]
+[ext_resource type="Script" path="res://scripts/tilemaps.gd" id="1_ahal7"]
 [ext_resource type="Texture2D" uid="uid://5hyrjekjuwsg" path="res://sprites/Tilesets/Tilemap.png" id="2_n3oeg"]
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="3_vw2fn"]
 [ext_resource type="Texture2D" uid="uid://dli0u8ggmfdbj" path="res://sprites/Tilesets/Grass.png" id="4_f07sg"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://qss7qd3swo0g" path="res://sprites/Tilesets/Fences.png" id="6_s7xmm"]
 [ext_resource type="Texture2D" uid="uid://nnfo8llwfby6" path="res://sprites/Tilesets/Water.png" id="7_e66st"]
 [ext_resource type="Texture2D" uid="uid://ddtoqkrcfu35r" path="res://sprites/Tilesets/JonTileMap.png" id="8_r6pxm"]
-[ext_resource type="Script" path="res://scripts/ObstacleTileMap.gd" id="9_poihi"]
+[ext_resource type="Script" path="res://scripts/obstacle-tile-map.gd" id="9_poihi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p63qe"]
 texture = ExtResource("2_n3oeg")

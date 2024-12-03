@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ikbfvnw1dedw"]
 
-[ext_resource type="Script" path="res://scripts/SelfDestroyingParticles.gd" id="1_n8slf"]
+[ext_resource type="Script" path="res://scripts/self-destroying-particles.gd" id="1_n8slf"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mdoh0"]
 particle_flag_disable_z = true

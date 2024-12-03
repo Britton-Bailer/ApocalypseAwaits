@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw1jrhlxmvhi7"]
 
-[ext_resource type="Script" path="res://scripts/ItemCard.gd" id="1_1scvi"]
+[ext_resource type="Script" path="res://scripts/item-card.gd" id="1_1scvi"]
 [ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_3u43o"]
 
 [sub_resource type="Theme" id="Theme_4puit"]

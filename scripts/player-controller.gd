@@ -4,7 +4,7 @@ extends RigidBody2D
 @onready var hudManager = ExpeditionManager.hudManager
 @onready var primary = %Primary
 @onready var secondary = %Secondary
-@onready var camera2d = $Camera2D
+@onready var camera2d = $PlayerCamera
 @onready var hitScreen = $HitScreen
 
 var weapon

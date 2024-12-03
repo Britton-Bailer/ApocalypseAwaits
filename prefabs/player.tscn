@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://c5qj4134r7hb2"]
 
-[ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_qjnb2"]
+[ext_resource type="Script" path="res://scripts/player-controller.gd" id="1_qjnb2"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_w6c1n"]
-[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_0swwp"]
+[ext_resource type="Script" path="res://scripts/player-camera.gd" id="3_0swwp"]
 [ext_resource type="Texture2D" uid="uid://se023yrad5tj" path="res://sprites/cursor.png" id="5_yil6v"]
-[ext_resource type="Script" path="res://scripts/Cursor.gd" id="7_88osa"]
+[ext_resource type="Script" path="res://scripts/cursor.gd" id="7_88osa"]
 [ext_resource type="Texture2D" uid="uid://bm8ma4mqdpco6" path="res://sprites/BloodSplatterOverlay.png" id="7_bvs65"]
-[ext_resource type="Script" path="res://scripts/HitScreen.gd" id="7_gm2qi"]
-[ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="8_iqcfb"]
+[ext_resource type="Script" path="res://scripts/hit-screen.gd" id="7_gm2qi"]
+[ext_resource type="Script" path="res://scripts/pause-screen.gd" id="8_iqcfb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rrjvg"]
 friction = 0.0
@@ -32,7 +32,7 @@ position = Vector2(0, -4)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_w6c1n")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
 scale = Vector2(1.54164, 1)
 zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true

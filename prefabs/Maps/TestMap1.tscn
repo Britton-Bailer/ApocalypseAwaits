@@ -1,14 +1,14 @@
 [gd_scene load_steps=26 format=3 uid="uid://d4h11hg4hjwdq"]
 
-[ext_resource type="Script" path="res://scripts/Tilemaps.gd" id="1_513do"]
-[ext_resource type="Script" path="res://scripts/Map.gd" id="1_n7dmy"]
+[ext_resource type="Script" path="res://scripts/tilemaps.gd" id="1_513do"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_n7dmy"]
 [ext_resource type="Texture2D" uid="uid://bti0gx46ogqa4" path="res://sprites/Tilesets/GrassTilemap.png" id="3_vktfa"]
 [ext_resource type="Texture2D" uid="uid://dli0u8ggmfdbj" path="res://sprites/Tilesets/Grass.png" id="4_xmruk"]
 [ext_resource type="Texture2D" uid="uid://dphj77sghqxup" path="res://sprites/Tilesets/Hills.png" id="5_joi15"]
 [ext_resource type="Texture2D" uid="uid://qss7qd3swo0g" path="res://sprites/Tilesets/Fences.png" id="6_pqjhd"]
 [ext_resource type="Texture2D" uid="uid://nnfo8llwfby6" path="res://sprites/Tilesets/Water.png" id="7_rgf1d"]
 [ext_resource type="Texture2D" uid="uid://ddtoqkrcfu35r" path="res://sprites/Tilesets/JonTileMap.png" id="8_8logs"]
-[ext_resource type="Script" path="res://scripts/ExtractZone.gd" id="10_xjjb0"]
+[ext_resource type="Script" path="res://scripts/extract-zone.gd" id="10_xjjb0"]
 [ext_resource type="Texture2D" uid="uid://b7mdxad0slxho" path="res://sprites/ExtractionZonepng.png" id="11_rvp14"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dnlwe"]
