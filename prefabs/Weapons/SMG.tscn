@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbhqdy0t46nf3"]
 
-[ext_resource type="Script" path="res://scripts/CustomClasses/GunWeapon.gd" id="1_8p05x"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/gun-weapon.gd" id="1_8p05x"]
 [ext_resource type="Texture2D" uid="uid://bfu1ekqeguvvr" path="res://sprites/Weapons/smg.png" id="2_s2jfr"]
 
 [node name="SMG" type="Node2D"]

@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://drv63x5mqmiv5" path="res://Missions/Mission2.tres" id="3_gpsbv"]
 [ext_resource type="Resource" uid="uid://be3ftlfy5or0e" path="res://Missions/Mission3.tres" id="4_b6l5f"]
 [ext_resource type="Resource" uid="uid://cbitvaplgukcj" path="res://Missions/Mission4.tres" id="5_g2ke8"]
-[ext_resource type="Script" path="res://scripts/CustomClasses/MissionsList.gd" id="6_oovyw"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/missions-list.gd" id="6_oovyw"]
 
 [resource]
 script = ExtResource("6_oovyw")

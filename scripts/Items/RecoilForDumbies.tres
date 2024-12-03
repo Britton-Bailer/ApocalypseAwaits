@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://bsnk2v4dbsl24"]
 
-[ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="1_f7rgf"]
-[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_ijill"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/expedition-stats.gd" id="1_ijill"]
 [ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="2_1v8qc"]
 
 [sub_resource type="Resource" id="Resource_f17s6"]
@@ -27,9 +26,12 @@ weaponSpreadMultiplier = -0.05
 weaponManeuverabilityMultiplier = 0.0
 weaponRangeMultiplier = 0.0
 
+[sub_resource type="Resource" id="Resource_5bqve"]
+metadata/__load_path__ = "res://sprites/Items/DefaultItemSprite.png"
+
 [resource]
 script = ExtResource("2_1v8qc")
 itemName = "Recoil For Dumbies"
-itemSprite = ExtResource("1_f7rgf")
+itemSprite = SubResource("Resource_5bqve")
 affectedStats = SubResource("Resource_f17s6")
 itemCost = 5

@@ -64,7 +64,7 @@ func _physics_process(delta):
 	health_regen(delta)
 	sprint_exhaustion()
 
-func movement(delta):
+func movement(_delta):
 	var sprint = Input.is_action_pressed("sprint")
 	if sprint && not exhausted:
 		sprintSpeed = maxSprintSpeed

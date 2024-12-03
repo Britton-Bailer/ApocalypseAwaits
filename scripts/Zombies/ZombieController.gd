@@ -217,11 +217,11 @@ func ready():
 	pass
 
 ## Placeholder for additional processing logic ##
-func process(delta):
+func process(_delta):
 	pass
 	
 ## Placeholder for attack logic ##
-func attack(delta):
+func attack(_delta):
 	pass
 
 ## Placeholder for attack condition check ##

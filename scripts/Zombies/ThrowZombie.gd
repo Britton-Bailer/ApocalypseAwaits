@@ -1,7 +1,7 @@
 extends ZombieController
 
 ## Variables specific to throwZombie ##
-@export var THROWABLE_PREFAB = preload("res://prefabs/enemyBullet.tscn")  ## Prefab for enemy bullet
+@export var THROWABLE_PREFAB = preload("res://prefabs/enemy-bullet.tscn")  ## Prefab for enemy bullet
 var preferredRange = randi_range(120, 200)  ## Preferred range to maintain from the player
 
 @export var reloadRange = Vector2(150, 250)
@@ -32,7 +32,7 @@ func attack(delta):
 	navigation(delta)
 
 ## Move towards or away from the player to maintain preferred range ##
-func move_to_maintain_range(delta):
+func move_to_maintain_range(_delta):
 	var distance_to_target = position.distance_to(target.position)
 	currentState = Zombies.zombieState.CHASING
 	if distance_to_target > preferredRange + 10:

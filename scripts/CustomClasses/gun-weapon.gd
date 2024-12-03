@@ -110,5 +110,5 @@ func ___primary_attack():
 func ___ready():
 	pass
 	
-func ___process(delta):
+func ___process(_delta):
 	pass

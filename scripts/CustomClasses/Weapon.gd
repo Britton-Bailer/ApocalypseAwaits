@@ -62,7 +62,7 @@ func __ready():
 	pass
 	
 ## overwrite this to add functionality that runs every frame
-func __process(delta):
+func __process(_delta):
 	pass
 
 func __update_with_expedition_stats():

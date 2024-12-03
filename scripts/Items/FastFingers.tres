@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BaseItemResource" load_steps=5 format=3 uid="uid://hlgvywhej34c"]
 
-[ext_resource type="Script" path="res://scripts/CustomClasses/ExpeditionStats.gd" id="1_etbas"]
+[ext_resource type="Script" path="res://scripts/CustomClasses/expedition-stats.gd" id="1_etbas"]
 [ext_resource type="Texture2D" uid="uid://b8mq8efrgjfvk" path="res://sprites/Items/DefaultItemSprite.png" id="2_ykl21"]
 [ext_resource type="Script" path="res://scripts/Items/BaseItemResource.gd" id="3_l4jsg"]
 

@@ -13,7 +13,7 @@ var burstTimer = timeBetweenBurstShots
 func ___ready():
 	timeBetweenAttacks = timeBetweenBursts + burstBullets * timeBetweenBurstShots
 
-func ___process(delta):
+func ___process(_delta):
 	if(burst):
 		#wait timeBetweenShots time before next bullet in burst shoots
 		if(burstTimer >= timeBetweenBurstShots):
