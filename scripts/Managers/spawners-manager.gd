@@ -3,7 +3,7 @@ extends BaseManager
 var spawnRange = 1000
 var numSpawners = 0
 
-var spawner = preload("res://prefabs/spawner.tscn")
+var spawner = preload("res://scenes/misc/spawner.tscn")
 
 func spawn_spawners():
 	await get_tree().create_timer(0.1).timeout

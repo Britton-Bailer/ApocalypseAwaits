@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="MissionsList" load_steps=8 format=3 uid="uid://dx4lfv3evb53n"]
 
 [ext_resource type="Script" path="res://scripts/CustomClasses/mission-data.gd" id="1_0gh85"]
-[ext_resource type="Resource" uid="uid://yokcms036ycb" path="res://Missions/Mission0.tres" id="1_rvuvx"]
-[ext_resource type="Resource" uid="uid://dd0axbadh7t67" path="res://Missions/Mission1.tres" id="2_w27w5"]
-[ext_resource type="Resource" uid="uid://drv63x5mqmiv5" path="res://Missions/Mission2.tres" id="3_gpsbv"]
-[ext_resource type="Resource" uid="uid://be3ftlfy5or0e" path="res://Missions/Mission3.tres" id="4_b6l5f"]
-[ext_resource type="Resource" uid="uid://cbitvaplgukcj" path="res://Missions/Mission4.tres" id="5_g2ke8"]
+[ext_resource type="Resource" uid="uid://yokcms036ycb" path="res://missions/Mission0.tres" id="1_rvuvx"]
+[ext_resource type="Resource" uid="uid://dd0axbadh7t67" path="res://missions/Mission1.tres" id="2_w27w5"]
+[ext_resource type="Resource" uid="uid://drv63x5mqmiv5" path="res://missions/Mission2.tres" id="3_gpsbv"]
+[ext_resource type="Resource" uid="uid://be3ftlfy5or0e" path="res://missions/Mission3.tres" id="4_b6l5f"]
+[ext_resource type="Resource" uid="uid://cbitvaplgukcj" path="res://missions/Mission4.tres" id="5_g2ke8"]
 [ext_resource type="Script" path="res://scripts/CustomClasses/missions-list.gd" id="6_oovyw"]
 
 [resource]

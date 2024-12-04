@@ -5,7 +5,7 @@ var max_zombies = 250
 var player: RigidBody2D
 var zombies = Zombies.new()
 
-const zombieSpawnParticles = preload("res://prefabs/particles/zombie_spawn_particles.tscn")
+const zombieSpawnParticles = preload("res://scenes/misc/particles/zombie_spawn_particles.tscn")
 
 func spawn_zombie(pos: Vector2, type: Zombies.type):
 	if(get_child_count() >= max_zombies):
@@ -22,7 +22,7 @@ func spawn_zombie(pos: Vector2, type: Zombies.type):
 	newZomb.position = pos
 	add_child(newZomb)
 	
-	newZomb._ready()
+	#newZomb._ready()
 	print(get_child_count())
 
 func update_max_zombies(num):

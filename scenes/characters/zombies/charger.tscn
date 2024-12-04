@@ -1,38 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc64nxdsphsap"]
+[gd_scene load_steps=6 format=3 uid="uid://bg4txesnbkn4u"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/zombie-controller.gd" id="1_fhxu0"]
-[ext_resource type="Texture2D" uid="uid://bhmnm4qniwkk8" path="res://sprites/CharacterSprites/Jon Baby Zombie Sprite.png" id="2_iap57"]
+[ext_resource type="Script" path="res://scenes/characters/zombies/charger.gd" id="1_hrkla"]
+[ext_resource type="Texture2D" uid="uid://x6lsdve4rh82" path="res://sprites/CharacterSprites/Jon Charger Sprite.png" id="2_n87kd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyn48"]
-size = Vector2(13, 13)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxqa"]
+size = Vector2(15, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
-radius = 11.0
+radius = 14.0357
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k387p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa2ds"]
 radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 152
+collision_mask = 24
 motion_mode = 1
-script = ExtResource("1_fhxu0")
-type = 2
-roamingSpeedRange = Vector2(60, 80)
-chasingSpeedRange = Vector2(130, 160)
-acceleration = 9
-broadcastRange = 150
-health = 70
-coinWorth = 5
+script = ExtResource("1_hrkla")
+chargeDamageMultiplier = 3
+type = 5
+roamingSpeedRange = Vector2(50, 80)
+chasingSpeedRange = Vector2(100, 150)
+broadcastRange = 200
+coinWorth = 6
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xyn48")
+shape = SubResource("RectangleShape2D_2hxqa")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 3.0
+navigation_layers = 2
 path_metadata_flags = 0
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
+collision_mask = 4
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -44,15 +45,17 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="SpriteDirection" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
-position = Vector2(0, -4)
+position = Vector2(1, 0)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("2_iap57")
+texture = ExtResource("2_n87kd")
+region_enabled = true
+region_rect = Rect2(0.720528, -0.0646615, 31.1156, 35.2523)
 
 [node name="TargetSenseArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
-shape = SubResource("CircleShape2D_k387p")
+shape = SubResource("CircleShape2D_wa2ds")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

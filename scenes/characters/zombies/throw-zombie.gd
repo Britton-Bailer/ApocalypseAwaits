@@ -1,7 +1,7 @@
 extends ZombieController
 
 ## Variables specific to throwZombie ##
-@export var THROWABLE_PREFAB = preload("res://prefabs/enemy-bullet.tscn")  ## Prefab for enemy bullet
+@export var THROWABLE_PREFAB = preload("res://scenes/misc/bullet.tscn")  ## Prefab for enemy bullet
 var preferredRange = randi_range(120, 200)  ## Preferred range to maintain from the player
 
 @export var reloadRange = Vector2(150, 250)

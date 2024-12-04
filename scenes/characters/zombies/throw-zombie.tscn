@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgsks1tug8v7p"]
+[gd_scene load_steps=7 format=3 uid="uid://bqjyj6y1g43pd"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/throw-zombie.gd" id="1_8srb6"]
-[ext_resource type="PackedScene" uid="uid://mfw64bgiddid" path="res://prefabs/AOEThrowables/Grenade.tscn" id="2_itk87"]
-[ext_resource type="Texture2D" uid="uid://bnb4uour8f8yx" path="res://sprites/CharacterSprites/Jon Zombie Thrower Sprite.png" id="4_whojy"]
+[ext_resource type="Script" path="res://scenes/characters/zombies/throw-zombie.gd" id="1_dekml"]
+[ext_resource type="Texture2D" uid="uid://bnb4uour8f8yx" path="res://sprites/CharacterSprites/Jon Zombie Thrower Sprite.png" id="2_a2w7s"]
+[ext_resource type="PackedScene" uid="uid://b0t4td127vcra" path="res://scenes/weapons/aoe-throwables/AOEThrowable.tscn" id="2_ibhxs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7srti"]
 size = Vector2(18, 18)
@@ -10,7 +10,7 @@ size = Vector2(18, 18)
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j8e8t"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fuqms"]
 radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
@@ -18,11 +18,9 @@ position = Vector2(-1, 0)
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_8srb6")
-THROWABLE_PREFAB = ExtResource("2_itk87")
-throwSpeed = 220
-throwRange = 200
-type = 6
+script = ExtResource("1_dekml")
+THROWABLE_PREFAB = ExtResource("2_ibhxs")
+type = 1
 roamingSpeedRange = Vector2(40, 50)
 chasingSpeedRange = Vector2(70, 110)
 acceleration = 6
@@ -54,11 +52,11 @@ shape = SubResource("CircleShape2D_o7745")
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("4_whojy")
+texture = ExtResource("2_a2w7s")
 
 [node name="TargetSenseArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
-shape = SubResource("CircleShape2D_j8e8t")
+shape = SubResource("CircleShape2D_fuqms")

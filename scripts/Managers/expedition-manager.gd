@@ -6,7 +6,7 @@ extends BaseManager
 
 @onready var ENUMS = enums.new()
 var missionsList = preload("res://missions-list.tres")
-var playerPrefab = preload("res://prefabs/player.tscn")
+var player_scene = preload("res://scenes/characters/player/player.tscn")
 var player
 var tilemaps
 var tilemapsContainer
@@ -131,14 +131,14 @@ func set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgent
 	projectilesManager.set_managers(ambSpwnr, zmbsMngr, cnsMngr, spwnrsMngr, prjctlsMngr, navAgentPlcmnt, hudMngr)
 
 func start_next_round(rndMngr):
-	expeditionStats = preload("res://BaseStats.tres")
+	expeditionStats = preload("res://base-stats.tres")
 	apply_items()
 	
 	currentMission = missionsList.get_list(missionNum)
 	var newMap = currentMission.possibleMaps.pick_random().instantiate()
 	rndMngr.add_child(newMap)
 	
-	var newPlayer = playerPrefab.instantiate()
+	var newPlayer = player_scene.instantiate()
 	newPlayer.position = newMap.get_player_spawn()
 	rndMngr.add_child(newPlayer)
 	player = newPlayer
@@ -157,11 +157,11 @@ func start_next_round(rndMngr):
 	#rndMngr.add_child(newCompanion)
 
 func start_mission_selection(rndMngr):
-	expeditionStats = preload("res://BaseStats.tres")
+	expeditionStats = preload("res://base-stats.tres")
 	apply_items()
 	
-	currentMission = preload("res://Missions/MissionSelect.tres")
-	var newPlayer = playerPrefab.instantiate()
+	currentMission = preload("res://missions/MissionSelect.tres")
+	var newPlayer = player_scene.instantiate()
 	newPlayer.position = Vector2.ZERO
 	rndMngr.add_child(newPlayer)
 	player = newPlayer

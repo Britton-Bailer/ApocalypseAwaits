@@ -42,11 +42,11 @@ enum zombieState {
 }
 
 var zombiePrefabs: Dictionary = {
-	type.base: preload("res://prefabs/zombies/zombie.tscn"),
-	type.throw: preload("res://prefabs/zombies/throw-zombie.tscn"),
-	type.sucker: preload("res://prefabs/zombies/sucker-zombie.tscn"),
-	type.suckerWitch: preload("res://prefabs/zombies/sucker-witch.tscn"),
-	type.charger: preload("res://prefabs/zombies/charger.tscn"),
-	type.baby: preload("res://prefabs/zombies/baby-zombie.tscn"),
-	type.fragThrower: preload("res://prefabs/zombies/frag-thrower.tscn"),
+	type.base: preload("res://scenes/characters/zombies/zombie.tscn"),
+	type.throw: preload("res://scenes/characters/zombies/throw-zombie.tscn"),
+	type.sucker: preload("res://scenes/characters/zombies/sucker-zombie.tscn"),
+	type.suckerWitch: preload("res://scenes/characters/zombies/sucker-witch.tscn"),
+	type.charger: preload("res://scenes/characters/zombies/charger.tscn"),
+	type.baby: preload("res://scenes/characters/zombies/baby-zombie.tscn"),
+	type.fragThrower: preload("res://scenes/characters/zombies/frag-thrower.tscn"),
 }

@@ -187,7 +187,7 @@ func _on_damage_area_body_entered(body):
 
 ## Placeholder function for handling hit particles ##
 func hit_particles():
-	return preload("res://prefabs/particles/blood_particles.tscn")
+	return preload("res://scenes/misc/particles/blood_particles.tscn")
 
 ## Calculate separation force from nearby zombies ##
 func calculateSeparationForce():

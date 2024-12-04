@@ -1,6 +1,6 @@
 extends BaseManager
 
-@onready var flashTextPrefab = preload("res://prefabs/flashText.tscn")
+@onready var flashTextPrefab = preload("res://scenes/misc/flashText.tscn")
 
 @onready var flashTextContainer = $GameUI/FlashTextContainer
 

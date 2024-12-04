@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/companion-controller.gd" id="1_xl7fi"]
 [ext_resource type="Texture2D" uid="uid://bn6st7ef1gr8w" path="res://sprites/CharacterSprites/McShootem Sprite.png" id="2_61u4q"]
-[ext_resource type="PackedScene" uid="uid://di26evx5dmust" path="res://prefabs/Weapons/BurstRifle.tscn" id="3_ntm37"]
+[ext_resource type="PackedScene" uid="uid://di26evx5dmust" path="res://scenes/weapons/BurstRifle.tscn" id="3_ntm37"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q7yyi"]
 friction = 0.0

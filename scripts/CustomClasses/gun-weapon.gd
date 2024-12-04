@@ -13,7 +13,7 @@ class_name GunWeapon
 	spread = 2
 }
 @export var kickback: float = 1
-@export var BULLET_PREFAB = preload("res://prefabs/bullet.tscn")
+@export var BULLET_PREFAB = preload("res://scenes/misc/bullet.tscn")
 @onready var projectilesManager = ExpeditionManager.projectilesManager
 
 var reloading = false

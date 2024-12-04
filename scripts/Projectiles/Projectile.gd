@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Projectile
 
-var hitParticles = preload("res://prefabs/particles/bullet_hit_particles.tscn")
+@export var hitParticles: PackedScene = preload("res://scenes/misc/particles/bullet_hit_particles.tscn")
 
 var speed = 800
 var hitDamage = 50
@@ -12,6 +12,8 @@ var dist = 0
 @onready var expeditionStats = ExpeditionManager.expeditionStats
 
 func _ready():
+	if not hitParticles:
+		printerr("error: missing hit particles article for projectile")
 	setup()
 
 func setup():

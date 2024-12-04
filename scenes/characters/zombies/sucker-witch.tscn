@@ -1,49 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqjyj6y1g43pd"]
+[gd_scene load_steps=6 format=3 uid="uid://c3mvfa5he1q33"]
 
-[ext_resource type="Script" path="res://scripts/Zombies/throw-zombie.gd" id="1_dekml"]
-[ext_resource type="Texture2D" uid="uid://bnb4uour8f8yx" path="res://sprites/CharacterSprites/Jon Zombie Thrower Sprite.png" id="2_a2w7s"]
-[ext_resource type="PackedScene" uid="uid://b0t4td127vcra" path="res://prefabs/AOEThrowables/AOEThrowable.tscn" id="2_ibhxs"]
+[ext_resource type="Script" path="res://scenes/characters/zombies/sucker-witch.gd" id="1_77hrn"]
+[ext_resource type="Texture2D" uid="uid://3c1eb0vvxksm" path="res://sprites/CharacterSprites/Jon Sucker Witch Sprite.png" id="2_jq6sy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7srti"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04e0a"]
 size = Vector2(18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7745"]
 radius = 14.0357
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fuqms"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qktvn"]
 radius = 400.0
 
 [node name="Zombie" type="CharacterBody2D"]
-position = Vector2(-1, 0)
 collision_layer = 2
 collision_mask = 152
 motion_mode = 1
-script = ExtResource("1_dekml")
-THROWABLE_PREFAB = ExtResource("2_ibhxs")
-type = 1
-roamingSpeedRange = Vector2(40, 50)
-chasingSpeedRange = Vector2(70, 110)
-acceleration = 6
-sightRange = 400
+script = ExtResource("1_77hrn")
+type = 4
+roamingSpeedRange = Vector2(50, 70)
+chasingSpeedRange = Vector2(50, 70)
+acceleration = 3
+sightRange = 200
 broadcastRange = 200
-touchDamage = 20.0
-coinWorth = 5
+touchDamage = 0.0
+reactToBroadcast = false
+coinWorth = 10
 
 [node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7srti")
+shape = SubResource("RectangleShape2D_04e0a")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 3.0
-navigation_layers = 2
+navigation_layers = 4
 path_metadata_flags = 0
 avoidance_layers = 0
 
 [node name="RayCastToPlayer" type="RayCast2D" parent="."]
-collision_mask = 3
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 145
+collision_mask = 144
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_o7745")
@@ -51,12 +48,15 @@ shape = SubResource("CircleShape2D_o7745")
 [node name="SpriteDirection" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteDirection"]
+position = Vector2(-1, -2)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("2_a2w7s")
+texture = ExtResource("2_jq6sy")
+region_enabled = true
+region_rect = Rect2(-0.327332, 0, 31.3273, 31.1623)
 
 [node name="TargetSenseArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSenseArea"]
-shape = SubResource("CircleShape2D_fuqms")
+shape = SubResource("CircleShape2D_qktvn")

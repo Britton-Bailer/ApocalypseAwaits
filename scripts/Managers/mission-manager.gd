@@ -2,7 +2,7 @@ extends Node2D
 
 class_name MissionManager
 
-var ambientSpawnerPrefab = preload("res://prefabs/ambient-spawner.tscn")
+var ambientSpawnerPrefab = preload("res://scenes/misc/ambient-spawner.tscn")
 var zombiesManagerPrefab = preload("res://prefabs/Managers/ZombiesManager.tscn")
 var coinsManagerPrefab = preload("res://prefabs/Managers/CoinsManager.tscn")
 var spawnersManagerPrefab = preload("res://prefabs/Managers/SpawnersManager.tscn")

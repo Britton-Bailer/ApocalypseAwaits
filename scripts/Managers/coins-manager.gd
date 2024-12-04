@@ -1,6 +1,6 @@
 extends BaseManager
 
-const coin = preload("res://prefabs/coin.tscn")
+const coin = preload("res://scenes/misc/coin.tscn")
 
 func add_coins(pos, worth):
 	var newCoin = coin.instantiate()
