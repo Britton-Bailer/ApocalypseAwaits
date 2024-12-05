@@ -1,6 +1,6 @@
 extends TileMap
 
-var barrier = preload("res://prefabs/barrier.tscn")
+var barrier = preload("res://scenes/misc/barrier.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

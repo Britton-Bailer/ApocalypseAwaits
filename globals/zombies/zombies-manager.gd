@@ -21,9 +21,6 @@ func spawn_zombie(pos: Vector2, type: Zombies.type):
 	var newZomb = zombies.zombiePrefabs[type].instantiate()
 	newZomb.position = pos
 	add_child(newZomb)
-	
-	#newZomb._ready()
-	print(get_child_count())
 
 func update_max_zombies(num):
 	max_zombies = num

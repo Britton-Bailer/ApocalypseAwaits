@@ -27,12 +27,16 @@ func _process(_delta):
 		var newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
 		var zombieType = select_zombie()
 		
+		var tries = 0
+		
 		navAgentPlacement.get_node("NavAgent").target_position = newPos
 		while(!navAgentPlacement.get_node("NavAgent").is_target_reachable()):
+			tries+=1
 			newPos = global_position + Vector2(randf_range(-spawnRange, spawnRange), randf_range(-spawnRange, spawnRange))
 			navAgentPlacement.get_node("NavAgent").target_position = newPos
 		
 		zombiesManager.spawn_zombie(newPos, zombieType)
+		print("Failed attempts to place a zombie: " + str(tries))
 
 	timer += 1
 
