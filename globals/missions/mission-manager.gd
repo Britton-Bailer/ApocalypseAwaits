@@ -3,12 +3,12 @@ extends Node2D
 class_name MissionManager
 
 var ambientSpawnerPrefab = preload("res://scenes/misc/ambient-spawner.tscn")
-var zombiesManagerPrefab = preload("res://prefabs/Managers/ZombiesManager.tscn")
-var coinsManagerPrefab = preload("res://prefabs/Managers/CoinsManager.tscn")
-var spawnersManagerPrefab = preload("res://prefabs/Managers/SpawnersManager.tscn")
-var projectilesManagerPrefab = preload("res://prefabs/Managers/ProjectilesManager.tscn")
-var navAgentPlacementPrefab = preload("res://prefabs/Managers/NavAgentPlacement.tscn")
-var hudManagerPrefab = preload("res://prefabs/Managers/HUDManager.tscn")
+var zombiesManagerPrefab = preload("res://globals/zombies/zombies-manager.tscn")
+var coinsManagerPrefab = preload("res://globals/coin-manager/coin-manager.tscn")
+var spawnersManagerPrefab = preload("res://globals/spawners/spawners-manager.tscn")
+var projectilesManagerPrefab = preload("res://globals/projectile/projectiles-manager.tscn")
+var navAgentPlacementPrefab = preload("res://globals/nav-agent-placement.tscn")
+var hudManagerPrefab = preload("res://globals/hud/hud-manager.tscn")
 
 var ambientSpawner
 var zombiesManager

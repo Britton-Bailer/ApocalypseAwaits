@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlxqybysnlluk"]
 
-[ext_resource type="Script" path="res://scripts/CustomClasses/gun-weapon.gd" id="1_k7egp"]
+[ext_resource type="Script" path="res://scenes/weapons/guns/gun-weapon.gd" id="1_k7egp"]
 [ext_resource type="Texture2D" uid="uid://bvsy8564s2bph" path="res://sprites/Weapons/assault_rifle.png" id="2_hbmft"]
 
 [node name="AssultRifle" type="Node2D"]

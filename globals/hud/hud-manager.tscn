@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://ct4rthoqkdwur"]
 
-[ext_resource type="Script" path="res://scripts/Managers/hud-manager.gd" id="1_cxpsa"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/ammo-text.gd" id="2_81ubk"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/ammo-indicator.gd" id="3_yc5s2"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/fps-indicator.gd" id="4_fnvej"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/health-indicator.gd" id="6_1t3so"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/stamina-indicator.gd" id="7_hy8ej"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/timer-text.gd" id="8_eqmck"]
-[ext_resource type="Script" path="res://scripts/HUDScripts/minimap.gd" id="8_gi2ab"]
+[ext_resource type="Script" path="res://globals/hud/hud-manager.gd" id="1_cxpsa"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/ammo-text.gd" id="2_81ubk"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/ammo-indicator.gd" id="3_yc5s2"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/fps-indicator.gd" id="4_fnvej"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/health-indicator.gd" id="6_1t3so"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/stamina-indicator.gd" id="7_hy8ej"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/timer-text.gd" id="8_eqmck"]
+[ext_resource type="Script" path="res://scenes/characters/player/hud/minimap.gd" id="8_gi2ab"]
 
 [node name="Hud" type="Node2D"]
 script = ExtResource("1_cxpsa")

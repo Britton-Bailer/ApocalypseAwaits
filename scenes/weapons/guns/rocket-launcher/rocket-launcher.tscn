@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://crdvfrnhbrlqu"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/rocket-launcher.gd" id="1_epmek"]
+[ext_resource type="Script" path="res://scenes/weapons/guns/rocket-launcher/rocket-launcher.gd" id="1_epmek"]
 [ext_resource type="PackedScene" uid="uid://mfw64bgiddid" path="res://scenes/weapons/aoe-throwables/Grenade.tscn" id="2_hhnyo"]
 [ext_resource type="Texture2D" uid="uid://d0l4n0yqtwltf" path="res://sprites/Weapons/pistol.png" id="2_hy4gj"]
 

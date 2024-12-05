@@ -20,8 +20,8 @@ boot_splash/minimum_display_time=1500
 
 [autoload]
 
-ExpeditionManager="*res://prefabs/Managers/ExpeditionManager.tscn"
-ParticlesContainer="*res://particles_container.gd"
+ExpeditionManager="*res://globals/expedition/expedition-manager.tscn"
+ParticlesContainer="*res://particles-container.gd"
 
 [display]
 

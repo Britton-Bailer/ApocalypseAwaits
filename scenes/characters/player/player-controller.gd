@@ -33,12 +33,12 @@ var primaryWeapon
 var secondaryWeapon
 
 var weapons = [
-	preload("res://scenes/weapons/AssultRifle.tscn"),
-	preload("res://scenes/weapons/SMG.tscn"),
-	preload("res://scenes/weapons/Sniper.tscn"),
-	preload("res://scenes/weapons/Shotgun.tscn"),
-	preload("res://scenes/weapons/BurstRifle.tscn"),
-	preload("res://scenes/weapons/RocketLauncher.tscn")
+	preload("res://scenes/weapons/guns/AssultRifle.tscn"),
+	preload("res://scenes/weapons/guns/SMG.tscn"),
+	preload("res://scenes/weapons/guns/Sniper.tscn"),
+	preload("res://scenes/weapons/guns/shotgun/Shotgun.tscn"),
+	preload("res://scenes/weapons/guns/burst-rifle/burst-rifle.tscn"),
+	preload("res://scenes/weapons/guns/rocket-launcher/rocket-launcher.tscn")
 ]
 var weaponIndex = 0
 
@@ -47,7 +47,7 @@ var secondaryWeaponPrefab
 
 func _ready():
 	primaryWeaponPrefab = weapons[0]
-	secondaryWeaponPrefab = preload("res://scenes/weapons/Pistol.tscn")
+	secondaryWeaponPrefab = preload("res://scenes/weapons/guns/pistol.tscn")
 	set_primary_weapon(primaryWeaponPrefab)
 	set_secondary_weapon(secondaryWeaponPrefab)
 	weapon = get_equipped_weapon()

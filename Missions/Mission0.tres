@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="MissionData" load_steps=6 format=3 uid="uid://yokcms036ycb"]
 
-[ext_resource type="Script" path="res://scripts/CustomClasses/mission-data.gd" id="1_1pm4m"]
+[ext_resource type="Script" path="res://missions/mission-data.gd" id="1_1pm4m"]
 [ext_resource type="PackedScene" uid="uid://d4h11hg4hjwdq" path="res://scenes/maps/test-map1.tscn" id="1_ajihu"]
-[ext_resource type="Script" path="res://scripts/CustomClasses/spawn-weights.gd" id="2_acwtc"]
+[ext_resource type="Script" path="res://missions/spawn-weights.gd" id="2_acwtc"]
 [ext_resource type="PackedScene" uid="uid://curqclrtvduu1" path="res://scenes/maps/test-map2.tscn" id="2_d3eky"]
 
 [sub_resource type="Resource" id="Resource_lcic4"]
