@@ -34,8 +34,8 @@ var secondaryWeapon
 
 var weapons = [
 	preload("res://scenes/weapons/guns/AssultRifle.tscn"),
-	preload("res://scenes/weapons/guns/SMG.tscn"),
-	preload("res://scenes/weapons/guns/Sniper.tscn"),
+	preload("res://scenes/weapons/guns/smg.tscn"),
+	preload("res://scenes/weapons/guns/sniper.tscn"),
 	preload("res://scenes/weapons/guns/shotgun/Shotgun.tscn"),
 	preload("res://scenes/weapons/guns/burst-rifle/burst-rifle.tscn"),
 	preload("res://scenes/weapons/guns/rocket-launcher/rocket-launcher.tscn")
